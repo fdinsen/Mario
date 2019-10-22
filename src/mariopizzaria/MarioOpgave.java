@@ -1,4 +1,4 @@
-package marioopgave;
+package mariopizzaria;
 
 /**
  *
