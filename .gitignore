@@ -67,3 +67,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/macos,windows,netbeans
+manifest.mf
+nbproject/project.xml
+nbproject/project.properties
+nbproject/genfiles.properties
+nbproject/build-impl.xml
+build.xml
