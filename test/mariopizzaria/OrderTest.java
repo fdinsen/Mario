@@ -14,7 +14,11 @@ import static org.junit.Assert.*;
  */
 public class OrderTest {
     
+    Order order;
+    
+    
     public OrderTest() {
+        order = new Order();
     }
 
     /**
@@ -29,6 +33,8 @@ public class OrderTest {
      */
     @Test
     public void testAddPizza() {
+        order.addPizza(2);
+        
     }
 
     /**
