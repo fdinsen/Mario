@@ -5,10 +5,7 @@
  */
 package mariopizzaria;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
@@ -22,21 +19,15 @@ public class OrderlistTest {
      */
     @Test
     public void testCreateOrderArrayLength() {
-        //Opretter en ordre 
-        ArrayList<Order> expectedList = new ArrayList<Order>();
-        String str = "2019-10-08 12:30";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime pickupTime = LocalDateTime.parse(str, formatter);
-        Order order = new Order(pickupTime, true);
-        expectedList.add(order);
-        
+        int expectedSize = 1;
+
         //Laver en orderlist og kalder createOrder med orderByPhone sat til true
         Orderlist actual = new Orderlist();
-        actual.createOrder(pickupTime, true);
+        actual.createOrder(true);
 
         //Assert
-        Assert.assertEquals(expectedList.size(), actual.getOrdersList().size());
-        
+        assertEquals(expectedSize, actual.getOrdersList().size());
+
     }
 
     /**
@@ -44,6 +35,23 @@ public class OrderlistTest {
      */
     @Test
     public void testCompleteOrder_int() {
+        //TODO add test af statistic
+
+        Orderlist orderlist = new Orderlist();
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+
+        //Gemmer orderen, det skal fjernes
+        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
+
+        //Act
+        //Fjerner orderen fra arrayet
+        orderlist.completeOrder(1);
+
+        //Assert
+        //Tjekker om listen indenholder orderen der er blevet fjernet
+        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
+
     }
 
     /**
@@ -51,6 +59,22 @@ public class OrderlistTest {
      */
     @Test
     public void testCompleteOrder_int_boolean() {
+        //TODO add test af statistic
+
+        Orderlist orderlist = new Orderlist();
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+
+        //Gemmer orderen, det skal fjernes
+        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
+
+        //Act
+        //Fjerner orderen fra arrayet
+        orderlist.completeOrder(1, true);
+
+        //Assert
+        //Tjekker om listen indenholder orderen der er blevet fjernet
+        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
     }
 
     /**
@@ -58,6 +82,14 @@ public class OrderlistTest {
      */
     @Test
     public void testShowAllCurrentOrders() {
+        //TODO Færigør test når Order klasse er færdig
+        Orderlist orderlist = new Orderlist();
+        orderlist.createOrder(true);
+        Pizza pizza = new Pizza("Torino", 200);
+        //orderlist.getOrder(0).addPizza(0);
+        // orderlist.getOrder(0).addPizza(0);
+
+        //orderlist.ShowAllCurrentOrders();
     }
 
     /**
@@ -72,6 +104,20 @@ public class OrderlistTest {
      */
     @Test
     public void testDeleteOrder() {
+        Orderlist orderlist = new Orderlist();
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+
+        //Gemmer orderen, det skal fjernes
+        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
+
+        //Act
+        //Fjerner orderen fra arrayet
+        orderlist.deleteOrder(1);
+
+        //Assert
+        //Tjekker om listen indenholder orderen der er blevet fjernet
+        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
     }
 
     /**
