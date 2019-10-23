@@ -1,0 +1,26 @@
+Egg:6.00
+Ananas:8.00
+Artiscoc:9.00
+Asparges:7.00
+Bacon:14.00
+Bearnaise:10.00
+Champignon:10.00
+Susages:15.00
+Suace:8.00
+Gorgonzola:15.00
+Minzed meat:15.00
+Garlic:7.00
+Chicken:12.00
+Onion:6.00
+Mozzarella:15.00
+Shrimp:10.00
+Olives:7.00
+Paprika:7.00
+parma ham:15.00
+Bell pepper:7.00
+Pepperoni:15.00
+mussels:10.00
+Salami:10.00
+Salate:12.00
+Ham:15.00
+Tuna fish:10.00

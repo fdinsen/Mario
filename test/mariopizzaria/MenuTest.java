@@ -14,7 +14,9 @@ import static org.junit.Assert.*;
  */
 public class MenuTest {
     
+    Menu pizzaMenu;
     public MenuTest() {
+        pizzaMenu = new Menu();
     }
 
     /**
@@ -22,6 +24,52 @@ public class MenuTest {
      */
     @Test
     public void testPrintMenu() {
+        //Don't know how to test
+        System.out.println(pizzaMenu.printMenu());
     }
-    
+    @Test
+    public void testReadInPizza(){
+        //Arrange
+        int exspectedLength = 30;
+        
+        //Act
+        int actualNameLength = pizzaMenu.getListOfPizzaName().size();
+        
+        //Assert
+        assertEquals(exspectedLength, actualNameLength);
+    }
+    @Test
+    public void testReadInToppings(){
+        int exspectedLength = 26;
+        
+        //Act
+        int actualNameLength = pizzaMenu.getExtratoppingName().size();
+        
+        //Assert
+        assertEquals(exspectedLength, actualNameLength);
+    }
+    @Test
+    public void testGetPizzaName(){
+        //Arrange
+        String exspected = "Braccio di Ferro";
+        
+        //Act
+        String actual = pizzaMenu.getPizzaName(17);
+        
+        //Assert
+        assertEquals(exspected, actual);
+        
+    }
+    @Test
+    public void testGetPizzaPrice(){
+        //Arrange 
+        double exspected = 87.00;
+        
+        //Act
+        double actual = pizzaMenu.getPizzaPrice(22);
+        
+        //Assert
+        assertEquals(exspected, actual,0.005);
+        
+    }
 }

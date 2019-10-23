@@ -1,0 +1,30 @@
+Margherita:67.00:Tomato sauce, mozzarella, and oregano
+Marinara:63.00:Tomato sauce, garlic and basil
+Quattro:79.00:Stagioni. Tomato sauce, mozzarella, mushrooms, ham, artichokes, olives, and oregano
+Carbonara:85.00:Tomato sauce, mozzarella, parmesan, eggs, and bacon
+Frutti di Mare:67.00:Tomato sauce and seafood
+Quattro Formaggi:64.00:Tomato sauce, mozzarella, parmesan, gorgonzola cheese, artichokes, and oregano
+Crudo:70.00:Tomato sauce, mozzarella and Parma ham
+Napoletana or Napoli:55.00:Tomato sauce, mozzarella, oregano, anchovies
+Pugliese:61.00:Tomato sauce, mozzarella, oregano, and onions
+Montanara:70.00:Tomato sauce, mozzarella, mushrooms, pepperoni, and Stracchino (soft cheese)
+Emiliana:57.00:Tomato sauce, mozzarella, eggplant, boiled potatoes, and sausage
+Romana:74.00:Tomato sauce, mozzarella, anchovies, capers, and oregano
+Fattoria:75.00:Tomato sauce, mozzarella, peppers, peas, porchetta (Italian spit-roasted pork)
+Schiacciata:69.00:Olive oil and rosemary
+Prosciutto or Cardinale:49.00:Tomato sauce, mozzarella, ham, and oregano
+Americana:45.00:Tomato sauce, mozzarella, sausage and french fries
+Prosciutto e Funghi:84.00:Tomato sauce, mozzarella, ham, and mushrooms
+Braccio di Ferro:80.00:Mozzarella, spinach, ricotta cheese, and parmesan
+Sarda:61.00:Tomato sauce, mozzarella, pecorino cheese, and spicy salami
+Tonno:62.00:Tomato sauce, mozzarella, tuna, and onions
+Valtellina:72.00:Tomato sauce, mozzarella, bresaola, Parmesan flakes and rocket
+Gorgonzola:86.00:Tomato sauce, mozzarella, gorgonzola, and olives
+Calzone:87.00:Tomato sauce, mozzarella, ham, mushrooms, artichokes, anchovies, and oregano.
+Pizza al Pesto:51.00:Tomato, mozzarella, Genoese pesto, pine nuts, and olives
+Mediterranea:74.00:Tomato sauce, buffalo mozzarella, cherry tomatoes and pepper
+Ortolana:81.00:Tomato sauce, mozzarella, and assorted vegetables
+Diavola:52.00:Tomato sauce, mozzarella, spicy salami, and chilli pepper
+Rustica:83.00:Tomato sauce, mozzarella, gorgonzola cheese, and eggplants
+Contadina:58.00:Tomato sauce, mozzarella, asparagus, mushrooms, bacon, and parmesan.
+Parmigiana:90.00:Tomato sauce, mozzarella, eggplants and parmesan flakes
