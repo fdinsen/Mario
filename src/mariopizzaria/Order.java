@@ -1,31 +1,95 @@
 package mariopizzaria;
 
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Order {
 
-    private ArrayList<Pizza> Pizzas;
-
+    private ArrayList<Pizza> pizzas;
     private Costumer costumer;
-
-    private Date pickUpTime;
-
-    private int orderMethod;
-
-    private Date orderTime;
-
+    private LocalDateTime pickupTime;
+    private LocalDateTime orderTime;
+    private boolean orderByPhone;
     private double totalPrice;
+    private int percentDiscount;
 
-    private int procentDiscount;
-
-    public void discount() {
+    //-------------//
+    // CONSTRUCTOR //
+    //-------------//
+    public Order(LocalDateTime pickupTime, boolean orderByPhone) {
+        this.pickupTime = pickupTime;
+        this.orderByPhone = orderByPhone;
+        orderTime = LocalDateTime.now();
+        totalPrice = 0;
     }
 
-    public void addPizza(int meuIndex) {
+    public Order(boolean orderByPhone) {
+        this.orderByPhone = orderByPhone;
+
+        orderTime = LocalDateTime.now();
+        pickupTime = LocalDateTime.now().plusMinutes(15);
+        
+        totalPrice = 0;
     }
 
-    public void addExtraTopping(int toppingIndex, int quantity) {
+    //---------//
+    // GETTERS //
+    //---------//
+    public Pizza getPizza(int index) {
+        return pizzas.get(index);
+    }
+
+    LocalDateTime getOrderTime() {
+        return orderTime;
+    }
+    
+    LocalDateTime getPickupTime() {
+        return pickupTime;
+    }
+    
+    public boolean isOrderedByPhone() {
+        return orderByPhone;
+    }
+    
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    //---------//
+    // METHODS //
+    //---------//
+    public void discount(int percentToDiscount) {
+        double percent = 100 - (percentToDiscount / 100);
+        totalPrice *= percent; 
+    }
+
+    public void addPizza(int menuIndex) {
+        String pizzaName = Menu.getPizzaName(menuIndex);
+        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
+        pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        
+        calculateTotalPrice();
+    }
+
+    public void addExtraTopping(int itemNumber, int toppingIndex, int quantity) {
+        pizzas.get(itemNumber).addExtraTopping(toppingIndex, quantity);
+        
+        calculateTotalPrice();
+    }
+    
+    public void calculateTotalPrice() {
+        totalPrice = 0;
+        for(Pizza pizza : pizzas) {
+            totalPrice += pizza.getTotalPrice();
+        }
+    }
+    
+    
+    //--------//
+    //  TEMP  //
+    //--------//
+    public void setTotalPrice(double price) {
+        totalPrice = price;
     }
 }

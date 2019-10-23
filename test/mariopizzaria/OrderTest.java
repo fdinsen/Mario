@@ -5,6 +5,9 @@
  */
 package mariopizzaria;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -14,7 +17,11 @@ import static org.junit.Assert.*;
  */
 public class OrderTest {
     
+    Order order;
+    
+    
     public OrderTest() {
+        order = new Order(true);
     }
 
     /**
@@ -22,20 +29,64 @@ public class OrderTest {
      */
     @Test
     public void testDiscount() {
+        //Arrange
+        int originalPrice;
+        int actualDiscountedPrice;
+        int expectedDiscountedPrice;
+        order.setTotalPrice(252);
+        
     }
-
-    /**
-     * Test of addPizza method, of class Order.
-     */
+    
     @Test
-    public void testAddPizza() {
+    public void testOrderTime() {
+        //Arrange
+        int expectedHour;
+        int actuallyCreatedAtHour;
+        int expectedMinute;
+        int actuallyCreatedAtMinute;
+        int expectedDate;
+        int actuallyCreatedAtDate;
+        
+        //Act
+        LocalDateTime orderCreatedAtTime = order.getOrderTime();
+        
+        expectedHour = LocalDateTime.now().getHour();
+        actuallyCreatedAtHour = orderCreatedAtTime.getHour();
+        
+        expectedMinute = LocalDateTime.now().getMinute();
+        actuallyCreatedAtMinute = orderCreatedAtTime.getMinute();
+        
+        expectedDate = LocalDateTime.now().getDayOfMonth();
+        actuallyCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
+        
+        //Assert
+        assertEquals(expectedHour, actuallyCreatedAtHour);
+        assertEquals(expectedMinute, actuallyCreatedAtMinute);
+        assertEquals(expectedDate, actuallyCreatedAtDate);
     }
-
-    /**
-     * Test of addExtraTopping method, of class Order.
-     */
+    
     @Test
-    public void testAddExtraTopping() {
+    public void testPickupTime() {
+        //Arrange
+        int waitTime = 15;
+        int expectedPickupHour;
+        int actualPickupHour;
+        int expectedPickupMinute;
+        int actualPickupMinute;
+        
+        //Act
+        LocalDateTime orderPickupAtTime = order.getPickupTime();
+        
+        expectedPickupHour = LocalDateTime.now().plusMinutes(waitTime).getHour();
+        actualPickupHour = orderPickupAtTime.getHour();
+        
+        expectedPickupMinute = LocalDateTime.now().plusMinutes(waitTime).getMinute();
+        actualPickupMinute = orderPickupAtTime.getMinute();
+        
+        //Assert
+        assertEquals(expectedPickupHour, actualPickupHour);
+        assertEquals(expectedPickupMinute, actualPickupMinute);
+        
     }
     
 }

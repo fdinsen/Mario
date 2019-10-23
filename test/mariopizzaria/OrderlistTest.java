@@ -5,23 +5,38 @@
  */
 package mariopizzaria;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
- * @author <Frederik Keis Dinsen>
+ * @author <Oliver Vang>
  */
 public class OrderlistTest {
-    
-    public OrderlistTest() {
-    }
 
     /**
      * Test of createOrder method, of class Orderlist.
      */
     @Test
-    public void testCreateOrder() {
+    public void testCreateOrderArrayLength() {
+        //Opretter en ordre 
+        ArrayList<Order> expectedList = new ArrayList<Order>();
+        String str = "2019-10-08 12:30";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime pickupTime = LocalDateTime.parse(str, formatter);
+        Order order = new Order(pickupTime, true);
+        expectedList.add(order);
+        
+        //Laver en orderlist og kalder createOrder med orderByPhone sat til true
+        Orderlist actual = new Orderlist();
+        actual.createOrder(pickupTime, true);
+
+        //Assert
+        Assert.assertEquals(expectedList.size(), actual.getOrdersList().size());
+        
     }
 
     /**
@@ -65,5 +80,5 @@ public class OrderlistTest {
     @Test
     public void testGetOrder() {
     }
-    
+
 }
