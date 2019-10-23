@@ -15,13 +15,14 @@ public class Orderlist {
     
 
     public void createOrder(LocalDateTime pickupTime, boolean orderByPhone) {
+        //Laver ny order og tilføjer til Orders array
         Order order = new Order(pickupTime, orderByPhone);
         Orders.add(order);
-        System.out.println(Orders.get(0).toString());
         
     }
 
     public void completeOrder(int index) {
+        
     }
 
     public void completeOrder(int index, boolean lostOrder) {
