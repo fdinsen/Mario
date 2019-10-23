@@ -21,7 +21,7 @@ public class OrderTest {
     
     
     public OrderTest() {
-        order = new Order();
+        order = new Order(true);
     }
 
     /**
@@ -46,25 +46,55 @@ public class OrderTest {
     }
     
     @Test
-    public void testCurrentTime() {
-        
+    public void testOrderTime() {
         //Arrange
-        LocalDateTime orderCreatedAtTime = order.getOrderTime();
+        int expectedHour;
+        int actuallyCreatedAtHour;
+        int expectedMinute;
+        int actuallyCreatedAtMinute;
+        int expectedDate;
+        int actuallyCreatedAtDate;
         
         //Act
-        int expectedHour = LocalDateTime.now().getHour();
-        int orderCreatedAtHour = orderCreatedAtTime.getHour();
+        LocalDateTime orderCreatedAtTime = order.getOrderTime();
         
-        int expectedMinute = LocalDateTime.now().getMinute();
-        int orderCreatedAtMinute = orderCreatedAtTime.getMinute();
+        expectedHour = LocalDateTime.now().getHour();
+        actuallyCreatedAtHour = orderCreatedAtTime.getHour();
         
-        int expectedDate = LocalDateTime.now().getDayOfMonth();
-        int orderCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
+        expectedMinute = LocalDateTime.now().getMinute();
+        actuallyCreatedAtMinute = orderCreatedAtTime.getMinute();
+        
+        expectedDate = LocalDateTime.now().getDayOfMonth();
+        actuallyCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
         
         //Assert
-        assertEquals(expectedHour, orderCreatedAtHour);
-        assertEquals(expectedMinute, orderCreatedAtMinute);
-        assertEquals(expectedDate, orderCreatedAtDate);
+        assertEquals(expectedHour, actuallyCreatedAtHour);
+        assertEquals(expectedMinute, actuallyCreatedAtMinute);
+        assertEquals(expectedDate, actuallyCreatedAtDate);
+    }
+    
+    @Test
+    public void testPickupTime() {
+        //Arrange
+        int waitTime = 15;
+        int expectedPickupHour;
+        int actualPickupHour;
+        int expectedPickupMinute;
+        int actualPickupMinute;
+        
+        //Act
+        LocalDateTime orderPickupAtTime = order.getPickupTime();
+        
+        expectedPickupHour = LocalDateTime.now().plusMinutes(waitTime).getHour();
+        actualPickupHour = orderPickupAtTime.getHour();
+        
+        expectedPickupMinute = LocalDateTime.now().plusMinutes(waitTime).getMinute();
+        actualPickupMinute = orderPickupAtTime.getMinute();
+        
+        //Assert
+        assertEquals(expectedPickupHour, actualPickupHour);
+        assertEquals(expectedPickupMinute, actualPickupMinute);
+        
     }
     
 }
