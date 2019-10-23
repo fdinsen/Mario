@@ -7,9 +7,10 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
-    @Author Simon Kjems Jørgensen
-*/
+/**
+ *
+ * @author <Simon Kjems Jørgensen>
+ */
 
 public class Menu {
     //Setup for toppings file
