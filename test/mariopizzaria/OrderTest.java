@@ -29,20 +29,12 @@ public class OrderTest {
      */
     @Test
     public void testDiscount() {
-    }
-
-    /**
-     * Test of addPizza method, of class Order.
-     */
-    @Test
-    public void testAddPizza() {     
-    }
-
-    /**
-     * Test of addExtraTopping method, of class Order.
-     */
-    @Test
-    public void testAddExtraTopping() {
+        //Arrange
+        int originalPrice;
+        int actualDiscountedPrice;
+        int expectedDiscountedPrice;
+        order.setTotalPrice(252);
+        
     }
     
     @Test

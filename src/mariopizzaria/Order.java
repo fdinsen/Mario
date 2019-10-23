@@ -59,7 +59,9 @@ public class Order {
     //---------//
     // METHODS //
     //---------//
-    public void discount() {
+    public void discount(int percentToDiscount) {
+        double percent = 100 - (percentToDiscount / 100);
+        totalPrice *= percent; 
     }
 
     public void addPizza(int menuIndex) {
@@ -81,5 +83,13 @@ public class Order {
         for(Pizza pizza : pizzas) {
             totalPrice += pizza.getTotalPrice();
         }
+    }
+    
+    
+    //--------//
+    //  TEMP  //
+    //--------//
+    public void setTotalPrice(double price) {
+        totalPrice = price;
     }
 }
