@@ -9,7 +9,7 @@ public class Order {
 
     private ArrayList<Pizza> Pizzas;
     private Costumer costumer;
-    private Date pickUpTime;
+    private SimpleDateFormat pickUpTime;
     private boolean orderByPhone;
     private double totalPrice;
     private int procentDiscount;
@@ -18,7 +18,7 @@ public class Order {
     //-------------//
     // CONSTRUCTOR //
     //-------------//
-    public Order(Date pickupTime, boolean orderByPhone) {
+    public Order(SimpleDateFormat pickupTime, boolean orderByPhone) {
         this.pickUpTime = pickupTime;
         this.orderByPhone = orderByPhone;
         this.orderTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -35,6 +35,9 @@ public class Order {
         return Pizzas.get(index);
     }
     
+    SimpleDateFormat getOrderTime() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     public void discount() {

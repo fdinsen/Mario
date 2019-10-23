@@ -48,7 +48,7 @@ public class OrderTest {
     
     @Test
     public void testSetAndGetCurrentTime() {
-        //SimpleDateFormat pizza time
+        SimpleDateFormat orderCreatedAtTime = order.getOrderTime();
     }
     
 }
