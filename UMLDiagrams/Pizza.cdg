@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Pizza">
+  <ClassDiagramComponents>
+    <Class name="Pizzaria" package="" visibility="public" xPosition="480.0" yPosition="31.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="userMenu" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Orderlist" package="" visibility="public" xPosition="726.0" yPosition="168.0">
+      <Fields>
+        <Field name="Order" type="ArrayList&lt;Order&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createOrder" returnType="void" visibility="public"/>
+        <Method name="completeOrder" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="completeOrder" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="boolean" name="lostOrder"/>
+        </Method>
+        <Method name="ShowAllCurrentOrders" returnType="ArrayList&lt;Order&gt;" visibility="public"/>
+        <Method name="showOrder" returnType="Order" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="deleteOrder" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="getOrder" returnType="Order" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Order" package="" visibility="public" xPosition="728.0" yPosition="422.0">
+      <Fields>
+        <Field name="Pizzas" type="ArrayList&lt;Pizza&gt;" visibility="private"/>
+        <Field name="costumer" type="Costumer" visibility="private"/>
+        <Field name="pickUpTime" type="Date" visibility="private"/>
+        <Field name="orderMethod" type="int" visibility="private"/>
+        <Field name="orderTime" type="Date" visibility="private"/>
+        <Field name="totalPrice" type="double" visibility="private"/>
+        <Field name="procentDiscount" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="discount" returnType="void" visibility="public"/>
+        <Method name="addPizza" returnType="void" visibility="public">
+          <Argument type="int" name="meuIndex"/>
+        </Method>
+        <Method name="addExtraTopping" returnType="void" visibility="public">
+          <Argument type="int" name="toppingIndex"/>
+          <Argument type="int" name="quantity"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Costumer" package="" visibility="public" xPosition="388.0" yPosition="467.0">
+      <Fields>
+        <Field name="costumerName" type="String" visibility="private"/>
+        <Field name="costumerPhoneNumber" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ExtraTopping" package="" visibility="public" xPosition="743.0" yPosition="943.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="price" type="double" visibility="private"/>
+        <Field name="quantity" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Pizza" package="" visibility="public" xPosition="743.0" yPosition="704.0">
+      <Fields>
+        <Field name="pizzaName" type="String" visibility="private"/>
+        <Field name="pizzaPrice" type="double" visibility="private"/>
+        <Field name="pizzaSize" type="int" visibility="private"/>
+        <Field name="totalPizzaPrice" type="double" visibility="private"/>
+        <Field name="toppingsAdded" type="ArrayList&lt;ExtraTopping&gt;" visibility="private"/>
+        <Field name="number" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Menu" package="" visibility="public" xPosition="385.0" yPosition="704.0">
+      <Fields>
+        <Field name="pizzaName" type="String[]" visibility="private"/>
+        <Field name="pizzaPrice" type="double[]" visibility="private"/>
+        <Field name="pizzaDescription" type="Stirng[]" visibility="private"/>
+        <Field name="ExtratoppingName" type="String[]" visibility="private"/>
+        <Field name="ExtratoppingPrice" type="double[]" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="printMenu" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Statistic " package="" visibility="public" xPosition="388.0" yPosition="301.0">
+      <Fields>
+        <Field name="pizzaStats" type="String[][]" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="readFile" returnType="void" visibility="public"/>
+        <Method name="writeFile" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>
