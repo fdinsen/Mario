@@ -3,6 +3,7 @@ package mariopizzaria;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Order {
 
@@ -10,20 +11,31 @@ public class Order {
     private Costumer costumer;
     private Date pickUpTime;
     private boolean orderByPhone;
-    private Date orderTime;
     private double totalPrice;
     private int procentDiscount;
-
+    private SimpleDateFormat orderTime;
     
     //-------------//
     // CONSTRUCTOR //
     //-------------//
-    public Order(Date pickupTime, boolean orderByPhone, Date orderTime) {
+    public Order(Date pickupTime, boolean orderByPhone) {
         this.pickUpTime = pickupTime;
         this.orderByPhone = orderByPhone;
-        this.orderTime = orderTime;
+        this.orderTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    }
+    public Order() {
         
     }
+    
+    //---------//
+    // GETTERS //
+    //---------//
+
+    public Pizza getPizza(int index) {
+        return Pizzas.get(index);
+    }
+    
+    
     
     public void discount() {
     }
