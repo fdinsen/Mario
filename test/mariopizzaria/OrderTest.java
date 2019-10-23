@@ -24,16 +24,22 @@ public class OrderTest {
         order = new Order(true);
     }
 
-    /**
-     * Test of discount method, of class Order.
-     */
     @Test
     public void testDiscount() {
         //Arrange
-        int originalPrice;
-        int actualDiscountedPrice;
-        int expectedDiscountedPrice;
-        order.setTotalPrice(252);
+        double originalPrice;
+        double actualDiscountedPrice;
+        double expectedDiscountedPrice;
+        
+        //Act
+        originalPrice = 525.25;
+        order.setTotalPrice(originalPrice);
+        order.discount(10);
+        actualDiscountedPrice = order.getTotalPrice();
+        expectedDiscountedPrice = 472.725;
+        
+        //Assert
+        assertEquals(expectedDiscountedPrice, actualDiscountedPrice, 0.001);
         
     }
     

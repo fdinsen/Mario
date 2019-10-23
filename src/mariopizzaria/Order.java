@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDateTime;
 
+/**
+ *
+ * @author <Frederik Keis Dinsen>
+ */
 public class Order {
 
     private ArrayList<Pizza> pizzas;
@@ -60,20 +64,20 @@ public class Order {
     // METHODS //
     //---------//
     public void discount(int percentToDiscount) {
-        double percent = 100 - (percentToDiscount / 100);
+        double percent = 1.0 - (percentToDiscount / 100.0);
         totalPrice *= percent; 
     }
 
     public void addPizza(int menuIndex) {
-        String pizzaName = Menu.getPizzaName(menuIndex);
-        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
-        pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        //String pizzaName = Menu.getPizzaName(menuIndex);
+        //Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
+        //pizzas.add(new Pizza(pizzaName, pizzaPrice));
         
         calculateTotalPrice();
     }
 
     public void addExtraTopping(int itemNumber, int toppingIndex, int quantity) {
-        pizzas.get(itemNumber).addExtraTopping(toppingIndex, quantity);
+        //pizzas.get(itemNumber).addExtraTopping(toppingIndex, quantity);
         
         calculateTotalPrice();
     }
@@ -81,7 +85,7 @@ public class Order {
     public void calculateTotalPrice() {
         totalPrice = 0;
         for(Pizza pizza : pizzas) {
-            totalPrice += pizza.getTotalPrice();
+            //totalPrice += pizza.getTotalPrice();
         }
     }
     
