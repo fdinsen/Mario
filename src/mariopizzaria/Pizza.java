@@ -16,4 +16,9 @@ public class Pizza {
     private ArrayList<ExtraTopping> toppingsAdded;
 
     private int number;
+    
+    public Pizza(String pizzaName, double pizzaPrice) {
+        this.pizzaName = pizzaName;
+        this.pizzaPrice = pizzaPrice;
+    }
 }

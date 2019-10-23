@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class Order {
 
-    private ArrayList<Pizza> Pizzas;
+    private ArrayList<Pizza> pizzas;
     private Costumer costumer;
     private LocalDateTime pickupTime;
     private LocalDateTime orderTime;
@@ -21,6 +21,7 @@ public class Order {
         this.pickupTime = pickupTime;
         this.orderByPhone = orderByPhone;
         orderTime = LocalDateTime.now();
+        totalPrice = 0;
     }
 
     public Order(boolean orderByPhone) {
@@ -29,14 +30,14 @@ public class Order {
         orderTime = LocalDateTime.now();
         pickupTime = LocalDateTime.now().plusMinutes(15);
         
-
+        totalPrice = 0;
     }
 
     //---------//
     // GETTERS //
     //---------//
     public Pizza getPizza(int index) {
-        return Pizzas.get(index);
+        return pizzas.get(index);
     }
 
     LocalDateTime getOrderTime() {
@@ -45,6 +46,14 @@ public class Order {
     
     LocalDateTime getPickupTime() {
         return pickupTime;
+    }
+    
+    public boolean isOrderedByPhone() {
+        return orderByPhone;
+    }
+    
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     //---------//
@@ -56,10 +65,21 @@ public class Order {
     public void addPizza(int menuIndex) {
         String pizzaName = Menu.getPizzaName(menuIndex);
         Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
-        Pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        
+        calculateTotalPrice();
     }
 
-    public void addExtraTopping(int toppingIndex, int quantity) {
+    public void addExtraTopping(int itemNumber, int toppingIndex, int quantity) {
+        pizzas.get(itemNumber).addExtraTopping(toppingIndex, quantity);
         
+        calculateTotalPrice();
+    }
+    
+    public void calculateTotalPrice() {
+        totalPrice = 0;
+        for(Pizza pizza : pizzas) {
+            totalPrice += pizza.getTotalPrice();
+        }
     }
 }
