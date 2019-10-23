@@ -3,28 +3,29 @@ package mariopizzaria;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 public class Order {
 
     private ArrayList<Pizza> Pizzas;
     private Costumer costumer;
-    private SimpleDateFormat pickUpTime;
+    private LocalDateTime pickUpTime;
+    private LocalDateTime orderTime;
     private boolean orderByPhone;
     private double totalPrice;
     private int procentDiscount;
-    private SimpleDateFormat orderTime;
+
     
     //-------------//
     // CONSTRUCTOR //
     //-------------//
-    public Order(SimpleDateFormat pickupTime, boolean orderByPhone) {
+    public Order(LocalDateTime pickupTime, boolean orderByPhone) {
         this.pickUpTime = pickupTime;
         this.orderByPhone = orderByPhone;
-        this.orderTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        orderTime = LocalDateTime.now();
     }
     public Order() {
-        
+        orderTime = LocalDateTime.now();
     }
     
     //---------//
@@ -35,8 +36,8 @@ public class Order {
         return Pizzas.get(index);
     }
     
-    SimpleDateFormat getOrderTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    LocalDateTime getOrderTime() {
+        return orderTime;
     }
     
     

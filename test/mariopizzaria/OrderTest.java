@@ -5,6 +5,9 @@
  */
 package mariopizzaria;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,11 +35,7 @@ public class OrderTest {
      * Test of addPizza method, of class Order.
      */
     @Test
-    public void testAddPizza() {
-        order.addPizza(2);
-        
-    
-        
+    public void testAddPizza() {     
     }
 
     /**
@@ -47,8 +46,25 @@ public class OrderTest {
     }
     
     @Test
-    public void testSetAndGetCurrentTime() {
-        SimpleDateFormat orderCreatedAtTime = order.getOrderTime();
+    public void testCurrentTime() {
+        
+        //Arrange
+        LocalDateTime orderCreatedAtTime = order.getOrderTime();
+        
+        //Act
+        int expectedHour = LocalDateTime.now().getHour();
+        int orderCreatedAtHour = orderCreatedAtTime.getHour();
+        
+        int expectedMinute = LocalDateTime.now().getMinute();
+        int orderCreatedAtMinute = orderCreatedAtTime.getMinute();
+        
+        int expectedDate = LocalDateTime.now().getDayOfMonth();
+        int orderCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
+        
+        //Assert
+        assertEquals(expectedHour, orderCreatedAtHour);
+        assertEquals(expectedMinute, orderCreatedAtMinute);
+        assertEquals(expectedDate, orderCreatedAtDate);
     }
     
 }
