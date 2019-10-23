@@ -15,7 +15,10 @@
       </Fields>
       <Constructors/>
       <Methods>
-        <Method name="createOrder" returnType="void" visibility="public"/>
+        <Method name="createOrder" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="pickupTime"/>
+          <Argument type="Boolean" name="orderByPhone"/>
+        </Method>
         <Method name="completeOrder" returnType="void" visibility="public">
           <Argument type="int" name="index"/>
         </Method>
@@ -35,12 +38,12 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Order" package="" visibility="public" xPosition="728.0" yPosition="422.0">
+    <Class name="Order" package="" visibility="public" xPosition="726.0" yPosition="431.0">
       <Fields>
         <Field name="Pizzas" type="ArrayList&lt;Pizza&gt;" visibility="private"/>
         <Field name="costumer" type="Costumer" visibility="private"/>
         <Field name="pickUpTime" type="Date" visibility="private"/>
-        <Field name="orderMethod" type="int" visibility="private"/>
+        <Field name="orderByPhone" type="int" visibility="private"/>
         <Field name="orderTime" type="Date" visibility="private"/>
         <Field name="totalPrice" type="double" visibility="private"/>
         <Field name="procentDiscount" type="int" visibility="private"/>
@@ -65,7 +68,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="ExtraTopping" package="" visibility="public" xPosition="743.0" yPosition="943.0">
+    <Class name="ExtraTopping" package="" visibility="public" xPosition="694.0" yPosition="929.0">
       <Fields>
         <Field name="name" type="String" visibility="private"/>
         <Field name="price" type="double" visibility="private"/>
