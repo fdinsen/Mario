@@ -35,15 +35,17 @@ public class Pizza {
     }
     public void addExtraTopping(ExtraTopping topping){
         
-        if(listOfToppingsAdded.contains(topping)){
-            int index = listOfToppingsAdded.indexOf(topping);
-            listOfToppingsAdded.get(index).addExtraTopping(topping.getExtraToppingQuantity());
-        }
-        listOfToppingsAdded.add(topping);
+            for(ExtraTopping toppingAdded : listOfToppingsAdded){
+                if(toppingAdded.getExtraToppingName().equals(topping.getExtraToppingName())){
+                    toppingAdded.addExtraTopping(topping.getExtraToppingQuantity());
+                    return;
+                }
+            }
+            listOfToppingsAdded.add(topping);
         
-        totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+            totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+        
     }
-
     public String getPizzaName() {
         return pizzaName;
     }

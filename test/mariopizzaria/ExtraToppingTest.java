@@ -14,11 +14,21 @@ import static org.junit.Assert.*;
  */
 public class ExtraToppingTest {
     
+    ExtraTopping sytten = new ExtraTopping(5, 3);
+    
     public ExtraToppingTest() {
     }
 
     @Test
-    public void testSomeMethod() {
+    public void testToppingName() {
+        
+        String exspected = "Bearnaise";
+        
+        String actual = sytten.getExtraToppingName();
+        
+        assertEquals(exspected, actual);
+        
+        
     }
     
 }
