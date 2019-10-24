@@ -24,6 +24,12 @@ public class OrderTest {
         order = new Order(true);
     }
 
+//    @Test
+//    public void testAddPizzaByArrayLength() {
+//        order.addPizza(1);
+//        
+//    }
+    
     @Test
     public void testDiscount() {
         //Arrange

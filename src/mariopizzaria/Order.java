@@ -69,6 +69,9 @@ public class Order {
     public Pizza getPizzaAt(int index) {
         return pizzas.get(index);
     }
+    public int getOrderSize() {
+        return pizzas.size();
+    }
     
 
     //---------//
@@ -80,6 +83,7 @@ public class Order {
     }
 
     public void addPizza(int menuIndex) {
+        //Informationen om pizzaen hentes fra menu-kortet
         String pizzaName = menu.getPizzaName(menuIndex);
         Double pizzaPrice = menu.getPizzaPrice(menuIndex);
         pizzas.add(new Pizza(pizzaName, pizzaPrice));
