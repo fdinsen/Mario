@@ -31,7 +31,7 @@ public class Order {
         
         totalPrice = 0;
         
-        menu = new Menu();
+        //menu = new Menu();
     }
 
     public Order(boolean orderByPhone) {
@@ -43,15 +43,15 @@ public class Order {
         
         totalPrice = 0;
         
-        menu = new Menu();
+        //menu = new Menu();
     }
 
     //---------//
     // GETTERS //
     //---------//
-    public Pizza getPizza(int index) {
-        return pizzas.get(index);
-    }
+//    public Pizza getPizza(int index) {
+//        return pizzas.get(index);
+//    }
     LocalDateTime getOrderTime() {
         return orderTime;
     }
@@ -65,25 +65,38 @@ public class Order {
         return totalPrice;
     }
     public Pizza getPizzaAt(int index) {
+        index = Math.abs(index);
         return pizzas.get(index);
     }
     public int getOrderSize() {
         return pizzas.size();
     }
     
+    //---------//
+    // SETTERS //
+    //---------//
+    public void setCostumerName(String name) {
+        costumer.setCostumerName(name);
+    }
+    public void setCostumerPhoneNumber(int phone) {
+        costumer.setCostumerPhoneNumber(phone);
+    }
 
     //---------//
     // METHODS //
     //---------//
     public void discount(int percentToDiscount) {
+        percentToDiscount = Math.abs(percentToDiscount);
+        
         double percent = 1.0 - (percentToDiscount / 100.0);
         totalPrice *= percent; 
     }
 
     public void addPizza(int menuIndex) {
+        menuIndex = Math.abs(menuIndex);
         //Informationen om pizzaen hentes fra menu-kortet
-        String pizzaName = menu.getPizzaName(menuIndex);
-        Double pizzaPrice = menu.getPizzaPrice(menuIndex);
+        String pizzaName = Menu.getPizzaName(menuIndex);
+        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
         int pizzaSize = 0; //Default værdi
         
         pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
@@ -91,16 +104,24 @@ public class Order {
         calculateTotalPrice();
     }
     public void addPizza(int menuIndex, int pizzaSize) {
+        menuIndex = Math.abs(menuIndex);
+        pizzaSize = Math.abs(pizzaSize);
         //Informationen om pizzaen hentes fra menu-kortet
-        String pizzaName = menu.getPizzaName(menuIndex);
-        Double pizzaPrice = menu.getPizzaPrice(menuIndex);
+        String pizzaName = Menu.getPizzaName(menuIndex);
+        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
         pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
         
         calculateTotalPrice();
     }
 
     public void addExtraTopping(int itemNumber, int toppingIndex, int quantity) {
-        //pizzas.get(itemNumber).addExtraTopping(toppingIndex, quantity);
+        itemNumber = Math.abs(itemNumber);
+        toppingIndex = Math.abs(toppingIndex);
+        quantity = Math.abs(quantity);
+        
+        String toppingName = Menu.getExtratoppingName(toppingIndex);
+        double toppingPrice = Menu.getExtratoppingPrice(toppingIndex);
+        pizzas.get(itemNumber).addExtraTopping(new ExtraTopping(toppingName, toppingPrice, quantity));
         
         calculateTotalPrice();
     }
@@ -113,6 +134,8 @@ public class Order {
     }
     
     public void removePizzaFromOrder(int index) {
+        index = Math.abs(index);
+        
         pizzas.remove(index);
         calculateTotalPrice();
     }
