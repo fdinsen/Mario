@@ -26,6 +26,7 @@ public class Order {
         this.pickupTime = pickupTime;
         this.orderByPhone = orderByPhone;
         pizzas = new ArrayList<Pizza>();
+        costumer = new Costumer();
         
         orderTime = LocalDateTime.now();
         
@@ -37,6 +38,7 @@ public class Order {
     public Order(boolean orderByPhone) {
         this.orderByPhone = orderByPhone;
         pizzas = new ArrayList<Pizza>();
+        costumer = new Costumer();
 
         orderTime = LocalDateTime.now();
         pickupTime = LocalDateTime.now().plusMinutes(15);

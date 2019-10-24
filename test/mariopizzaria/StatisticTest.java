@@ -5,6 +5,7 @@
  */
 package mariopizzaria;
 
+import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,18 +18,33 @@ public class StatisticTest {
     public StatisticTest() {
     }
 
-    /**
-     * Test of readFile method, of class Statistic.
-     */
     @Test
-    public void testReadFile() {
+    public void testUpdateStats() {
+        //Arrange
+        String testFileName = "testStats.txt";
+        int arraySize = Menu.getListOfPizzaName().size();
+        String[][] pizzaStatsTest = new String[arraySize][arraySize];
+        int expectedAmountOfSales;
+        int actualAmountOfSales;
+        
+        //Act
+        expectedAmountOfSales = 3;
+        Order order = new Order(true);
+        order.addPizza(0);
+        order.addPizza(0);
+        order.addPizza(0);
+        //ONLY TEST ON VERSION WITH CUSTOM FILENAME SUPPORT
+        Statistic.updateArray(order, testFileName, pizzaStatsTest);
+        actualAmountOfSales = Integer.parseInt(pizzaStatsTest[1][1]);
+        
+        //Assert
+        assertEquals(expectedAmountOfSales, actualAmountOfSales);
     }
-
-    /**
-     * Test of writeFile method, of class Statistic.
-     */
+    
     @Test
-    public void testWriteFile() {
+    public void testCreateFile() {
+        String testFileName = "testStats.txt";
+        Statistic.createFile(testFileName);
     }
     
 }
