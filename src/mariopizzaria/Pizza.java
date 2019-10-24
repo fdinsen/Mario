@@ -23,17 +23,29 @@ public class Pizza {
     public Pizza(String pizzaName, double pizzaPrice, int pizzaSize) {
         this.pizzaName = pizzaName;
         this.pizzaPrice = pizzaPrice;
-        this.pizzaSize = pizzaSize;
-        this.pizzaNumber = pizzaNumber;
         
+        if(pizzaSize>3 || pizzaSize < 0){
+            this.pizzaSize = 0;
+        }else{
+            this.pizzaSize = pizzaSize;
+        }
+        
+        this.totalPizzaPrice = pizzaPrice;
         listOfToppingsAdded = new ArrayList<>();  
     }
     public void addExtraTopping(ExtraTopping topping){
-        listOfToppingsAdded.add(topping);
         
-        totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+            for(ExtraTopping toppingAdded : listOfToppingsAdded){
+                if(toppingAdded.getExtraToppingName().equals(topping.getExtraToppingName())){
+                    toppingAdded.addExtraTopping(topping.getExtraToppingQuantity());
+                    return;
+                }
+            }
+            listOfToppingsAdded.add(topping);
+        
+            totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+        
     }
-
     public String getPizzaName() {
         return pizzaName;
     }

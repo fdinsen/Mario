@@ -12,13 +12,20 @@ public class ExtraTopping {
 
     private int quantity;
     
-    public ExtraTopping(String name, double price, int quantity){
+    public ExtraTopping(String name, double price){
         
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.quantity = 0;
     }
-
+    
+    public ExtraTopping(int itemNumber, int quantity){
+        
+        this.quantity = Math.abs(quantity);
+        this.name = Menu.getTopping(itemNumber).getExtraToppingName();
+        this.price = Menu.getTopping(itemNumber).getExtraToppingPrice();
+        
+    }
     public String getExtraToppingName() {
         return name;
     }
@@ -32,6 +39,10 @@ public class ExtraTopping {
     }
     
     public void setExtraToppingQuntity(int qtr){
-        quantity = qtr;
+        
+        quantity = Math.abs(qtr);
+    }
+    public void addExtraTopping(int qtr){
+        quantity += qtr;
     }
 }
