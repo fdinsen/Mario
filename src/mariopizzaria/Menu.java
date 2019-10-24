@@ -12,29 +12,29 @@ import java.util.logging.Logger;
  * @author <Simon Kjems Jørgensen>
  */
 
-public class Menu {
+public final class Menu {
     //Setup for toppings file
-    private File toppingFile;
-    private final String TOPPING_FILE_NAME = "Toppings.txt";
+    private static File toppingFile;
+    private static final String TOPPING_FILE_NAME = "Toppings.txt";
     
     //Setup for pizza file
-    private File pizzaFile;
-    private final String PIZZA_FILE_NAME = "Pizzas.txt";
+    private static File pizzaFile;
+    private static final String PIZZA_FILE_NAME = "Pizzas.txt";
 
-    private Scanner in;
+    private static Scanner in;
     
     //Future proof. If the amount of pizzas changes in file
-    private ArrayList<String> pizzaName;
+    private static ArrayList<String> pizzaName;
 
-    private ArrayList<Double> pizzaPrice;
+    private static ArrayList<Double> pizzaPrice;
 
-    private ArrayList<String> pizzaDescription;
+    private static ArrayList<String> pizzaDescription;
 
-    private ArrayList<String> ExtratoppingName;
+    private static ArrayList<String> ExtratoppingName;
 
-    private ArrayList<Double> ExtratoppingPrice;
-
-    public Menu() {
+    private static ArrayList<Double> ExtratoppingPrice;
+    
+    static{
         pizzaFile = new File(PIZZA_FILE_NAME);
         toppingFile = new File(TOPPING_FILE_NAME);
         
@@ -48,8 +48,11 @@ public class Menu {
         readInPizzas();
         readInToppings();
     }
+    
+    public Menu() {
+    }
 
-    public String printMenu() {
+    public static String printMenu() {
         String returnString = "";
         
         for(int i = 0; i < pizzaName.size(); i++){
@@ -62,7 +65,7 @@ public class Menu {
         return returnString;
     }
 
-    private void readInPizzas() {
+    private static void readInPizzas() {
         String[] temp = new String[3];
         String nextLine;
         
@@ -81,7 +84,7 @@ public class Menu {
         }
     }
 
-    private void readInToppings() {
+    private static void readInToppings() {
         String[] temp = new String[2];
         String nextLine; 
         
@@ -99,32 +102,32 @@ public class Menu {
             //TODO email the developers(us)
         }
     }
-    public String getPizzaName(int index){
+    public static String getPizzaName(int index){
         
         return pizzaName.get(index);
     }
-    public double getPizzaPrice(int index){
+    public static double getPizzaPrice(int index){
         
         return pizzaPrice.get(index);
     }
     
-    public ArrayList<String> getListOfPizzaName() {
+    public static ArrayList<String> getListOfPizzaName() {
         return pizzaName;
     }
 
-    public ArrayList<Double> getListOfPizzaPrice() {
+    public static ArrayList<Double> getListOfPizzaPrice() {
         return pizzaPrice;
     }
 
-    public ArrayList<String> getPizzaDescription() {
+    public static ArrayList<String> getPizzaDescription() {
         return pizzaDescription;
     }
 
-    public ArrayList<String> getExtratoppingName() {
+    public static ArrayList<String> getExtratoppingName() {
         return ExtratoppingName;
     }
 
-    public ArrayList<Double> getExtratoppingPrice() {
+    public static ArrayList<Double> getExtratoppingPrice() {
         return ExtratoppingPrice;
     }
 }
