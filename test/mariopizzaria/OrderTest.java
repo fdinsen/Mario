@@ -24,11 +24,20 @@ public class OrderTest {
         order = new Order(true);
     }
 
-//    @Test
-//    public void testAddPizzaByArrayLength() {
-//        order.addPizza(1);
-//        
-//    }
+    @Test
+    public void testAddPizzaByArrayLength() {
+        //Arrange
+        int expectedArraySize = 3;
+
+        //Act
+        order.addPizza(1);
+        order.addPizza(5);
+        order.addPizza(10);
+        
+        //Assert
+        assertEquals(expectedArraySize, order.getOrderSize());
+        
+    }
     
     @Test
     public void testDiscount() {

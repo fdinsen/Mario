@@ -30,6 +30,7 @@ public class Order {
         
         totalPrice = 0;
         
+        pizzas = new ArrayList<Pizza>();
         menu = new Menu();
     }
 
@@ -41,6 +42,7 @@ public class Order {
         
         totalPrice = 0;
         
+        pizzas = new ArrayList<Pizza>();
         menu = new Menu();
     }
 
