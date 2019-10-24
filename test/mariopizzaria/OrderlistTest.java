@@ -82,14 +82,16 @@ public class OrderlistTest {
      */
     @Test
     public void testShowAllCurrentOrders() {
-        //TODO Færigør test når Order klasse er færdig
+        //TODO Find ud af hvordan denne skal testes
         Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
-        Pizza pizza = new Pizza("Torino", 200);
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+        //Pizza pizza = new Pizza("Torino", 200);
         //orderlist.getOrder(0).addPizza(0);
         // orderlist.getOrder(0).addPizza(0);
 
-        //orderlist.ShowAllCurrentOrders();
+        orderlist.ShowAllCurrentOrders();
     }
 
     /**
@@ -97,6 +99,23 @@ public class OrderlistTest {
      */
     @Test
     public void testShowOrder() {
+        //TODO find ud af hvordan det skal testes
+        String expected = "Ordre 1. Bestilingstidspunkt: 8:39\n" +
+                  "Marinara\n"
+                + "Quattro Formaggi\n"
+                + "Afhentnings tidspunkt: 8:54 \n"
+                + "Total Pris: 0.0";
+        //TODO Færigør test når Order klasse er færdig
+        Orderlist orderlist = new Orderlist();
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+        orderlist.createOrder(true);
+        orderlist.getOrder(0).addPizza(1);
+        orderlist.getOrder(0).addPizza(5);
+
+        String actual = orderlist.showOrder(1);
+        
+        //assertEquals(expected, actual);
     }
 
     /**
@@ -125,6 +144,7 @@ public class OrderlistTest {
      */
     @Test
     public void testGetOrder() {
+        //Skal denne testes?
     }
 
 }
