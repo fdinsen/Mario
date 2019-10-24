@@ -20,9 +20,11 @@ public class Pizza {
 
     private int pizzaNumber;
     
-    public Pizza(String pizzaName, double pizzaPrice, int pizzaSize) {
-        this.pizzaName = pizzaName;
-        this.pizzaPrice = pizzaPrice;
+    public Pizza(int menuIndex, int pizzaSize) {
+        //Informationen om pizzaen hentes fra menu-kortet
+        pizzaName = Menu.getPizzaName(menuIndex);
+        pizzaPrice = Menu.getPizzaPrice(menuIndex);
+        this.pizzaNumber = menuIndex;
         
         if(pizzaSize>3 || pizzaSize < 0){
             this.pizzaSize = 0;

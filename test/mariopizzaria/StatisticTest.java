@@ -23,7 +23,7 @@ public class StatisticTest {
         //Arrange
         String testFileName = "testStats.txt";
         int arraySize = Menu.getListOfPizzaName().size();
-        String[][] pizzaStatsTest = new String[arraySize][arraySize];
+        String[][] pizzaStatsTest = new String[2][arraySize];
         int expectedAmountOfSales;
         int actualAmountOfSales;
         

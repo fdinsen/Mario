@@ -102,17 +102,15 @@ public class Order {
         Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
         int pizzaSize = 0; //Default værdi
         
-        pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
+        pizzas.add(new Pizza(menuIndex, pizzaSize));
         
         calculateTotalPrice();
     }
     public void addPizza(int menuIndex, int pizzaSize) {
         menuIndex = Math.abs(menuIndex);
         pizzaSize = Math.abs(pizzaSize);
-        //Informationen om pizzaen hentes fra menu-kortet
-        String pizzaName = Menu.getPizzaName(menuIndex);
-        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
-        pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
+        
+        pizzas.add(new Pizza(menuIndex, pizzaSize));
         
         calculateTotalPrice();
     }

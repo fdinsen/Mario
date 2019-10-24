@@ -27,4 +27,33 @@ Ortolana 0
 Diavola 0
 Rustica 0
 Contadina 0
+Parmigiana 0Margherita 0
+Marinara 0
+Quattro 0
+Carbonara 0
+Frutti di Mare 0
+Quattro Formaggi 0
+Crudo 0
+Napoletana or Napoli 0
+Pugliese 0
+Montanara 0
+Emiliana 0
+Romana 0
+Fattoria 0
+Schiacciata 0
+Prosciutto or Cardinale 0
+Americana 0
+Prosciutto e Funghi 0
+Braccio di Ferro 0
+Sarda 0
+Tonno 0
+Valtellina 0
+Gorgonzola 0
+Calzone 0
+Pizza al Pesto 0
+Mediterranea 0
+Ortolana 0
+Diavola 0
+Rustica 0
+Contadina 0
 Parmigiana 0

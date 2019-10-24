@@ -23,7 +23,7 @@ public final class Statistic {
     static {
         arraySize = Menu.getListOfPizzaName().size();
         statsFile = new File(STATISTICS_FILE_NAME);
-        pizzaStats = new String[arraySize][arraySize];
+        pizzaStats = new String[2][arraySize];
         strBuilder = new StringBuilder();
     }
 
@@ -55,13 +55,14 @@ public final class Statistic {
             updateArray(order, fileName, array);
         } else if (array[0][0] == null) {
             createArray(array);
+            updateArray(order, fileName, array);
         } else {
             for (int i = 0; i < order.getOrderSize(); i++) {
                 pizzaNumber = order.getPizzaAt(i).getPizzaNumber();
 
                 //Takes previous sales, converts it to an int and adds 1 before 
                 //placing it back in the array as a String
-                previousPizzaSales = Integer.parseInt(array[1][i]);
+                previousPizzaSales = Integer.parseInt(array[1][pizzaNumber]);
                 updatedPizzaSales = String.valueOf(previousPizzaSales++);
                 array[1][pizzaNumber] = updatedPizzaSales;
             }

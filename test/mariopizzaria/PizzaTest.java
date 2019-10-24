@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class PizzaTest {
     ExtraTopping eggs = new ExtraTopping("Egg", 6.00);
     ExtraTopping egg = new ExtraTopping("Egg", 6.00);
-    Pizza Quattro = new Pizza("Quattro",79.00,0);
+    Pizza Quattro = new Pizza(5 ,0);
     
     public PizzaTest() {
     }
