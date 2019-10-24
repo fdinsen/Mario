@@ -17,6 +17,7 @@ public class Order {
     private boolean orderByPhone;
     private double totalPrice;
     private int percentDiscount;
+    private Menu menu;
 
     //-------------//
     // CONSTRUCTOR //
@@ -24,8 +25,12 @@ public class Order {
     public Order(LocalDateTime pickupTime, boolean orderByPhone) {
         this.pickupTime = pickupTime;
         this.orderByPhone = orderByPhone;
+        
         orderTime = LocalDateTime.now();
+        
         totalPrice = 0;
+        
+        menu = new Menu();
     }
 
     public Order(boolean orderByPhone) {
@@ -35,6 +40,8 @@ public class Order {
         pickupTime = LocalDateTime.now().plusMinutes(15);
         
         totalPrice = 0;
+        
+        menu = new Menu();
     }
 
     //---------//
@@ -59,6 +66,10 @@ public class Order {
     public double getTotalPrice() {
         return totalPrice;
     }
+    public Pizza getPizzaAt(int index) {
+        return pizzas.get(index);
+    }
+    
 
     //---------//
     // METHODS //
@@ -69,9 +80,9 @@ public class Order {
     }
 
     public void addPizza(int menuIndex) {
-        //String pizzaName = Menu.getPizzaName(menuIndex);
-        //Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
-        //pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        String pizzaName = menu.getPizzaName(menuIndex);
+        Double pizzaPrice = menu.getPizzaPrice(menuIndex);
+        pizzas.add(new Pizza(pizzaName, pizzaPrice));
         
         calculateTotalPrice();
     }
@@ -82,7 +93,7 @@ public class Order {
         calculateTotalPrice();
     }
     
-    public void calculateTotalPrice() {
+    private void calculateTotalPrice() {
         totalPrice = 0;
         for(Pizza pizza : pizzas) {
             //totalPrice += pizza.getTotalPrice();
