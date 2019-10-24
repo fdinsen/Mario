@@ -60,7 +60,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Costumer" package="" visibility="public" xPosition="388.0" yPosition="467.0">
+    <Class name="Costumer" package="" visibility="public" xPosition="297.0" yPosition="611.0">
       <Fields>
         <Field name="costumerName" type="String" visibility="private"/>
         <Field name="costumerPhoneNumber" type="int" visibility="private"/>
@@ -77,7 +77,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Pizza" package="" visibility="public" xPosition="743.0" yPosition="704.0">
+    <Class name="Pizza" package="" visibility="public" xPosition="783.0" yPosition="718.0">
       <Fields>
         <Field name="pizzaName" type="String" visibility="private"/>
         <Field name="pizzaPrice" type="double" visibility="private"/>
@@ -89,7 +89,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Menu" package="" visibility="public" xPosition="385.0" yPosition="704.0">
+    <Class name="Menu" package="" visibility="public" xPosition="421.0" yPosition="787.0">
       <Fields>
         <Field name="pizzaName" type="String[]" visibility="private"/>
         <Field name="pizzaPrice" type="double[]" visibility="private"/>
@@ -102,9 +102,13 @@
         <Method name="printMenu" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Statistic " package="" visibility="public" xPosition="296.0" yPosition="253.0">
+    <Class name="Statistic " package="" visibility="public" xPosition="270.0" yPosition="231.0">
       <Fields>
         <Field name="pizzaStats" type="String[][]" visibility="private"/>
+        <Field name="statsFile" type="File" visibility="private"/>
+        <Field name="STATISTICS_FILE_NAME" type="String" visibility="private"/>
+        <Field name="strBuilder" type="StringBuilder" visibility="private"/>
+        <Field name="arraySize" type="int" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods>
@@ -116,6 +120,25 @@
         <Method name="updateArray" returnType="void" visibility="public">
           <Argument type="Order" name="order"/>
           <Argument type="String" name="fileName"/>
+          <Argument type="String[][]" name="array"/>
+        </Method>
+        <Method name="createFuke" returnType="void" visibility="public">
+          <Argument type="String" name="statsFileName"/>
+          <Argument type="String[][]" name="array"/>
+        </Method>
+        <Method name="updateFile" returnType="void" visibility="public">
+          <Argument type="String" name="statsFileName"/>
+          <Argument type="String[][]" name="array"/>
+        </Method>
+        <Method name="createArray" returnType="void" visibility="public">
+          <Argument type="String[][]" name="arrayToFill"/>
+        </Method>
+        <Method name="importFromFile" returnType="void" visibility="public">
+          <Argument type="String" name="statsFileName"/>
+          <Argument type="String[][]" name="array"/>
+        </Method>
+        <Method name="showStatsAsHistogram" returnType="String" visibility="public">
+          <Argument type="String" name="statsFileName"/>
           <Argument type="String[][]" name="array"/>
         </Method>
       </Methods>
