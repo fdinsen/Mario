@@ -36,7 +36,6 @@ public class OrderTest {
         
         //Assert
         assertEquals(expectedArraySize, order.getOrderSize());
-        
     }
     
     @Test
