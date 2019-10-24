@@ -25,24 +25,24 @@ public class Order {
     public Order(LocalDateTime pickupTime, boolean orderByPhone) {
         this.pickupTime = pickupTime;
         this.orderByPhone = orderByPhone;
+        pizzas = new ArrayList<Pizza>();
         
         orderTime = LocalDateTime.now();
         
         totalPrice = 0;
         
-        pizzas = new ArrayList<Pizza>();
         menu = new Menu();
     }
 
     public Order(boolean orderByPhone) {
         this.orderByPhone = orderByPhone;
+        pizzas = new ArrayList<Pizza>();
 
         orderTime = LocalDateTime.now();
         pickupTime = LocalDateTime.now().plusMinutes(15);
         
         totalPrice = 0;
         
-        pizzas = new ArrayList<Pizza>();
         menu = new Menu();
     }
 
@@ -52,19 +52,15 @@ public class Order {
     public Pizza getPizza(int index) {
         return pizzas.get(index);
     }
-
     LocalDateTime getOrderTime() {
         return orderTime;
     }
-    
     LocalDateTime getPickupTime() {
         return pickupTime;
     }
-    
     public boolean isOrderedByPhone() {
         return orderByPhone;
     }
-    
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -88,7 +84,17 @@ public class Order {
         //Informationen om pizzaen hentes fra menu-kortet
         String pizzaName = menu.getPizzaName(menuIndex);
         Double pizzaPrice = menu.getPizzaPrice(menuIndex);
-        pizzas.add(new Pizza(pizzaName, pizzaPrice));
+        int pizzaSize = 0; //Default værdi
+        
+        pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
+        
+        calculateTotalPrice();
+    }
+    public void addPizza(int menuIndex, int pizzaSize) {
+        //Informationen om pizzaen hentes fra menu-kortet
+        String pizzaName = menu.getPizzaName(menuIndex);
+        Double pizzaPrice = menu.getPizzaPrice(menuIndex);
+        pizzas.add(new Pizza(pizzaName, pizzaPrice, pizzaSize));
         
         calculateTotalPrice();
     }
@@ -104,6 +110,11 @@ public class Order {
         for(Pizza pizza : pizzas) {
             //totalPrice += pizza.getTotalPrice();
         }
+    }
+    
+    public void removePizzaFromOrder(int index) {
+        pizzas.remove(index);
+        calculateTotalPrice();
     }
     
     
