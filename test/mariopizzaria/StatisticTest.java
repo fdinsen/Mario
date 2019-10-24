@@ -30,9 +30,9 @@ public class StatisticTest {
         //Act
         expectedAmountOfSales = 3;
         Order order = new Order(true);
-        order.addPizza(0);
-        order.addPizza(0);
-        order.addPizza(0);
+        order.addPizza(1);
+        order.addPizza(1);
+        order.addPizza(1);
         //ONLY TEST ON VERSION WITH CUSTOM FILENAME SUPPORT
         Statistic.updateArray(order, testFileName, pizzaStatsTest);
         actualAmountOfSales = Integer.parseInt(pizzaStatsTest[1][1]);
@@ -44,7 +44,9 @@ public class StatisticTest {
     @Test
     public void testCreateFile() {
         String testFileName = "testStats.txt";
-        Statistic.createFile(testFileName);
+        int arraySize = Menu.getListOfPizzaName().size();
+        String[][] pizzaStatsTest = new String[arraySize][arraySize];
+        Statistic.createFile(testFileName, pizzaStatsTest);
     }
     
 }
