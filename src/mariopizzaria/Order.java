@@ -119,9 +119,7 @@ public class Order {
         toppingIndex = Math.abs(toppingIndex);
         quantity = Math.abs(quantity);
         
-        String toppingName = Menu.getExtratoppingName(toppingIndex);
-        double toppingPrice = Menu.getExtratoppingPrice(toppingIndex);
-        pizzas.get(itemNumber).addExtraTopping(new ExtraTopping(toppingName, toppingPrice, quantity));
+        pizzas.get(itemNumber).addExtraTopping(new ExtraTopping(toppingIndex, quantity));
         
         calculateTotalPrice();
     }

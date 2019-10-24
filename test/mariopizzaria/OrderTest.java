@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -19,8 +20,8 @@ public class OrderTest {
     
     Order order;
     
-    
-    public OrderTest() {
+    @Before
+    public void OrderTest() {
         order = new Order(true);
     }
 
@@ -36,6 +37,42 @@ public class OrderTest {
         
         //Assert
         assertEquals(expectedArraySize, order.getOrderSize());
+    }
+    
+    @Test (expected = ArrayIndexOutOfBoundsException.class)
+    public void testAddPizzaOutOfBoundsIndex() {
+        int pizzaGuaranteedOutOfBounds = Menu.getListOfPizzaName().size() + 10;
+        order.addPizza(pizzaGuaranteedOutOfBounds);
+    }
+    
+    @Test
+    public void testCalculateTotalPrice() {
+        fail("Test not implemented");
+    }
+    
+    @Test
+    public void testRemovePizzaFromOrder() {
+        fail("Test not implemented");
+    }
+    
+    @Test
+    public void testAddExtraToppingByAmount() {
+        //Arrange
+        int expectedAmountOfToppings = 3;
+        int actualAmountOfToppings;
+        
+        //Act
+        order.addPizza(1);
+        order.addPizza(5);
+        order.addPizza(10);
+        
+        order.addExtraTopping(0, 5, 2);
+        order.addExtraTopping(0, 10, 1);
+        order.addExtraTopping(0, 15, 3);
+        
+        actualAmountOfToppings = order.getPizzaAt(0).getToppingsAdded().size();
+        //Assert
+        assertEquals(expectedAmountOfToppings, actualAmountOfToppings);
     }
     
     @Test
