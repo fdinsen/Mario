@@ -102,7 +102,7 @@
         <Method name="printMenu" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Statistic " package="" visibility="public" xPosition="388.0" yPosition="301.0">
+    <Class name="Statistic " package="" visibility="public" xPosition="296.0" yPosition="253.0">
       <Fields>
         <Field name="pizzaStats" type="String[][]" visibility="private"/>
       </Fields>
@@ -110,6 +110,14 @@
       <Methods>
         <Method name="readFile" returnType="void" visibility="public"/>
         <Method name="writeFile" returnType="void" visibility="public"/>
+        <Method name="updateStats" returnType="void" visibility="public">
+          <Argument type="Order" name="order"/>
+        </Method>
+        <Method name="updateArray" returnType="void" visibility="public">
+          <Argument type="Order" name="order"/>
+          <Argument type="String" name="fileName"/>
+          <Argument type="String[][]" name="array"/>
+        </Method>
       </Methods>
     </Class>
   </ClassDiagramComponents>

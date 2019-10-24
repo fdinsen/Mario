@@ -19,7 +19,7 @@ public class StatisticTest {
     }
 
     @Test
-    public void testUpdateStats() {
+    public void testUpdateArray() {
         //Arrange
         String testFileName = "testStats.txt";
         int arraySize = Menu.getListOfPizzaName().size();
@@ -33,7 +33,7 @@ public class StatisticTest {
         order.addPizza(1);
         order.addPizza(1);
         order.addPizza(1);
-        //ONLY TEST ON VERSION WITH CUSTOM FILENAME SUPPORT
+
         Statistic.updateArray(order, testFileName, pizzaStatsTest);
         actualAmountOfSales = Integer.parseInt(pizzaStatsTest[1][1]);
         
