@@ -5,6 +5,7 @@
  */
 package mariopizzaria;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -42,11 +43,20 @@ public class StatisticTest {
     }
     
     @Test
-    public void testCreateFile() {
+    public void testCreateFileExists() {
+        //Arrange
         String testFileName = "testStats.txt";
+        File file = new File(testFileName);
         int arraySize = Menu.getListOfPizzaName().size();
-        String[][] pizzaStatsTest = new String[arraySize][arraySize];
+        String[][] pizzaStatsTest = new String[2][arraySize];
+        
+        //Act
         Statistic.createFile(testFileName, pizzaStatsTest);
+        
+        
+        //Assert
+        assertTrue(file.exists());
     }
+    
     
 }

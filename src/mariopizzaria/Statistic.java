@@ -112,6 +112,8 @@ public final class Statistic {
     }
 
     public void readFile() {
+        //TODO: read through file, line by line, and add each piece
+        //of information to the Array
     }
 
     private static void updateFile(String statsFileName, String[][] array) {
