@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MarioAssignmentMain {
-
+        
     
     public static void main(String[] args) {
-
+        UserDialog userDialog = new UserDialog();
         
     }
-    public void userMenu() {
-    }
+    
 }
