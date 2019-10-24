@@ -91,7 +91,7 @@ public final class Menu {
                 nextLine = in.nextLine();
                 temp = nextLine.split(":");
                 
-                listOfTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1]) , 0));
+                listOfTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1])));
                     
             }
         } catch (FileNotFoundException ex) {
@@ -132,5 +132,8 @@ public final class Menu {
     }
     public static ArrayList<ExtraTopping> getToppingList(){
         return listOfTopping;
+    }
+    public static String getPizzaDescription(int index){
+        return pizzaDescription.get(index);
     }
 }
