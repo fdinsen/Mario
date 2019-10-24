@@ -43,7 +43,7 @@ public class MenuTest {
         int exspectedLength = 26;
         
         //Act
-        int actualNameLength = Menu.getExtratoppingName().size();
+        int actualNameLength = Menu.getToppingList().size();
         
         //Assert
         assertEquals(exspectedLength, actualNameLength);

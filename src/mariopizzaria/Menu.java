@@ -30,9 +30,7 @@ public final class Menu {
 
     private static ArrayList<String> pizzaDescription;
 
-    private static ArrayList<String> ExtratoppingName;
-
-    private static ArrayList<Double> ExtratoppingPrice;
+    private static ArrayList<ExtraTopping> listOfTopping;
     
     static{
         pizzaFile = new File(PIZZA_FILE_NAME);
@@ -42,8 +40,7 @@ public final class Menu {
         pizzaPrice = new ArrayList<>();
         pizzaDescription = new ArrayList<>();
         
-        ExtratoppingName = new ArrayList<>();
-        ExtratoppingPrice = new ArrayList<>();
+        listOfTopping = new ArrayList<>();
         
         readInPizzas();
         readInToppings();
@@ -58,8 +55,8 @@ public final class Menu {
         for(int i = 0; i < pizzaName.size(); i++){
             returnString += i+1+ " " + pizzaName.get(i) + " " + pizzaPrice.get(i) +  " " + pizzaDescription.get(i)+"\n";
         }
-        for(int i = 0; i < ExtratoppingName.size();i++){
-            returnString += ExtratoppingName.get(i) + " " + ExtratoppingPrice.get(i)+"\n";
+        for(ExtraTopping topping : listOfTopping){
+            returnString += topping.getExtraToppingName() + " " + topping.getExtraToppingPrice() + "\n";
         }
         
         return returnString;
@@ -94,8 +91,7 @@ public final class Menu {
                 nextLine = in.nextLine();
                 temp = nextLine.split(":");
                 
-                ExtratoppingName.add(temp[0]);
-                ExtratoppingPrice.add(Double.parseDouble(temp[1]));
+                listOfTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1]) , 0));
                     
             }
         } catch (FileNotFoundException ex) {
@@ -123,11 +119,18 @@ public final class Menu {
         return pizzaDescription;
     }
 
-    public static ArrayList<String> getExtratoppingName() {
-        return ExtratoppingName;
+    public static String getExtratoppingName(int index) {
+        return listOfTopping.get(index).getExtraToppingName();
     }
 
-    public static ArrayList<Double> getExtratoppingPrice() {
-        return ExtratoppingPrice;
+    public static double getExtratoppingPrice(int index) {
+        return listOfTopping.get(index).getExtraToppingPrice();
+    }
+    
+    public static ExtraTopping getTopping(int index){
+        return listOfTopping.get(index);
+    }
+    public static ArrayList<ExtraTopping> getToppingList(){
+        return listOfTopping;
     }
 }

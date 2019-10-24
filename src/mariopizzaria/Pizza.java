@@ -20,7 +20,7 @@ public class Pizza {
 
     private int pizzaNumber;
     
-    public Pizza(String pizzaName, double pizzaPrice, int pizzaSize, int pizzaNumber) {
+    public Pizza(String pizzaName, double pizzaPrice, int pizzaSize) {
         this.pizzaName = pizzaName;
         this.pizzaPrice = pizzaPrice;
         this.pizzaSize = pizzaSize;
