@@ -49,9 +49,9 @@ public final class Statistic {
         int previousPizzaSales;
         String updatedPizzaSales;
 
-        File statsFile = new File(fileName);
-        if (!statsFile.exists()) {
-            createFile(fileName);
+        File file = new File(fileName);
+        if (!file.exists()) {
+            createFile(fileName, array);
             updateArray(order, fileName, array);
         } else if (array[0][0] == null) {
             createArray(array);
@@ -65,7 +65,7 @@ public final class Statistic {
                 updatedPizzaSales = String.valueOf(previousPizzaSales++);
                 array[1][pizzaNumber] = updatedPizzaSales;
             }
-            updateFile(fileName);
+            updateFile(fileName, array);
 
         }
     }
@@ -100,8 +100,8 @@ public final class Statistic {
 //    }
 
     //This method should only run once EVER. Otherwise it clears the statistics
-    public static void createFile(String statsFileName) {
-        createArray(pizzaStats);
+    public static void createFile(String statsFileName, String[][] array) {
+        createArray(array);
 
         try {
             File tempFile = new File(statsFileName);
@@ -109,7 +109,7 @@ public final class Statistic {
 
             for (int i = 0; i < arraySize; i++) {
                 //Appends the pizza name and the sales to the string
-                strBuilder.append(pizzaStats[0][i] + " " + pizzaStats[1][i]);
+                strBuilder.append(array[0][i] + " " + array[1][i]);
                 //If this is not the last row
                 if (i < arraySize - 1) {
                     //then add a newline
@@ -128,13 +128,13 @@ public final class Statistic {
     public void readFile() {
     }
 
-    private static void updateFile(String statsFileName) {
+    private static void updateFile(String statsFileName, String[][] array) {
         for (int i = 0; i < arraySize; i++) {
             try {
                 File tempFile = new File(statsFileName);
                 bw = new BufferedWriter(new FileWriter(tempFile));
                 //Appends the pizza name and the sales to the string
-                strBuilder.append(pizzaStats[0][i] + " " + pizzaStats[1][i]);
+                strBuilder.append(array[0][i] + " " + array[1][i]);
                 //If this is not the last row
                 if (i < arraySize - 1) {
                     //then add a newline

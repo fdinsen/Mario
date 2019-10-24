@@ -64,6 +64,7 @@ public class Order {
         return orderByPhone;
     }
     public double getTotalPrice() {
+        calculateTotalPrice();
         return totalPrice;
     }
     public Pizza getPizzaAt(int index) {
@@ -129,7 +130,7 @@ public class Order {
     private void calculateTotalPrice() {
         totalPrice = 0;
         for(Pizza pizza : pizzas) {
-            //totalPrice += pizza.getTotalPrice();
+            totalPrice += pizza.getTotalPizzaPrice();
         }
     }
     
