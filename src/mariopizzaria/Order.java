@@ -75,6 +75,14 @@ public class Order {
         return pizzas.size();
     }
     
+    public String getCostumerName(){
+       return costumer.getCostumerName();
+    }
+    public int getCostumerPhoneNumber(){
+       return costumer.getCostumerPhoneNumber();
+    }
+
+    
     //---------//
     // SETTERS //
     //---------//
