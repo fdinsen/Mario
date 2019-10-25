@@ -67,8 +67,8 @@ public class Pizza {
     public ArrayList<ExtraTopping> getToppingsAdded() {
         return listOfToppingsAdded;
     }
-    public int getToppingsAddedTotalPrice() {
-        int sum = 0;
+    public double getToppingsAddedTotalPrice() {
+        double sum = 0;
         for (ExtraTopping extraTopping : listOfToppingsAdded) {
             sum += extraTopping.getExtraToppingPrice();
         }

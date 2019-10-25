@@ -80,6 +80,10 @@ public class Order {
     public int getCostumerPhoneNumber(){
        return costumer.getCostumerPhoneNumber();
     }
+    public int getNumberOfPizzas(){
+       return pizzas.size();
+    }
+    
 
     
     //---------//
@@ -145,4 +149,32 @@ public class Order {
         pizzas.remove(index);
         calculateTotalPrice();
     }
+
+    @Override
+    public String toString() {
+        int counter = 1;
+        String stringPizzas = "";
+        for (Pizza pizza : pizzas) {
+            stringPizzas += counter + ". " + pizza.getPizzaName() + "\n";
+            counter++;
+            //Tjekker om der er toppings på pizzaewn
+                    if (!pizza.getToppingsAdded().isEmpty()) {
+                    //Udskriver ekstra toppings på pizzaen
+                    stringPizzas += "Ekstra Toppings";
+                    for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
+                        //For hver topping indsæt antal og navn i stringen
+                        stringPizzas += "x" + extraTopping.getExtraToppingQuantity();
+                        stringPizzas += " " + extraTopping.getExtraToppingName();
+
+                        //Hvis der er mere end en topping, tilføj komma
+                        if (pizza.getToppingsAdded().size() > 1) {
+                            stringPizzas += ", ";
+                        }
+                }
+                stringPizzas = "\n";
+            }
+        }
+        return stringPizzas;
+    }
+    
 }

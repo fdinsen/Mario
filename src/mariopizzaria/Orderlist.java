@@ -16,8 +16,7 @@ public class Orderlist {
 
     public int createOrder(boolean orderByPhone) {
         //Laver ny order og tilføjer til orders array
-        Order order = new Order(orderByPhone);
-        orders.add(order);
+        orders.add(new Order(orderByPhone));
         return orders.size() - 1;
 
     }
@@ -62,7 +61,7 @@ public class Orderlist {
         //Trækker en da Orderlisten for brugeren starter på 1
         index--;
         int counter = 1;
-        int ToppingsAddedTotalPrice;
+        double ToppingsAddedTotalPrice;
         String orderInString = "";
 
         //Bygger en tekst String for ordreren, hvis der valgt en ordre
@@ -71,10 +70,8 @@ public class Orderlist {
                     + " - Bestilingstidspunkt: " + orders.get(index).getOrderTime().getHour() + ":" + orders.get(index).getOrderTime().getMinute()
                     + "\n";
             //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
-            try {
+            if(orders.get(index).getCostumerName() != null){
                 orderInString += "Kunde Navn: " + orders.get(index).getCostumerName() + "\n";
-            } catch (Exception e) {
-                //Navn ikke tilføjet
             }
             if (orders.get(index).isOrderedByPhone()) {
                 orderInString += "Kunde Tlf: " + orders.get(index).getCostumerPhoneNumber() + "\n";
@@ -129,6 +126,18 @@ public class Orderlist {
 
     public ArrayList<Order> getOrdersList() {
         return orders;
+    }
+    
+    public String showAllPizzasInOrder(int orderNumberInArray){
+        return orders.get(orderNumberInArray).toString();
+    }
+    
+    public int getPizzaCountInOrder(int orderNumberInArray){
+        return orders.get(orderNumberInArray).getNumberOfPizzas();
+    }
+    
+    public void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
+        orders.get(orderNumberInArray).removePizzaFromOrder(pizzaNumberInOrder);
     }
 
 }
