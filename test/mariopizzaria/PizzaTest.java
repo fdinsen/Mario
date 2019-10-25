@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author <Frederik Keis Dinsen>
+ * @author <Simon Kjems Jørgensen>
  */
 public class PizzaTest {
     ExtraTopping eggs = new ExtraTopping("Egg", 6.00);

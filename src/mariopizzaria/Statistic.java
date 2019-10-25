@@ -2,8 +2,11 @@ package mariopizzaria;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +22,7 @@ public final class Statistic {
     private static StringBuilder strBuilder;
     private static BufferedWriter bw;
     private static int arraySize;
+    private static ArrayList<IndividualStatistics> statisticsList = new ArrayList<>();
 
     static {
         arraySize = Menu.getListOfPizzaName().size();
@@ -114,6 +118,24 @@ public final class Statistic {
     public void readFile() {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
+        
+        String[] temp = new String[3];
+        String nextLine;
+        
+        try (Scanner in = new Scanner(statsFile)) {
+            while (in.hasNextLine()) {
+            
+                nextLine = in.nextLine();
+                temp = nextLine.split(" ");
+                
+            
+            }
+            
+        
+        } catch (FileNotFoundException ex) {
+            
+        }
+        
     }
 
     private static void updateFile(String statsFileName, String[][] array) {
