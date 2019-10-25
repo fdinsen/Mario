@@ -43,15 +43,44 @@ public class OrderTest {
     @Test
     public void testCalculateTotalPrice() {
         //Assign
-        int expectedTotalPrice;
+        double expectedTotalPrice;
+        double actualTotalPrice;
+        
+        //Act
+        order.addPizza(1);
+        order.addExtraTopping(0, 1, 10);
+        order.addPizza(1);
+        order.addPizza(1);
+        expectedTotalPrice = order.getPizzaAt(0).getPizzaPrice() +
+                order.getPizzaAt(0).getToppingsAddedTotalPrice() +
+                order.getPizzaAt(1).getPizzaPrice() + 
+                order.getPizzaAt(2).getPizzaPrice();
+        actualTotalPrice = order.getTotalPrice();
         
         
-        fail("Test not implemented");
+        assertEquals(expectedTotalPrice, actualTotalPrice, 0.001);
     }
     
     @Test
-    public void testRemovePizzaFromOrder() {
-        fail("Test not implemented");
+    public void testRemovePizzaFromOrderByNumberOfPizzas() {
+        //Arrange
+        int expectedNumberOfPizzas;
+        int actualNumberOfPizzas;
+        
+        //Act
+        order.addPizza(1);
+        order.addPizza(1);
+        order.addPizza(1);
+        order.addPizza(1);
+        order.addPizza(1);
+        order.addPizza(1);
+        
+        order.removePizzaFromOrder(4);
+        expectedNumberOfPizzas = 5;
+        actualNumberOfPizzas = order.getOrderSize();
+
+        //Assert
+        assertEquals(expectedNumberOfPizzas, actualNumberOfPizzas);
     }
     
     @Test
