@@ -147,4 +147,9 @@ public final class Statistic {
         }
     }
 
+    
+    public static String getStatistics() {
+        //TODO build a String that contains everything, using StringBuilder
+        return "";
+    }
 }
