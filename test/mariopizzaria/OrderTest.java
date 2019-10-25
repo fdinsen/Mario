@@ -19,7 +19,7 @@ import org.junit.Before;
 public class OrderTest {
     
     Order order;
-    
+
     @Before
     public void OrderTest() {
         order = null;
@@ -51,11 +51,7 @@ public class OrderTest {
         order.addExtraTopping(0, 1, 10);
         order.addPizza(1);
         order.addPizza(1);
-        expectedTotalPrice = order.getPizzaAt(0).getTotalPizzaPrice() +
-                //order.getPizzaAt(0).getToppingsAddedTotalPrice() +
-                order.getPizzaAt(1).getTotalPizzaPrice() + 
-                order.getPizzaAt(2).getTotalPizzaPrice();
-        System.out.println(order.getPizzaAt(0).getToppingsAddedTotalPrice());
+        expectedTotalPrice = 269.0;
         actualTotalPrice = order.getTotalPrice();
         
         
@@ -124,6 +120,7 @@ public class OrderTest {
         
         //Assert
         assertEquals(expectedDiscountedPrice, actualDiscountedPrice, 0.001);
+        
         
     }
     

@@ -17,7 +17,6 @@ public class Order {
     private boolean orderByPhone;
     private double totalPrice;
     private int percentDiscount;
-    private Menu menu;
 
     //-------------//
     // CONSTRUCTOR //
