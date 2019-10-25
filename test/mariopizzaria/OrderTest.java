@@ -22,6 +22,7 @@ public class OrderTest {
     
     @Before
     public void OrderTest() {
+        order = null;
         order = new Order(true);
     }
 
@@ -37,12 +38,6 @@ public class OrderTest {
         
         //Assert
         assertEquals(expectedArraySize, order.getOrderSize());
-    }
-    
-    @Test (expected = ArrayIndexOutOfBoundsException.class)
-    public void testAddPizzaOutOfBoundsIndex() {
-        int pizzaGuaranteedOutOfBounds = Menu.getListOfPizzaName().size() + 10;
-        order.addPizza(pizzaGuaranteedOutOfBounds);
     }
     
     @Test
@@ -83,11 +78,15 @@ public class OrderTest {
         double expectedDiscountedPrice;
         
         //Act
-        originalPrice = 525.25;
-        order.setTotalPrice(originalPrice);
+        order.addPizza(4);
+        order.addPizza(5);
+        order.addPizza(2);
+        
+        originalPrice = order.getPizzaAt(0).getPizzaPrice() + 
+                order.getPizzaAt(1).getPizzaPrice() + order.getPizzaAt(2).getPizzaPrice();
         order.discount(10);
         actualDiscountedPrice = order.getTotalPrice();
-        expectedDiscountedPrice = 472.725;
+        expectedDiscountedPrice = 189.0;
         
         //Assert
         assertEquals(expectedDiscountedPrice, actualDiscountedPrice, 0.001);

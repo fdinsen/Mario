@@ -64,7 +64,6 @@ public class Order {
         return orderByPhone;
     }
     public double getTotalPrice() {
-        calculateTotalPrice();
         return totalPrice;
     }
     public Pizza getPizzaAt(int index) {
@@ -145,13 +144,5 @@ public class Order {
         
         pizzas.remove(index);
         calculateTotalPrice();
-    }
-    
-    
-    //--------//
-    //  TEMP  //
-    //--------//
-    public void setTotalPrice(double price) {
-        totalPrice = price;
     }
 }
