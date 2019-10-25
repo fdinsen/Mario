@@ -184,7 +184,9 @@ public class UserDialog {
                 System.out.println("1 - For at gå tilbage");
                 System.out.println("2 - Se anden ordre");
                 System.out.println("3 - Tilføj pizza til ordre");
-                System.out.println("4 - Fjern pizza fra ordre");
+                if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                    System.out.println("4 - Fjern pizza fra ordre");
+                }
 
                 selection = getUserInput();
 
@@ -200,19 +202,23 @@ public class UserDialog {
                         break;
                     case 3:
                         //Tilføj pizza til ordre
-                        addPizzaDialog(orderNumber-1);
+                        addPizzaDialog(orderNumber - 1);
                         seeOtherOrder = false;
                         exit = true;
                         break;
-                        
-                        case 4:
-                        //Fjern pizza til ordre
-                        deletePizzaDialog(orderNumber-1);
-                        seeOtherOrder = false;
-                        exit = true;
+
+                    case 4:
+                        if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                            //Fjern pizza til ordre
+                            deletePizzaDialog(orderNumber - 1);
+                            seeOtherOrder = false;
+                            exit = true;
+                        } else {
+                            System.err.println(selection + " Er ikke en mulighed, prøv igen");
+                        }
                         break;
                     default:
-                        System.err.println(selection + " Er ikke en mulighed for at valg af navn eller ej, prøv igen");
+                        System.err.println(selection + " Er ikke en mulighed, prøv igen");
                 }
             } while (seeOtherOrder);
 
@@ -221,7 +227,6 @@ public class UserDialog {
 
     private void deleteOrderDialog() {
         boolean exit = false;
-        boolean seeOtherOrder = false;
         boolean correctNumber = false;
         int orderNumber = 0;
         int selection = 0;
@@ -252,7 +257,7 @@ public class UserDialog {
 
         } while (!exit);
     }
-    
+
     private void deletePizzaDialog(int orderNumber) {
         boolean exit = false;
         boolean correctNumber = false;
@@ -279,7 +284,7 @@ public class UserDialog {
             } while (!correctNumber);
 
             //Fjerne pizza fra orderen og går tilbage
-            orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber-1);
+            orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber - 1);
             exit = true;
 
         } while (!exit);
@@ -431,7 +436,6 @@ public class UserDialog {
                             break;
                         case 2:
                             //Ingen ekstra tilbehør
-                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber);
                             addExtras = false;
                             break;
                         default:
@@ -477,8 +481,6 @@ public class UserDialog {
             //Ellers afslutter den og går tilbage til menuen (FALSE)
         } while (addNewPizza);
     }
-
-    
 
     private int chooseSizeDialog() {
         boolean exit = false;
@@ -567,14 +569,13 @@ public class UserDialog {
                     switch (moreExtraQuantitySelection) {
                         case 1:
                             //Ja
-                            //Nej
-                            //Hopper ud af switch og loopet udenom
+                            //Hopper ud af switch men ikke hele loopet
                             exit = false;
                             extraQuantityCorrect = true;
                             break;
                         case 2:
                             //Nej
-                            //Hopper ud af switch men ikke hele loopet
+                            //Hopper ud af switch og loopet udenom
                             exit = true;
                             extraQuantityCorrect = true;
                             break;
