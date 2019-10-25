@@ -29,4 +29,8 @@ public class IndividualStatistics {
     public int getAmountOfSales() {
         return amountOfSales;
     }
+    @Override
+    public String toString(){
+        return pizzaName + " : "+ amountOfSales;
+    }
 }

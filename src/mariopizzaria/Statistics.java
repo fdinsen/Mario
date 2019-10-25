@@ -22,13 +22,14 @@ public final class Statistics {
     private static StringBuilder strBuilder;
     private static BufferedWriter bw;
     private static int arraySize;
-    private static ArrayList<IndividualStatistics> statisticsList = new ArrayList<>();
+    private static ArrayList<IndividualStatistics> statisticsList;
 
     static {
         arraySize = Menu.getListOfPizzaName().size();
         statsFile = new File(STATISTICS_FILE_NAME);
         pizzaStats = new String[2][arraySize];
         strBuilder = new StringBuilder();
+        statisticsList = new ArrayList<>();
         //TODO: Add a check for if stats file exists
         //TODO: Automatically import information to Array if it does
     }
@@ -118,24 +119,25 @@ public final class Statistics {
     public void readFile() {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
-        
-        String[] temp = new String[3];
+
+        String[] temp = new String[2];
         String nextLine;
-        
+        int count = 0;
         try (Scanner in = new Scanner(statsFile)) {
             while (in.hasNextLine()) {
-            
+
                 nextLine = in.nextLine();
                 temp = nextLine.split(" ");
-                
-            
+
+                statisticsList.add(new IndividualStatistics(temp[0], temp[1]));
+                pizzaStats[0][count] = temp[0];
+                pizzaStats[1][count] = temp[1];
             }
-            
-        
+
         } catch (FileNotFoundException ex) {
-            
+
         }
-        
+
     }
 
     private static void updateFile(String statsFileName, String[][] array) {
@@ -169,9 +171,18 @@ public final class Statistics {
         }
     }
 
-    
     public static String getStatistics() {
         //TODO build a String that contains everything, using StringBuilder
-        return "";
+        statisticsList.sort(new AmountSorter());
+
+        StringBuilder strbuilder = new StringBuilder();
+        
+        for(IndividualStatistics stats : statisticsList){
+            strBuilder.append(stats);
+            if(statisticsList.indexOf(stats) < statisticsList.size() -1){
+                strBuilder.append("\n");
+            }         
+        }
+        return strbuilder.toString();
     }
 }
