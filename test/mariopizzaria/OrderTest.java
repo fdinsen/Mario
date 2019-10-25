@@ -51,10 +51,11 @@ public class OrderTest {
         order.addExtraTopping(0, 1, 10);
         order.addPizza(1);
         order.addPizza(1);
-        expectedTotalPrice = order.getPizzaAt(0).getPizzaPrice() +
-                order.getPizzaAt(0).getToppingsAddedTotalPrice() +
-                order.getPizzaAt(1).getPizzaPrice() + 
-                order.getPizzaAt(2).getPizzaPrice();
+        expectedTotalPrice = order.getPizzaAt(0).getTotalPizzaPrice() +
+                //order.getPizzaAt(0).getToppingsAddedTotalPrice() +
+                order.getPizzaAt(1).getTotalPizzaPrice() + 
+                order.getPizzaAt(2).getTotalPizzaPrice();
+        System.out.println(order.getPizzaAt(0).getToppingsAddedTotalPrice());
         actualTotalPrice = order.getTotalPrice();
         
         
