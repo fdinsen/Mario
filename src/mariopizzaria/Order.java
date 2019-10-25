@@ -171,7 +171,8 @@ public class Order {
         }
             stringOrder += "-----\n";
         for (Pizza pizza : pizzas) {
-            stringOrder += counter + ". " + pizza.getPizzaName();
+            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
+            
             counter++;
 
             //Udskriver prisen for pizzaen

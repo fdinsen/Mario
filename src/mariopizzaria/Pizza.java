@@ -68,6 +68,16 @@ public class Pizza {
     public int getPizzaSize() {
         return pizzaSize;
     }
+    
+    public String getPizzaSizeString() {
+        if(pizzaSize == 0){
+            return "Almindelig";
+        }else if(pizzaSize  == 1){
+            return "Familie";
+        }else{
+            return "Deep pan";
+        }
+    }
 
     public double getTotalPizzaPrice() {
         return totalPizzaPrice;
