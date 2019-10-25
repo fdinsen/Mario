@@ -25,7 +25,6 @@ public class MenuTest {
     @Test
     public void testPrintMenu() {
         //Don't know how to test
-        System.out.println(Menu.printMenu());
     }
     @Test
     public void testReadInPizza(){

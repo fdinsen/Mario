@@ -1,8 +1,8 @@
 package mariopizzaria;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -26,11 +26,11 @@ public class Order {
         this.orderByPhone = orderByPhone;
         pizzas = new ArrayList<Pizza>();
         costumer = new Costumer();
-        
+
         orderTime = LocalDateTime.now();
-        
+
         totalPrice = 0;
-        
+
         //menu = new Menu();
     }
 
@@ -41,9 +41,9 @@ public class Order {
 
         orderTime = LocalDateTime.now();
         pickupTime = LocalDateTime.now().plusMinutes(15);
-        
+
         totalPrice = 0;
-        
+
         //menu = new Menu();
     }
 
@@ -56,41 +56,47 @@ public class Order {
     LocalDateTime getOrderTime() {
         return orderTime;
     }
+
     LocalDateTime getPickupTime() {
         return pickupTime;
     }
+
     public boolean isOrderedByPhone() {
         return orderByPhone;
     }
+
     public double getTotalPrice() {
         return totalPrice;
     }
+
     public Pizza getPizzaAt(int index) {
         index = Math.abs(index);
         return pizzas.get(index);
     }
+
     public int getOrderSize() {
         return pizzas.size();
     }
-    
-    public String getCostumerName(){
-       return costumer.getCostumerName();
-    }
-    public int getCostumerPhoneNumber(){
-       return costumer.getCostumerPhoneNumber();
-    }
-    public int getNumberOfPizzas(){
-       return pizzas.size();
-    }
-    
 
-    
+    public String getCostumerName() {
+        return costumer.getCostumerName();
+    }
+
+    public int getCostumerPhoneNumber() {
+        return costumer.getCostumerPhoneNumber();
+    }
+
+    public int getNumberOfPizzas() {
+        return pizzas.size();
+    }
+
     //---------//
     // SETTERS //
     //---------//
     public void setCostumerName(String name) {
         costumer.setCostumerName(name);
     }
+
     public void setCostumerPhoneNumber(int phone) {
         costumer.setCostumerPhoneNumber(phone);
     }
@@ -100,9 +106,9 @@ public class Order {
     //---------//
     public void discount(int percentToDiscount) {
         percentToDiscount = Math.abs(percentToDiscount);
-        
+
         double percent = 1.0 - (percentToDiscount / 100.0);
-        totalPrice *= percent; 
+        totalPrice *= percent;
     }
 
     public void addPizza(int menuIndex) {
@@ -111,17 +117,18 @@ public class Order {
         String pizzaName = Menu.getPizzaName(menuIndex);
         Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
         int pizzaSize = 0; //Default værdi
-        
+
         pizzas.add(new Pizza(menuIndex, pizzaSize));
-        
+
         calculateTotalPrice();
     }
+
     public void addPizza(int menuIndex, int pizzaSize) {
         menuIndex = Math.abs(menuIndex);
         pizzaSize = Math.abs(pizzaSize);
-        
+
         pizzas.add(new Pizza(menuIndex, pizzaSize));
-        
+
         calculateTotalPrice();
     }
 
@@ -129,22 +136,22 @@ public class Order {
         itemNumber = Math.abs(itemNumber);
         toppingIndex = Math.abs(toppingIndex);
         quantity = Math.abs(quantity);
-        
+
         pizzas.get(itemNumber).addExtraTopping(new ExtraTopping(toppingIndex, quantity));
-        
+
         calculateTotalPrice();
     }
-    
+
     private void calculateTotalPrice() {
         totalPrice = 0;
-        for(Pizza pizza : pizzas) {
+        for (Pizza pizza : pizzas) {
             totalPrice += pizza.getTotalPizzaPrice();
         }
     }
-    
+
     public void removePizzaFromOrder(int index) {
         index = Math.abs(index);
-        
+
         pizzas.remove(index);
         calculateTotalPrice();
     }
@@ -152,28 +159,46 @@ public class Order {
     @Override
     public String toString() {
         int counter = 1;
-        String stringPizzas = "";
-        for (Pizza pizza : pizzas) {
-            stringPizzas += counter + ". " + pizza.getPizzaName() + "\n";
-            counter++;
-            //Tjekker om der er toppings på pizzaewn
-                    if (!pizza.getToppingsAdded().isEmpty()) {
-                    //Udskriver ekstra toppings på pizzaen
-                    stringPizzas += "Ekstra Toppings";
-                    for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
-                        //For hver topping indsæt antal og navn i stringen
-                        stringPizzas += "x" + extraTopping.getExtraToppingQuantity();
-                        stringPizzas += " " + extraTopping.getExtraToppingName();
-
-                        //Hvis der er mere end en topping, tilføj komma
-                        if (pizza.getToppingsAdded().size() > 1) {
-                            stringPizzas += ", ";
-                        }
-                }
-                stringPizzas = "\n";
-            }
+        String stringOrder = "";
+        stringOrder += "Bestilingstidspunkt: " + getOrderTime().getHour() + ":" + getOrderTime().getMinute()
+                + "\n";
+        //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
+        if (getCostumerName() != null) {
+            stringOrder += "Kunde Navn: " + getCostumerName() + "\n";
         }
-        return stringPizzas;
+        if (isOrderedByPhone()) {
+            stringOrder += "Kunde Tlf: " + getCostumerPhoneNumber() + "\n";
+        }
+            stringOrder += "-----\n";
+        for (Pizza pizza : pizzas) {
+            stringOrder += counter + ". " + pizza.getPizzaName();
+            counter++;
+
+            //Udskriver prisen for pizzaen
+            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
+
+            //Tjekker om der er toppings på pizzaewn
+            if (!pizza.getToppingsAdded().isEmpty()) {
+                //Udskriver prisen for pizzaen
+                stringOrder += "\nEkstra Toppings";
+                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
+                    //For hver topping indsæt antal og navn i stringen
+                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
+                    stringOrder += " " + extraTopping.getExtraToppingName();
+
+                    //Hvis der er mere end en topping, tilføj komma
+                    if (pizza.getToppingsAdded().size() > 1) {
+                        stringOrder += ", ";
+                    }
+                }
+
+            }
+            stringOrder += "\n-----\n";
+        }
+       stringOrder += "Afhentnings tidspunkt: " + getPickupTime().getHour() + ":"
+                + getPickupTime().getMinute() + " "
+                + "\nTotal Pris: " + getTotalPrice();
+        return stringOrder;
     }
-    
+
 }

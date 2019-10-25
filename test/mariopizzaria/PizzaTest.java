@@ -16,6 +16,8 @@ public class PizzaTest {
     ExtraTopping eggs = new ExtraTopping("Egg", 6.00);
     ExtraTopping egg = new ExtraTopping("Egg", 6.00);
     Pizza Quattro = new Pizza(5 ,0);
+    Pizza Quattro1 = new Pizza(5, 1);
+    Pizza Quattro2 = new Pizza(5, 2);
     
     public PizzaTest() {
     }
@@ -64,5 +66,34 @@ public class PizzaTest {
         int actualLength = Quattro.getToppingsAdded().size();
         //Assert
         assertEquals(exspectedLenght, actualLength);
+    }
+    @Test 
+    public void testPizzaSize1(){
+        
+        double exspected = 118.4;
+        
+        double actual = Quattro1.getPizzaPrice();
+        
+        assertEquals(exspected, actual, 0.0);
+    }
+    @Test
+    public void testPizzaSize2(){
+        
+        double exspected = 73.6;
+        
+        double actual = Quattro2.getPizzaPrice();
+        
+        assertEquals(exspected, actual, 0.0);
+    }
+    @Test
+    public void testGetgetToppingsAddedTotalPrice(){
+        //Arrange
+        egg.addExtraTopping(4);
+        Quattro.addExtraTopping(egg);
+        double expected = 24.0;
+        //Act
+        double actual = Quattro.getToppingsAddedTotalPrice();
+        //Assert
+        assertEquals(expected, actual, 0.0);
     }
 }

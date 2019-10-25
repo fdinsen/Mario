@@ -26,12 +26,21 @@ public class Pizza {
         pizzaPrice = Menu.getPizzaPrice(menuIndex);
         this.pizzaNumber = menuIndex;
         
-        if(pizzaSize>3 || pizzaSize < 0){
+        if(pizzaSize>=3 || pizzaSize < 0){
             this.pizzaSize = 0;
         }else{
             this.pizzaSize = pizzaSize;
         }
-        
+        switch (pizzaSize){
+            case 1:
+                this.pizzaPrice *= 1.85;
+                break;
+            case 2: 
+                this.pizzaPrice *= 1.15;
+                break;
+            default:
+                break;
+        }
         this.totalPizzaPrice = pizzaPrice;
         listOfToppingsAdded = new ArrayList<>();  
     }

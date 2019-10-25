@@ -23,14 +23,16 @@ public class Orderlist {
 
     public void completeOrder(int index) {
         //TODO Tilføj statistic kald
-
+        Statistics.updateStats(orders.get(index));
         //Fjerner orderen fra listen
         this.orders.remove(index);
     }
 
     public void completeOrder(int index, boolean lostOrder) {
         //TODO Tilføj statistic kald med lostOrder
-
+        //Statistics.updateStats(orders.get(index),lostOrder);
+        Statistics.updateStats(orders.get(index));
+        
         this.orders.remove(index);
     }
 
@@ -66,50 +68,7 @@ public class Orderlist {
 
         //Bygger en tekst String for ordreren, hvis der valgt en ordre
         if (orders.size() > 0) {
-            orderInString += "Ordre Nr. " + (index + 1) + ". "
-                    + " - Bestilingstidspunkt: " + orders.get(index).getOrderTime().getHour() + ":" + orders.get(index).getOrderTime().getMinute()
-                    + "\n";
-            //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
-            if(orders.get(index).getCostumerName() != null){
-                orderInString += "Kunde Navn: " + orders.get(index).getCostumerName() + "\n";
-            }
-            if (orders.get(index).isOrderedByPhone()) {
-                orderInString += "Kunde Tlf: " + orders.get(index).getCostumerPhoneNumber() + "\n";
-            }
-
-            //Udskriver en linje for hver pizza i orderen
-            for (int i = 0; i < orders.get(index).getOrderSize(); i++) {
-                orderInString += "-----\n" + orders.get(index).getPizzaAt(i).getPizzaName();
-
-                //Udskriver prisen for pizzaen
-                orderInString += "\t" + orders.get(index).getPizzaAt(i).getPizzaPrice() + " kr.";
-
-                //Tjekker om der er tilføjet toppings
-                if (!orders.get(index).getPizzaAt(i).getToppingsAdded().isEmpty()) {
-                    //Udskriver ekstra toppings på pizzaen
-                    ToppingsAddedTotalPrice = orders.get(index).getPizzaAt(i).getToppingsAddedTotalPrice();
-                    orderInString += "\nEkstra Toppings("+ ToppingsAddedTotalPrice + " kr.)\t";
-                    for (ExtraTopping extraTopping : orders.get(index).getPizzaAt(i).getToppingsAdded()) {
-                        //For hver topping indsæt antal og navn i stringen
-                        orderInString += "x" + extraTopping.getExtraToppingQuantity();
-                        orderInString += " " + extraTopping.getExtraToppingName();
-
-                        //Hvis der er mere end en topping, tilføj komma
-                        if (orders.get(index).getPizzaAt(i).getToppingsAdded().size() > 1) {
-                            orderInString += ", ";
-                        }
-                    }
-                }
-                orderInString += "\n";
-            }
-            orderInString += "-----\n";
-
-            //Tilføjer afheningstidspunkt samt totalpris
-            orderInString += "Afhentnings tidspunkt: " + orders.get(index).getPickupTime().getHour() + ":"
-                    + orders.get(index).getPickupTime().getMinute() + " "
-                    + "\nTotal Pris: " + orders.get(index).getTotalPrice();
-
-            counter++;
+            System.out.println(orders.get(index).toString());
         } else {
             orderInString = "Der er ikke oprettet en ordre endnu";
         }

@@ -43,7 +43,7 @@ public class ExtraTopping {
         quantity = Math.abs(qtr);
     }
     public void addExtraTopping(int qtr){
-        quantity += qtr;
+        quantity += Math.abs(qtr);
     }
      
 }
