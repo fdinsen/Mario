@@ -32,7 +32,7 @@ public class PizzaTest {
     @Test
     public void testGetTotalPizzaPriceWithToppings(){
         //Arrange
-        double exspectedPrice = 127.00;
+        double exspectedPrice = 112.00;
         egg.setExtraToppingQuntity(8);
         Quattro.addExtraTopping(egg);
         //Act
@@ -43,7 +43,7 @@ public class PizzaTest {
     @Test
     public void testGetTotalPizzaPriceWithMinusToppings(){
         //Arrange
-        double exspectedPrice = 127.00;
+        double exspectedPrice = 112.00;
         egg.setExtraToppingQuntity(-8);
         Quattro.addExtraTopping(egg);
         //Act
