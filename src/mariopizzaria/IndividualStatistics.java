@@ -18,5 +18,15 @@ public class IndividualStatistics {
         this.pizzaName = pizzaName;
         this.amountOfSales = Integer.parseInt(amountOfSales);
     }
-        
+ 
+    //---------//
+    // GETTERS //
+    //---------//
+    public String getPizzaName() {
+        return pizzaName;
+    }
+    
+    public int getAmountOfSales() {
+        return amountOfSales;
+    }
 }

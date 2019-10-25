@@ -43,7 +43,7 @@ public class OrderTest {
     @Test
     public void testCalculateTotalPrice() {
         //Assign
-        int expected
+        int expectedTotalPrice;
         
         
         fail("Test not implemented");
