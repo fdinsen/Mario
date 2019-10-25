@@ -70,7 +70,7 @@ public class Pizza {
     public double getToppingsAddedTotalPrice() {
         double sum = 0;
         for (ExtraTopping extraTopping : listOfToppingsAdded) {
-            sum += extraTopping.getExtraToppingPrice();
+            sum += extraTopping.getExtraToppingPrice() * extraTopping.getExtraToppingQuantity();
         }
         return sum;
     }

@@ -23,7 +23,7 @@ public class PizzaTest {
     @Test
     public void testGetTotalPizzaPriceWithoutToppings() {
         //Arrange
-        double exspectedPrice = 79.00;
+        double exspectedPrice = 64.00;
         //Act
         double actualPrice = Quattro.getTotalPizzaPrice();
         //Assert
