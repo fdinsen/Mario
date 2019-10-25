@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author <Frederik Keis Dinsen>
  */
-public final class Statistic {
+public final class Statistics {
 
     private static String[][] pizzaStats;
     private static File statsFile;
@@ -110,7 +110,7 @@ public final class Statistic {
                 bw.close();
             }
         } catch (IOException ex) {
-            Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -154,7 +154,7 @@ public final class Statistic {
                 bw.write(strBuilder.toString());
                 bw.close();
             } catch (IOException ex) {
-                Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }

@@ -35,7 +35,7 @@ public class StatisticTest {
         order.addPizza(1);
         order.addPizza(1);
 
-        Statistic.updateArray(order, testFileName, pizzaStatsTest);
+        Statistics.updateArray(order, testFileName, pizzaStatsTest);
         actualAmountOfSales = Integer.parseInt(pizzaStatsTest[1][1]);
         
         //Assert
@@ -51,7 +51,7 @@ public class StatisticTest {
         String[][] pizzaStatsTest = new String[2][arraySize];
         
         //Act
-        Statistic.createFile(testFileName, pizzaStatsTest);
+        Statistics.createFile(testFileName, pizzaStatsTest);
         
         
         //Assert
