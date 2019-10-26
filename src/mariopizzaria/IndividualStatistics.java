@@ -33,4 +33,12 @@ public class IndividualStatistics {
     public String toString(){
         return pizzaName + " : "+ amountOfSales;
     }
+    
+    //---------//
+    // METHODS //
+    //---------//
+ 
+    public void updatePizzaSales() {
+        amountOfSales++;
+    }
 }

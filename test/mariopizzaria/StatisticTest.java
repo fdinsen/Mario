@@ -5,8 +5,10 @@
  */
 package mariopizzaria;
 
+import com.sun.org.glassfish.external.statistics.Statistic;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,6 +21,23 @@ public class StatisticTest {
     public StatisticTest() {
     }
 
+    @Test
+    public void testCreateFileExists() {
+        //Arrange
+        String testFileName = "testStats.txt";
+        File file = new File(testFileName);
+        int arraySize = Menu.getListOfPizzaName().size();
+        String[][] pizzaStatsTest = new String[2][arraySize];
+        
+        //Act
+        Statistics.createFile(testFileName, pizzaStatsTest);
+        
+        
+        //Assert
+        assertTrue(file.exists());
+    }
+    
+    
     @Test
     public void testUpdateArray() {
         //Arrange
@@ -42,21 +61,29 @@ public class StatisticTest {
         assertEquals(expectedAmountOfSales, actualAmountOfSales);
     }
     
+    /*
     @Test
-    public void testCreateFileExists() {
+    public void testReadFileToIndividualStatisticsObject() {
         //Arrange
         String testFileName = "testStats.txt";
         File file = new File(testFileName);
-        int arraySize = Menu.getListOfPizzaName().size();
-        String[][] pizzaStatsTest = new String[2][arraySize];
+        ArrayList<IndividualStatistics> testArrayList
+                = new ArrayList<>();
+        int indexOfPizzaToTest = 0;
+        String expectedName = "Marinara";
+        int expectedNumber = 3;
+        String actualName;
+        int actualNumber;
         
         //Act
-        Statistics.createFile(testFileName, pizzaStatsTest);
-        
+        Statistics.readFile(testArrayList, file);
+        actualName = testArrayList.get(0).getPizzaName();
+        actualNumber = testArrayList.get(0).getAmountOfSales();
         
         //Assert
-        assertTrue(file.exists());
-    }
-    
+        assertEquals(expectedName, actualName);
+        assertEquals(expectedNumber, actualNumber);
+        
+    }*/
     
 }
