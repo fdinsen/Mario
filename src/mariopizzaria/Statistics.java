@@ -33,7 +33,7 @@ public final class Statistics {
         strBuilder = new StringBuilder();
         statisticsList = new ArrayList<>();
         seperatorCharacter = ":";
-        arrayListSize = statisticsList.size();
+        arrayListSize = Menu.getListOfPizzaName().size();
         //TODO: Add a check for if stats file exists
         //TODO: Automatically import information to Array if it does
     }
@@ -44,39 +44,39 @@ public final class Statistics {
     public static String[][] getPizzaStats() {
         return pizzaStats;
     }
+
     public static int getPizzaSalesOfPizzaAt(int index) {
         return statisticsList.get(index).getAmountOfSales();
     }
-    
+
     public static String getPizzaNameOfPizzaAt(int index) {
         return statisticsList.get(index).getPizzaName();
     }
-    
 
     //---------//
     // METHODS //
     //---------//
     public static void updateStats(Order order) {
-        updateArray(order, STATISTICS_FILE_NAME, pizzaStats);
+        updateArray(order, statsFile, pizzaStats);
     }
+
     //This one should only be called directly in tests, use updateStats() instead
-    public static void updateArray(Order order, String fileName, ArrayList<IndividualStatistics> arrayList) {
+    public static void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
         int pizzaNumber;
         int previousPizzaSales;
         int updatedPizzaSales;
-        File file = new File(fileName);
-        
+
         //Checks if file with the given name exists
-        if(!file.exists()) {
+        if (!file.exists()) {
             //if it does not, create it and run this method again
-            createFile(fileName, arrayList);
-            updateArray(order, fileName, arrayList);
-        } else if (arrayList.get(0) == null) {
+            createFile(file, arrayList);
+            updateArray(order, file, arrayList);
+        } else if (arrayList.size() == 0) {
             //if it does exist, but the array is empty, fill the array 
             // and run this method again
             createArray(arrayList);
-            updateArray(order,fileName, arrayList);
-        }else {
+            updateArray(order, file, arrayList);
+        } else {
             //otherwise loop through every pizza in the order 
             //and add one to the given pizza type in the array
             for (int i = 0; i < order.getOrderSize(); i++) {
@@ -85,27 +85,26 @@ public final class Statistics {
                 arrayList.get(pizzaNumber).updatePizzaSales();
             }
             //then update the actual file
-            updateFile(fileName, arrayList);
+            updateFile(file, arrayList);
         }
     }
-    
+
     //This one should only be called directly in tests, use updateStats() instead
-    public static void updateArray(Order order, String fileName, String[][] array) {
+    public static void updateArray(Order order, File file, String[][] array) {
         int pizzaNumber;
         int previousPizzaSales;
         String updatedPizzaSales;
-        File file = new File(fileName);
 
         //Checks if file with the given name exists
         if (!file.exists()) {
             //if it does not, create it and run this method again
-            createFile(fileName, array);
-            updateArray(order, fileName, array);
+            createFile(file, array);
+            updateArray(order, file, array);
         } else if (array[0][0] == null) {
             //if it does exist, but the array is empty, fill the array 
             // and run this method again
             createArray(array);
-            updateArray(order, fileName, array);
+            updateArray(order, file, array);
         } else {
             //otherwise loop through every pizza in the order 
             //and add one to the given pizza type in the array
@@ -119,39 +118,38 @@ public final class Statistics {
                 array[1][pizzaNumber] = updatedPizzaSales;
             }
             //then update the actual file
-            updateFile(fileName, array);
+            updateFile(file, array);
 
         }
     }
 
     //This method should only run once EVER. Otherwise it clears the statistics
-    public static void createFile(String fileName, ArrayList<IndividualStatistics> arrayList) {
+    public static void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //If the given array is empty, fill it
-        if (arrayList.get(0) == null) {
+        if (arrayList.size() == 0) {
             createArray(arrayList);
         }
-        
-        arrayListSize = arrayList.size();
+
+        arrayListSize = Menu.getListOfPizzaName().size();
         String currentPizzaName;
         int currentPizzaSales;
-        
+
         try {
-            File file = new File(fileName);
             bw = new BufferedWriter(new FileWriter(file));
             strBuilder.delete(0, strBuilder.length());
-            
+
             //If the file does not already exist
-            if (!file.exists()) {
+            if (file.exists()) {
                 //loops through every entry in the array, and creates a 
                 // line for each pizza-type
                 for (int i = 0; i < arrayListSize; i++) {
                     currentPizzaName = arrayList.get(i).getPizzaName();
                     currentPizzaSales = arrayList.get(i).getAmountOfSales();
                     //Appends the pizza name and the sales to each line in the string
-                    strBuilder.append(currentPizzaName + seperatorCharacter + 
-                            currentPizzaSales);
+                    strBuilder.append(currentPizzaName + seperatorCharacter
+                            + currentPizzaSales);
                     //As long as this is not the last row
-                    if (i < arrayListSize -1) {
+                    if (i < arrayListSize - 1) {
                         //then add a newline
                         strBuilder.append("\n");
                     }
@@ -163,22 +161,20 @@ public final class Statistics {
             Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     //This method should only run once EVER. Otherwise it clears the statistics
-    public static void createFile(String statsFileName, String[][] array) {
+    public static void createFile(File file, String[][] array) {
         //If the given array is empty, fill it
         if (array[0][0] == null) {
             createArray(array);
         }
 
         try {
-            File file = new File(statsFileName);
             bw = new BufferedWriter(new FileWriter(file));
             strBuilder.delete(0, strBuilder.length());
-            
+
             //If the file does not already exist
-            if (!file.exists()) {
+            if (file.exists()) {
                 //loops through every entry in the array, and creates a 
                 // line for each pizza-type
                 for (int i = 0; i < arraySize; i++) {
@@ -198,60 +194,59 @@ public final class Statistics {
         }
 
     }
-    
+
     public static void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
 
-        String[] temp = new String[2];
-        String nextLine;
-        int count = 0;
-        try (Scanner in = new Scanner(file)) {
-            while (in.hasNextLine()) {
+            String[] temp = new String[2];
+            String nextLine;
+            int count = 0;
+            try (Scanner in = new Scanner(file)) {
+                arrayList.clear();
+                while (in.hasNextLine()) {
 
-                nextLine = in.nextLine();
-                temp = nextLine.split(seperatorCharacter);
+                    nextLine = in.nextLine();
+                    temp = nextLine.split(seperatorCharacter);
 
-                arrayList.add(new IndividualStatistics(temp[0], temp[1]));
-                //pizzaStats[0][count] = temp[0];
-                //pizzaStats[1][count] = temp[1];
+                    arrayList.add(new IndividualStatistics(temp[0], temp[1]));
+                    //pizzaStats[0][count] = temp[0];
+                    //pizzaStats[1][count] = temp[1];
+                }
+
+            } catch (FileNotFoundException ex) {
+
             }
-
-        } catch (FileNotFoundException ex) {
-
-        }
 
     }
 
-    private static void updateFile(String fileName, ArrayList<IndividualStatistics> arrayList) {
+    private static void updateFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //loops through every entry in the array, and creates a 
-        arrayListSize = arrayList.size();
+        arrayListSize = Menu.getListOfPizzaName().size();
         strBuilder.delete(0, strBuilder.length());
         for (int i = 0; i < arrayListSize; i++) {
             try {
-                File file = new File(fileName);
                 bw = new BufferedWriter(new FileWriter(file));
                 //Appends the pizza name and the sales to the string
-                strBuilder.append(arrayList.get(i).getPizzaName() + 
-                        seperatorCharacter + arrayList.get(i).getAmountOfSales());
+                strBuilder.append(arrayList.get(i).getPizzaName()
+                        + seperatorCharacter + arrayList.get(i).getAmountOfSales());
                 //If this is not the last row
-                if( i < arrayListSize - 1) {
+                if (i < arrayListSize - 1) {
                     strBuilder.append("\n");
                 }
                 bw.write(strBuilder.toString());
                 bw.close();
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    private static void updateFile(String statsFileName, String[][] array) {
+
+    private static void updateFile(File file, String[][] array) {
         //loops through every entry in the array, and creates a 
         for (int i = 0; i < arraySize; i++) {
             try {
-                File tempFile = new File(statsFileName);
-                bw = new BufferedWriter(new FileWriter(tempFile));
+                bw = new BufferedWriter(new FileWriter(file));
                 //Appends the pizza name and the sales to the string
                 strBuilder.append(array[0][i] + seperatorCharacter + array[1][i]);
                 //If this is not the last row
@@ -276,7 +271,7 @@ public final class Statistics {
             arrayList.add(new IndividualStatistics(Menu.getListOfPizzaName().get(i), 0));
         }
     }
-    
+
     public static void createArray(String[][] arrayToFill) {
         //Creates array with all pizza names, and zero in every sale
         for (int i = 0; i < arraySize; i++) {
@@ -286,16 +281,24 @@ public final class Statistics {
     }
 
     public static String getStatistics() {
-        //TODO build a String that contains everything, using StringBuilder
-        statisticsList.sort(new AmountSorter());
+        //TODO build a String that contains everything, using StringBuilder 
+        
+        //Makes a copied ArrayList which is sorted and sent along
+        //This is to avoid affecting the ArrayList which is written to the file
+        ArrayList<IndividualStatistics> arrayListToSort
+                = new ArrayList<>();
+        for (IndividualStatistics stat : statisticsList) {
+            arrayListToSort.add(stat);
+        }
+        //Sorts the arrayList
+        arrayListToSort.sort(new AmountSorter());
 
         StringBuilder strbuilder = new StringBuilder();
-        
-        for(IndividualStatistics stats : statisticsList){
+        for (IndividualStatistics stats : arrayListToSort) {
             strBuilder.append(stats);
-            if(statisticsList.indexOf(stats) < statisticsList.size() -1){
+            if (arrayListToSort.indexOf(stats) < arrayListToSort.size() - 1) {
                 strBuilder.append("\n");
-            }         
+            }
         }
         return strbuilder.toString();
     }

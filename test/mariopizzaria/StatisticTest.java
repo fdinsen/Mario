@@ -7,8 +7,10 @@ package mariopizzaria;
 
 import com.sun.org.glassfish.external.statistics.Statistic;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,36 +19,57 @@ import static org.junit.Assert.*;
  * @author <Frederik Keis Dinsen>
  */
 public class StatisticTest {
-    
+
+    String testFileName = "testStats.txt";
+    File testFile = new File(testFileName);
+
     public StatisticTest() {
+
     }
 
     @Test
     public void testCreateFileExists() {
         //Arrange
-        String testFileName = "testStats.txt";
-        File file = new File(testFileName);
         int arraySize = Menu.getListOfPizzaName().size();
         String[][] pizzaStatsTest = new String[2][arraySize];
-        
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
+
         //Act
-        Statistics.createFile(testFileName, pizzaStatsTest);
-        
-        
+        Statistics.createFile(testFile, arrayList);
+
         //Assert
-        assertTrue(file.exists());
+        assertTrue(testFile.exists());
     }
-    
-    
+
+    @Test
+    public void testCreateFileByContent() {
+        //Arrange
+        //String[][] pizzaStatsTest = new String[2][arraySize];
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
+        String actualFirstLine = "";
+        String expectedFirstLine = "Margherita";
+        //Act
+        Statistics.createFile(testFile, arrayList);
+        try (Scanner in = new Scanner(testFile)) {
+            actualFirstLine = in.nextLine();
+        } catch (FileNotFoundException ex) {
+
+        }
+        actualFirstLine = actualFirstLine.substring(0, 10);
+
+        //Assert
+        assertEquals(expectedFirstLine, actualFirstLine);
+    }
+
     @Test
     public void testUpdateArray() {
         //Arrange
-        String testFileName = "testStats.txt";
         int arraySize = Menu.getListOfPizzaName().size();
-        String[][] pizzaStatsTest = new String[2][arraySize];
+        //String[][] pizzaStatsTest = new String[2][arraySize];
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
         int expectedAmountOfSales;
         int actualAmountOfSales;
-        
+
         //Act
         expectedAmountOfSales = 3;
         Order order = new Order(true);
@@ -54,36 +77,69 @@ public class StatisticTest {
         order.addPizza(1);
         order.addPizza(1);
 
-        Statistics.updateArray(order, testFileName, pizzaStatsTest);
-        actualAmountOfSales = Integer.parseInt(pizzaStatsTest[1][1]);
-        
+        Statistics.updateArray(order, testFile, arrayList);
+        actualAmountOfSales = arrayList.get(1).getAmountOfSales();
+
         //Assert
         assertEquals(expectedAmountOfSales, actualAmountOfSales);
     }
-    
-    /*
+
     @Test
     public void testReadFileToIndividualStatisticsObject() {
         //Arrange
-        String testFileName = "testStats.txt";
-        File file = new File(testFileName);
         ArrayList<IndividualStatistics> testArrayList
-                = new ArrayList<>();
-        int indexOfPizzaToTest = 0;
+                = new ArrayList<IndividualStatistics>();
+        Statistics.createFile(testFile, testArrayList);
         String expectedName = "Marinara";
-        int expectedNumber = 3;
+        int expectedNumber = 0;
         String actualName;
         int actualNumber;
-        
+
         //Act
-        Statistics.readFile(testArrayList, file);
-        actualName = testArrayList.get(0).getPizzaName();
-        actualNumber = testArrayList.get(0).getAmountOfSales();
-        
+        Statistics.readFile(testArrayList, testFile);
+        actualName = testArrayList.get(1).getPizzaName();
+        actualNumber = testArrayList.get(1).getAmountOfSales();
+
         //Assert
         assertEquals(expectedName, actualName);
         assertEquals(expectedNumber, actualNumber);
-        
-    }*/
-    
+
+    }
+
+    @Test
+    public void testCreateArrayByLength() {
+        //Arrange
+        int expectedLength = 30;
+        int actualLength;
+        ArrayList<IndividualStatistics> arrayList
+                = new ArrayList<>();
+
+        //Act
+        Statistics.createArray(arrayList);
+        actualLength = arrayList.size();
+
+        //Assert
+        assertEquals(expectedLength, actualLength);
+    }
+
+    @Test
+    public void testCreateArrayByContent() {
+        //Arrrange
+        String expectedPizzaName = "Margherita";
+        String actualPizzaName;
+        int expectedPizzaSales = 0;
+        int actualPizzaSales;
+        ArrayList<IndividualStatistics> arrayList
+                = new ArrayList<>();
+
+        //Act
+        Statistics.createArray(arrayList);
+        actualPizzaName = arrayList.get(0).getPizzaName();
+        actualPizzaSales = arrayList.get(0).getAmountOfSales();
+
+        //Assert
+        assertEquals(expectedPizzaName, actualPizzaName);
+        assertEquals(expectedPizzaSales, actualPizzaSales);
+    }
+
 }
