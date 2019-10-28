@@ -22,17 +22,19 @@ public class Orderlist {
     }
 
     public void completeOrder(int index) {
-        //TODO Tilføj statistic kald
+        //Kalder Statistics
         Statistics.updateStats(orders.get(index));
         //Fjerner orderen fra listen
         this.orders.remove(index);
     }
-
+    
+    //Bruges ikke endnu
     public void completeOrder(int index, boolean lostOrder) {
-        //TODO Tilføj statistic kald med lostOrder
+        //Kalder Statistics - Statistics tager lige nu ikke lostOrder med
         //Statistics.updateStats(orders.get(index),lostOrder);
         Statistics.updateStats(orders.get(index));
         
+        //Fjerner orderen fra listen
         this.orders.remove(index);
     }
 
