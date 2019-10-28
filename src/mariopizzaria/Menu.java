@@ -91,6 +91,7 @@ class Menu {
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }
+        in.close();
     }
 
     private  void readInToppings() {
@@ -109,6 +110,7 @@ class Menu {
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }
+        in.close();
     }
     public  String getPizzaName(int index){
         

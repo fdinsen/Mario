@@ -30,7 +30,9 @@ public class Statistics {
     private String seperatorCharacter;
     private static Statistics statistics_instance = null;
     private Menu menu = Menu.getInstance();
+    
     private final String LOST_ORDERS_FILE_NAME = "lost_orders.txt";
+    private File lostOrdersFile = new File(LOST_ORDERS_FILE_NAME);
     private int amountOfLostOrders;
     private double valueOfLostOrders;
 
@@ -222,6 +224,9 @@ public class Statistics {
     }
 
     public void createLostOrdersFile(File file) {
+        
+        
+        
         
     }
     
