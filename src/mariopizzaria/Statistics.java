@@ -34,6 +34,12 @@ public final class Statistics {
         statisticsList = new ArrayList<>();
         seperatorCharacter = ":";
         arrayListSize = Menu.getListOfPizzaName().size();
+        
+        if (statsFile.exists()) {
+            readFile(statisticsList, statsFile);
+        } else {
+            createFile(statsFile, statisticsList);
+        }
         //TODO: Add a check for if stats file exists
         //TODO: Automatically import information to Array if it does
     }
@@ -57,7 +63,7 @@ public final class Statistics {
     // METHODS //
     //---------//
     public static void updateStats(Order order) {
-        updateArray(order, statsFile, pizzaStats);
+        updateArray(order, statsFile, statisticsList);
     }
 
     //This one should only be called directly in tests, use updateStats() instead
