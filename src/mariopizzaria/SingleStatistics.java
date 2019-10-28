@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mariopizzaria;
 
 import java.io.BufferedWriter;
@@ -19,20 +14,18 @@ import java.util.logging.Logger;
  *
  * @author <Frederik Keis Dinsen>
  */
-public class Statistics {
+public final class SingleStatistics {
+
     private static File statsFile;
-    private static final String STATISTICS_FILE_NAME = "statistics.txt";
+    private static final String STATISTICS_FILE_NAME;
     private static StringBuilder strBuilder;
     private static BufferedWriter bw;
     public static int arrayListSize;
     private static ArrayList<IndividualStatistics> statisticsList;
     private static String seperatorCharacter;
-    private static Statistics statistics_instance = null;
-    
-    //-------------//
-    // CONSTRUCTOR //
-    //-------------//
-    private Statistics() {
+
+    static {
+        STATISTICS_FILE_NAME = "statistics.txt";
         statsFile = new File(STATISTICS_FILE_NAME);
         strBuilder = new StringBuilder();
         statisticsList = new ArrayList<>();
@@ -45,13 +38,7 @@ public class Statistics {
             createFile(statsFile, statisticsList);
         }
     }
-    public static Statistics getInstance() {
-        if (statistics_instance == null) 
-            statistics_instance = new Statistics(); 
-  
-        return statistics_instance; 
-    }
-    
+
     //---------//
     // GETTERS //
     //---------//
@@ -215,5 +202,4 @@ public class Statistics {
         }
     }
 
-   
 }

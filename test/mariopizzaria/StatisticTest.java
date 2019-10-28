@@ -30,12 +30,13 @@ public class StatisticTest {
     @Test
     public void testCreateFileExists() {
         //Arrange
+        Statistics statistics = Statistics.getInstance();
         int arraySize = Menu.getListOfPizzaName().size();
         String[][] pizzaStatsTest = new String[2][arraySize];
         ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
 
         //Act
-        Statistics.createFile(testFile, arrayList);
+        statistics.createFile(testFile, arrayList);
 
         //Assert
         assertTrue(testFile.exists());
@@ -44,12 +45,12 @@ public class StatisticTest {
     @Test
     public void testCreateFileByContent() {
         //Arrange
-        //String[][] pizzaStatsTest = new String[2][arraySize];
+        Statistics statistics = Statistics.getInstance();
         ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
         String actualFirstLine = "";
         String expectedFirstLine = "Margherita";
         //Act
-        Statistics.createFile(testFile, arrayList);
+        statistics.createFile(testFile, arrayList);
         try (Scanner in = new Scanner(testFile)) {
             actualFirstLine = in.nextLine();
         } catch (FileNotFoundException ex) {
@@ -64,6 +65,7 @@ public class StatisticTest {
     @Test
     public void testUpdateArray() {
         //Arrange
+        Statistics statistics = Statistics.getInstance();
         int arraySize = Menu.getListOfPizzaName().size();
         //String[][] pizzaStatsTest = new String[2][arraySize];
         ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
@@ -77,7 +79,7 @@ public class StatisticTest {
         order.addPizza(1);
         order.addPizza(1);
 
-        Statistics.updateArray(order, testFile, arrayList);
+        statistics.updateArray(order, testFile, arrayList);
         actualAmountOfSales = arrayList.get(0).getAmountOfSales();
 
         //Assert
@@ -87,16 +89,17 @@ public class StatisticTest {
     @Test
     public void testReadFileToIndividualStatisticsObject() {
         //Arrange
+        Statistics statistics = Statistics.getInstance();
         ArrayList<IndividualStatistics> testArrayList
                 = new ArrayList<IndividualStatistics>();
-        Statistics.createFile(testFile, testArrayList);
+        statistics.createFile(testFile, testArrayList);
         String expectedName = "Marinara";
         int expectedNumber = 0;
         String actualName;
         int actualNumber;
 
         //Act
-        Statistics.readFile(testArrayList, testFile);
+        statistics.readFile(testArrayList, testFile);
         actualName = testArrayList.get(1).getPizzaName();
         actualNumber = testArrayList.get(1).getAmountOfSales();
 
@@ -109,13 +112,14 @@ public class StatisticTest {
     @Test
     public void testCreateArrayByLength() {
         //Arrange
+        Statistics statistics = Statistics.getInstance();
         int expectedLength = 30;
         int actualLength;
         ArrayList<IndividualStatistics> arrayList
                 = new ArrayList<>();
 
         //Act
-        Statistics.createArray(arrayList);
+        statistics.createArray(arrayList);
         actualLength = arrayList.size();
 
         //Assert
@@ -125,6 +129,7 @@ public class StatisticTest {
     @Test
     public void testCreateArrayByContent() {
         //Arrrange
+        Statistics statistics = Statistics.getInstance();
         String expectedPizzaName = "Margherita";
         String actualPizzaName;
         int expectedPizzaSales = 0;
@@ -133,7 +138,7 @@ public class StatisticTest {
                 = new ArrayList<>();
 
         //Act
-        Statistics.createArray(arrayList);
+        statistics.createArray(arrayList);
         actualPizzaName = arrayList.get(0).getPizzaName();
         actualPizzaSales = arrayList.get(0).getAmountOfSales();
 
@@ -145,6 +150,7 @@ public class StatisticTest {
     @Test
     public void testGetStatisticsByLength() {
         //Arrange
+        Statistics statistics = Statistics.getInstance();
         int expMinimumLength = 450;
         int actualLength;
         boolean isLongerThan;
@@ -152,8 +158,8 @@ public class StatisticTest {
                 = new ArrayList<>();
         
         //Act
-        Statistics.createArray(arrayList);
-        actualLength = Statistics.getStatistics().length();
+        statistics.createArray(arrayList);
+        actualLength = statistics.getStatistics().length();
         isLongerThan = (actualLength > expMinimumLength);
         
         //Assert
