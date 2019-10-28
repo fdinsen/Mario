@@ -288,24 +288,23 @@ public final class Statistics {
 
     public static String getStatistics() {
         //TODO build a String that contains everything, using StringBuilder 
-        
+        String returnString= "";
         //Makes a copied ArrayList which is sorted and sent along
         //This is to avoid affecting the ArrayList which is written to the file
         ArrayList<IndividualStatistics> arrayListToSort
-                = new ArrayList<>();
-        for (IndividualStatistics stat : statisticsList) {
-            arrayListToSort.add(stat);
-        }
+                = (ArrayList<IndividualStatistics>) statisticsList.clone();
+        
         //Sorts the arrayList
         arrayListToSort.sort(new AmountSorter());
-
+        
         StringBuilder strbuilder = new StringBuilder();
         for (IndividualStatistics stats : arrayListToSort) {
-            strBuilder.append(stats);
+            
+            returnString += stats;
             if (arrayListToSort.indexOf(stats) < arrayListToSort.size() - 1) {
-                strBuilder.append("\n");
+                returnString += "\n";
             }
         }
-        return strbuilder.toString();
+        return returnString;
     }
 }
