@@ -7,7 +7,9 @@ package mariopizzaria;
 import java.util.ArrayList;
 
 public class Pizza {
-
+    
+    Menu menu = Menu.getInstance();
+    
     private String pizzaName;
 
     private double pizzaPrice;
@@ -22,8 +24,8 @@ public class Pizza {
     
     public Pizza(int menuIndex, int pizzaSize) {
         //Informationen om pizzaen hentes fra menu-kortet
-        pizzaName = Menu.getPizzaName(menuIndex);
-        pizzaPrice = Menu.getPizzaPrice(menuIndex);
+        pizzaName = menu.getPizzaName(menuIndex);
+        pizzaPrice = menu.getPizzaPrice(menuIndex);
         this.pizzaNumber = menuIndex;
         
         if(pizzaSize>=3 || pizzaSize < 0){

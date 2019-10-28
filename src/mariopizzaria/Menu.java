@@ -19,23 +19,23 @@ class Menu {
     private static Menu menu_instance = null; 
     
     //Setup for toppings file
-    private static File toppingFile;
-    private static final String TOPPING_FILE_NAME = "Toppings.txt";
+    private  File toppingFile;
+    private  final String TOPPING_FILE_NAME = "Toppings.txt";
     
     //Setup for pizza file
-    private static File pizzaFile;
-    private static final String PIZZA_FILE_NAME = "Pizzas.txt";
+    private  File pizzaFile;
+    private  final String PIZZA_FILE_NAME = "Pizzas.txt";
 
-    private static Scanner in;
+    private  Scanner in;
     
     //Future proof. If the amount of pizzas changes in file
-    private static ArrayList<String> pizzaName;
+    private  ArrayList<String> pizzaName;
 
-    private static ArrayList<Double> pizzaPrice;
+    private  ArrayList<Double> pizzaPrice;
 
-    private static ArrayList<String> pizzaDescription;
+    private  ArrayList<String> pizzaDescription;
 
-    private static ArrayList<ExtraTopping> listOfExtraTopping;
+    private  ArrayList<ExtraTopping> listOfExtraTopping;
     
     private Menu() {
         
@@ -61,7 +61,7 @@ class Menu {
         return menu_instance; 
     } 
     
-    public static String printMenu() {
+    public  String printMenu() {
         String returnString = "";
         
         for(int i = 0; i < pizzaName.size(); i++){
@@ -74,7 +74,7 @@ class Menu {
         return returnString;
     }
 
-    private static void readInPizzas() {
+    private  void readInPizzas() {
         String[] temp = new String[3];
         String nextLine;
         
@@ -93,7 +93,7 @@ class Menu {
         }
     }
 
-    private static void readInToppings() {
+    private  void readInToppings() {
         String[] temp = new String[2];
         String nextLine; 
         
@@ -110,42 +110,45 @@ class Menu {
             //TODO email the developers(us)
         }
     }
-    public static String getPizzaName(int index){
+    public  String getPizzaName(int index){
         
         return pizzaName.get(index);
     }
-    public static double getPizzaPrice(int index){
+    public  double getPizzaPrice(int index){
         
         return pizzaPrice.get(index);
     }
     
-    public static ArrayList<String> getListOfPizzaName() {
+    public  ArrayList<String> getListOfPizzaName() {
         return pizzaName;
     }
 
-    public static ArrayList<Double> getListOfPizzaPrice() {
+    public  ArrayList<Double> getListOfPizzaPrice() {
         return pizzaPrice;
     }
 
-    public static ArrayList<String> getPizzaDescription() {
+    public  ArrayList<String> getPizzaDescription() {
         return pizzaDescription;
     }
 
-    public static String getExtratoppingName(int index) {
+    public  String getExtratoppingName(int index) {
         return listOfExtraTopping.get(index).getExtraToppingName();
     }
 
-    public static double getExtratoppingPrice(int index) {
+    public  double getExtratoppingPrice(int index) {
         return listOfExtraTopping.get(index).getExtraToppingPrice();
     }
     
-    public static ExtraTopping getTopping(int index){
+    public  ExtraTopping getTopping(int index){
         return listOfExtraTopping.get(index);
     }
-    public static ArrayList<ExtraTopping> getToppingList(){
+    public  ArrayList<ExtraTopping> getToppingList(){
         return listOfExtraTopping;
     }
-    public static String getPizzaDescription(int index){
+    public  String getPizzaDescription(int index){
         return pizzaDescription.get(index);
+    }
+    public int getAmountOfPizzas(){
+        return pizzaName.size();
     }
 }
