@@ -46,6 +46,7 @@ public class UserDialog {
                         break;
                     case 4:
                         //Viser staistik
+                        statisticsDialog();
                         break;
                     case 55:
                         //Slutter program
@@ -482,6 +483,7 @@ public class UserDialog {
         } while (addNewPizza);
     }
 
+    //Retunere størrelsen så den kan gammes med ordren
     private int chooseSizeDialog() {
         boolean exit = false;
         int selection;
@@ -514,6 +516,28 @@ public class UserDialog {
             }
         } while (!exit);
         return selection;
+    }
+
+    private void statisticsDialog() {
+        boolean exit = false;
+        int selection;
+        do {
+            System.out.println("Mario's Pizzaria - Statistik");
+            System.out.println("-------------------------");
+
+            System.out.println(Statistics.getStatistics() + "\n");
+            System.out.println("1 - Gå tilbage");
+            
+            selection = getUserInput();
+            switch (selection) {
+                case 1:
+                    //Gå tilbage
+                    exit = true;
+                    break;
+                default:
+                    System.err.println(selection + " Er ikke en mulighed prøv igen");
+            }
+        } while (!exit);
     }
 
     private void chooseExtrasDialog(int orderArrayPosition) {
