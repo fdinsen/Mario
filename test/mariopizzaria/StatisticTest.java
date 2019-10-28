@@ -78,7 +78,7 @@ public class StatisticTest {
         order.addPizza(1);
 
         Statistics.updateArray(order, testFile, arrayList);
-        actualAmountOfSales = arrayList.get(1).getAmountOfSales();
+        actualAmountOfSales = arrayList.get(0).getAmountOfSales();
 
         //Assert
         assertEquals(expectedAmountOfSales, actualAmountOfSales);
@@ -140,6 +140,24 @@ public class StatisticTest {
         //Assert
         assertEquals(expectedPizzaName, actualPizzaName);
         assertEquals(expectedPizzaSales, actualPizzaSales);
+    }
+    
+    @Test
+    public void testGetStatisticsByLength() {
+        //Arrange
+        int expMinimumLength = 450;
+        int actualLength;
+        boolean isLongerThan;
+        ArrayList<IndividualStatistics> arrayList
+                = new ArrayList<>();
+        
+        //Act
+        Statistics.createArray(arrayList);
+        actualLength = Statistics.getStatistics().length();
+        isLongerThan = (actualLength > expMinimumLength);
+        
+        //Assert
+        assertTrue(isLongerThan);
     }
 
 }
