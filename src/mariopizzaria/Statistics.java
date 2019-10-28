@@ -20,16 +20,20 @@ import java.util.logging.Logger;
  * @author <Frederik Keis Dinsen>
  */
 public class Statistics {
+
     private File statsFile;
     private final String STATISTICS_FILE_NAME = "statistics.txt";
     private StringBuilder strBuilder;
     private BufferedWriter bw;
-    public  int arrayListSize;
+    public int arrayListSize;
     private ArrayList<IndividualStatistics> statisticsList;
     private String seperatorCharacter;
     private static Statistics statistics_instance = null;
     private Menu menu = Menu.getInstance();
-    
+    private final String LOST_ORDERS_FILE_NAME = "lost_orders.txt";
+    private int amountOfLostOrders;
+    private double valueOfLostOrders;
+
     //-------------//
     // CONSTRUCTOR //
     //-------------//
@@ -46,17 +50,18 @@ public class Statistics {
             createFile(statsFile, statisticsList);
         }
     }
+
     public static Statistics getInstance() {
-        if (statistics_instance == null) 
-            statistics_instance = new Statistics(); 
-  
-        return statistics_instance; 
+        if (statistics_instance == null) {
+            statistics_instance = new Statistics();
+        }
+
+        return statistics_instance;
     }
-    
+
     //---------//
     // GETTERS //
     //---------//
-
     public int getPizzaSalesOfPizzaAt(int index) {
         return statisticsList.get(index).getAmountOfSales();
     }
@@ -216,5 +221,8 @@ public class Statistics {
         }
     }
 
-   
+    public void createLostOrdersFile(File file) {
+        
+    }
+    
 }
