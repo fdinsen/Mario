@@ -10,18 +10,18 @@ public class Orderlist {
 
     private ArrayList<Order> orders;
 
-    public Orderlist() {
-        orders = new ArrayList<Order>();
+    Orderlist() {
+        orders = new ArrayList<>();
     }
 
-    public int createOrder(boolean orderByPhone) {
+    int createOrder(boolean orderByPhone) {
         //Laver ny order og tilføjer til orders array
         orders.add(new Order(orderByPhone));
         return orders.size() - 1;
 
     }
 
-    public void completeOrder(int index) {
+    void completeOrder(int index) {
         //Kalder Statistics
         Statistics.updateStats(orders.get(index));
         //Fjerner orderen fra listen
@@ -39,7 +39,7 @@ public class Orderlist {
     }
 
     //Retunere en String der viser alle ordre på en pæn måde
-    public String ShowAllCurrentOrders() {
+    String ShowAllCurrentOrders() {
         int counter = 1;
         String ordersInString = "";
 
@@ -61,11 +61,9 @@ public class Orderlist {
         return ordersInString;
     }
 
-    public String showOrder(int index) {
+    String showOrder(int index) {
         //Trækker en da Orderlisten for brugeren starter på 1
         index--;
-        int counter = 1;
-        double ToppingsAddedTotalPrice;
         String orderInString = "";
 
         //Bygger en tekst String for ordreren, hvis der valgt en ordre
@@ -77,28 +75,27 @@ public class Orderlist {
         return orderInString;
     }
 
-    public void deleteOrder(int index) {
+    void deleteOrder(int index) {
         this.orders.remove(index);
     }
 
-    public Order getOrder(int index) {
+    Order getOrder(int index) {
         return orders.get(index);
     }
-
-    public ArrayList<Order> getOrdersList() {
-        return orders;
-    }
     
-    public String showAllPizzasInOrder(int orderNumberInArray){
+    String showAllPizzasInOrder(int orderNumberInArray){
         return orders.get(orderNumberInArray).toString();
     }
     
-    public int getPizzaCountInOrder(int orderNumberInArray){
+    int getPizzaCountInOrder(int orderNumberInArray){
         return orders.get(orderNumberInArray).getNumberOfPizzas();
     }
     
-    public void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
+    void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
         orders.get(orderNumberInArray).removePizzaFromOrder(pizzaNumberInOrder);
     }
 
+    int getOrdersListSize() {
+        return orders.size();
+    }
 }
