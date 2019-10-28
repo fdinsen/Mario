@@ -202,4 +202,12 @@ public class Order {
         return stringOrder;
     }
 
+    public String getPickupTimeHour() {
+        return "" + pickupTime.getHour();   
+    }
+
+    public String getPickupTimeMinute() {
+        return "" + pickupTime.getMinute();
+    }
+
 }

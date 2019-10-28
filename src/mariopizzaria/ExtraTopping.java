@@ -22,8 +22,8 @@ public class ExtraTopping {
     public ExtraTopping(int itemNumber, int quantity){
         
         this.quantity = Math.abs(quantity);
-        this.name = Menu.getTopping(itemNumber).getExtraToppingName();
-        this.price = Menu.getTopping(itemNumber).getExtraToppingPrice();
+        this.name = Menu.getExtratoppingName(itemNumber);
+        this.price = Menu.getExtratoppingPrice(itemNumber);
         
     }
     public String getExtraToppingName() {

@@ -30,7 +30,7 @@ public final class Menu {
 
     private static ArrayList<String> pizzaDescription;
 
-    private static ArrayList<ExtraTopping> listOfTopping;
+    private static ArrayList<ExtraTopping> listOfExtraTopping;
     
     static{
         pizzaFile = new File(PIZZA_FILE_NAME);
@@ -40,7 +40,7 @@ public final class Menu {
         pizzaPrice = new ArrayList<>();
         pizzaDescription = new ArrayList<>();
         
-        listOfTopping = new ArrayList<>();
+        listOfExtraTopping = new ArrayList<>();
         
         readInPizzas();
         readInToppings();
@@ -55,7 +55,7 @@ public final class Menu {
         for(int i = 0; i < pizzaName.size(); i++){
             returnString += i+1+ " " + pizzaName.get(i) + " " + pizzaPrice.get(i) +  " " + pizzaDescription.get(i)+"\n";
         }
-        for(ExtraTopping topping : listOfTopping){
+        for(ExtraTopping topping : listOfExtraTopping){
             returnString += topping.getExtraToppingName() + " " + topping.getExtraToppingPrice() + "\n";
         }
         
@@ -90,8 +90,8 @@ public final class Menu {
 
                 nextLine = in.nextLine();
                 temp = nextLine.split(":");
-                
-                listOfTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1])));
+                //Created new ExtraTopping with temp[0] and temp[1] and puts into listOfTopping
+                listOfExtraTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1])));
                     
             }
         } catch (FileNotFoundException ex) {
@@ -120,18 +120,18 @@ public final class Menu {
     }
 
     public static String getExtratoppingName(int index) {
-        return listOfTopping.get(index).getExtraToppingName();
+        return listOfExtraTopping.get(index).getExtraToppingName();
     }
 
     public static double getExtratoppingPrice(int index) {
-        return listOfTopping.get(index).getExtraToppingPrice();
+        return listOfExtraTopping.get(index).getExtraToppingPrice();
     }
     
     public static ExtraTopping getTopping(int index){
-        return listOfTopping.get(index);
+        return listOfExtraTopping.get(index);
     }
     public static ArrayList<ExtraTopping> getToppingList(){
-        return listOfTopping;
+        return listOfExtraTopping;
     }
     public static String getPizzaDescription(int index){
         return pizzaDescription.get(index);

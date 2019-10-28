@@ -1,17 +1,21 @@
 package mariopizzaria;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Comparator;
-
 public class MarioAssignmentMain {
         
     
     public static void main(String[] args) {
         UserDialog userDialog = new UserDialog();
         
+        
+        
+        
+//        System.out.println(SingleMenu.getInstance().getMenu());
+//        
+//        SingleMenu menu = SingleMenu.getInstance();
+//        
+//        System.out.println(menu.getMenu());
+//        
+//        SingleMenu menu2 = SingleMenu.getInstance();
     }
     
 }

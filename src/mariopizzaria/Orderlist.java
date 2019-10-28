@@ -49,7 +49,8 @@ public class Orderlist {
                 ordersInString
                         += "Order Nr. " + counter + ". "
                         + "Antal pizzaer: " + order.getOrderSize() + "\n"
-                        + "Afhentnings tidspunkt: " + order.getPickupTime().getHour() + ":" + order.getPickupTime().getMinute()
+                        //+ "Afhentnings tidspunkt: " + order.getPickupTime().getHour() + ":" + order.getPickupTime().getMinute()
+                        + "Afhentnings tidspunkt: " + order.getPickupTimeHour() + ":" + order.getPickupTimeMinute()
                         + ", Total Pris: " + order.getTotalPrice() + "\n";
 
                 counter++;
