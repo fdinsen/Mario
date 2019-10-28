@@ -50,16 +50,6 @@ public class Order {
     //---------//
     // GETTERS //
     //---------//
-//    public Pizza getPizza(int index) {
-//        return pizzas.get(index);
-//    }
-    LocalDateTime getOrderTime() {
-        return orderTime;
-    }
-
-    LocalDateTime getPickupTime() {
-        return pickupTime;
-    }
 
     public boolean isOrderedByPhone() {
         return orderByPhone;
@@ -160,7 +150,7 @@ public class Order {
     public String toString() {
         int counter = 1;
         String stringOrder = "";
-        stringOrder += "Bestilingstidspunkt: " + getOrderTime().getHour() + ":" + getOrderTime().getMinute()
+        stringOrder += "Bestilingstidspunkt: " + getOrderTimeHour() + ":" + getOrderTimeMinute()
                 + "\n";
         //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
         if (getCostumerName() != null) {
@@ -196,8 +186,8 @@ public class Order {
             }
             stringOrder += "\n-----\n";
         }
-       stringOrder += "Afhentnings tidspunkt: " + getPickupTime().getHour() + ":"
-                + getPickupTime().getMinute() + " "
+       stringOrder += "Afhentnings tidspunkt: " + getPickupTimeHour() + ":"
+                + getPickupTimeMinute() + " "
                 + "\nTotal Pris: " + getTotalPrice();
         return stringOrder;
     }
@@ -208,6 +198,14 @@ public class Order {
 
     public String getPickupTimeMinute() {
         return "" + pickupTime.getMinute();
+    }
+
+    private String getOrderTimeHour() {
+        return "" + orderTime.getHour();
+    }
+
+    private String getOrderTimeMinute() {
+        return "" + orderTime.getMinute();
     }
 
 }
