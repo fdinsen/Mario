@@ -205,7 +205,7 @@ public class NewOrderUI {
 
             } else {
                 //Brugeren har indtastet et tal der ikke er mellem 1 og antal pizzaer i menuen
-                System.err.println(pizzaNumber + " Er ikke mellem 1 og antallet af pizzaer i menuen (" + Menu.getListOfPizzaName().size() + ")");
+                System.err.println(pizzaNumber + " Er ikke mellem 1 og antallet af pizzaer i menuen (" + menu.getListOfPizzaName().size() + ")");
                 System.out.println("Prøv igen");
             }
 
@@ -260,7 +260,7 @@ public class NewOrderUI {
         do {
             counter = 1;
             System.out.println("Tilængeligt tilbehør: ");
-            for (ExtraTopping topping : Menu.getToppingList()) {
+            for (ExtraTopping topping : menu.getToppingList()) {
                 System.out.println(counter + ". " + topping.getExtraToppingName() + "\t" + topping.getExtraToppingPrice() + " kr.");
                 counter++;
             }
@@ -268,14 +268,14 @@ public class NewOrderUI {
 
             extraSelection = inputVal.getUserInput();
 
-            if (extraSelection > 0 && extraSelection <= Menu.getToppingList().size()) {
+            if (extraSelection > 0 && extraSelection <= menu.getToppingList().size()) {
                 //Tallet er korrekt
 
                 //For fat i pizza positionen i order arrayet
                 //Pizzaen er lige blevet tilføjet, dermed ved vi det er den sidste plads
                 pizzaPos = orderlist.getOrder(orderArrayPosition).getOrderSize() - 1;
                 do {
-                    System.out.println("Indtast hvor meget tilbehør af " + Menu.getToppingList().get(extraSelection - 1).getExtraToppingName() + " der skal tilføjes");
+                    System.out.println("Indtast hvor meget tilbehør af " + menu.getToppingList().get(extraSelection - 1).getExtraToppingName() + " der skal tilføjes");
                     extraQuantitySelection = inputVal.getUserInput();
 
                     //Hvis svaret er mellem 1 og 5
@@ -320,33 +320,7 @@ public class NewOrderUI {
 
             } else {
                 //Tallet er ikke mellem 1 og antallet af toppinngs
-                System.out.println(extraSelection + "Tallet er ikke mellem 1 og antallet af toppings(" + Menu.getToppingList().size() + ")");
-            }
-        } while (!exit);
-    }
-    
-    private void addNameDialog(int orderArrayPosition) {
-        boolean exit = false;
-        int selection;
-        do {
-            System.out.println("Vil du tilføje navn til ordren?");
-            System.out.println("1. - Ja");
-            System.out.println("2. - Nej");
-
-            selection = getUserInput();
-
-            switch (selection) {
-                case 1:
-                    //Tilføj navn
-                    activeOrderlist.getOrder(orderArrayPosition).setCostumerName(getValidName());
-                    exit = true;
-                    break;
-                case 2:
-                    //Intet navn
-                    exit = true;
-                    break;
-                default:
-                    System.err.println(selection + " Er ikke en mulighed for at valg af navn eller ej, prøv igen");
+                System.out.println(extraSelection + "Tallet er ikke mellem 1 og antallet af toppings(" + menu.getToppingList().size() + ")");
             }
         } while (!exit);
     }

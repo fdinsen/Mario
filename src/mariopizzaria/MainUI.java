@@ -3,7 +3,7 @@ package mariopizzaria;
 
 public class MainUI {
     
-private void MainMenuDialog() {
+public void MainMenuDialog() {
         boolean exit = false;
         inputValidation inputVal = inputValidation.getInstance();
         MenuUI menuUI = MenuUI.getInstance();

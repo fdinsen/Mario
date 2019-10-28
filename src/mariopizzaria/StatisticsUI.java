@@ -5,6 +5,7 @@ public class StatisticsUI {
 
     public static StatisticsUI staticstics_UI_instance = null; 
     private inputValidation inputVal = inputValidation.getInstance();
+    private Statistics statistic = Statistics.getInstance();
     
     private StatisticsUI(){
         
@@ -24,7 +25,7 @@ public class StatisticsUI {
             System.out.println("Mario's Pizzaria - Statistik");
             System.out.println("-------------------------");
 
-            System.out.println(Statistics.getStatistics() + "\n");
+            System.out.println(statistic.getStatistics() + "\n");
             System.out.println("1 - Gå tilbage");
 
             selection = inputVal.getUserInput();

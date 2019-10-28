@@ -5,6 +5,7 @@ public class MenuUI {
     private static MenuUI menu_Ui_Instance = null; 
     private inputValidation inputVal = inputValidation.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
+    private Menu menu = Menu.getInstance();
     
     private MenuUI(){
     }
@@ -24,9 +25,9 @@ public class MenuUI {
         do {
             System.out.println("Mario's Pizzaria - Pizza Menu");
             System.out.println("-------------------------");
-            for (int i = 0; i < Menu.getListOfPizzaName().size(); i++) {
-                pizzaer += i + 1 + ". " + Menu.getPizzaName(i) + "\t " + Menu.getPizzaPrice(i) + " Kr.\n\t"
-                        + Menu.getPizzaDescription(i) + "\n";
+            for (int i = 0; i < menu.getListOfPizzaName().size(); i++) {
+                pizzaer += i + 1 + ". " + menu.getPizzaName(i) + "\t " + menu.getPizzaPrice(i) + " Kr.\n\t"
+                        + menu.getPizzaDescription(i) + "\n";
             }
             System.out.println(pizzaer);
             System.out.println("-------------------------");
@@ -43,7 +44,7 @@ public class MenuUI {
                         break;
                     case 2:
                         //lav ny ordre
-                        makeNewOrderDialog();
+                        newOrderUI.makeNewOrderDialog();
                         break;
                     default:
                         System.err.println(selection + " Er ikke en mulighed i menuen 'PizzaMenu', prøv igen");

@@ -6,7 +6,7 @@ public class ActiveOrdersUI {
     private static ActiveOrdersUI Order_Ui_Instance = null; 
     private inputValidation inputVal = inputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
-    NewOrderUI newOrderUI = NewOrderUI.getInstance();
+    private NewOrderUI newOrderUI = NewOrderUI.getInstance();
     
     private ActiveOrdersUI(){
         
