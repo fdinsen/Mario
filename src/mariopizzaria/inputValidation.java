@@ -6,6 +6,11 @@ class inputValidation {
 
     private static inputValidation inputValidation_instance = null;
 
+    public inputValidation() {
+    }
+    
+    
+    
     public static inputValidation getInstance() {
         if (inputValidation_instance == null) {
             inputValidation_instance = new inputValidation();

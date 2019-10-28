@@ -5,36 +5,42 @@ public class MainUI {
     
 private void MainMenuDialog() {
         boolean exit = false;
+        inputValidation inputVal = inputValidation.getInstance();
+        MenuUI menuUI = MenuUI.getInstance();
+        ActiveOrdersUI activeOrdersUI = ActiveOrdersUI.getInstance();
+        NewOrderUI newOrderUI_Instance= NewOrderUI.getInstance();
+        StatisticsUI statisticsUI = StatisticsUI.getInstance();
+        
         int selection;
 
         do {
             System.out.println("Mario's Pizzaria");
             System.out.println("-------------------------");
-            System.out.println("1 - Menu");
+            System.out.println("1 - Vis Menu");
             System.out.println("2 - Aktive Ordre");
             System.out.println("3 - Ny ordre");
             System.out.println("4 - Statistik");
             System.out.println("55 - Afslut program");
 
-            selection = inputValidation.getInstance().getUserInput();
+            selection = inputVal.getUserInput();
             if (selection != -1) {
                 switch (selection) {
                     case 1:
                         //Vis menuen
-                        showPizzaMenuDialog();
+                        menuUI.showPizzaMenuDialog();
 
                         break;
                     case 2:
                         //Viser aktive ordre
-                        showActiveOrdersDialog();
+                        activeOrdersUI.showActiveOrdersDialog();
                         break;
                     case 3:
                         //Lav ny ordre
-                        makeNewOrderDialog();
+                        newOrderUI_Instance.makeNewOrderDialog();
                         break;
                     case 4:
                         //Viser staistik
-                        statisticsDialog();
+                        statisticsUI.statisticsDialog();
                         break;
                     case 55:
                         //Slutter program
