@@ -55,11 +55,12 @@ class Menu {
     
     public static Menu getInstance() 
     { 
-        if (menu_instance == null) 
-            menu_instance = new Menu(); 
-  
-        return menu_instance; 
+        return MenuHolder.INSTANCE;
     } 
+    
+    private static class MenuHolder {
+        private static final Menu INSTANCE = new Menu();
+    }
     
     public  String printMenu() {
         String returnString = "";
@@ -87,11 +88,13 @@ class Menu {
                 pizzaName.add(temp[0]);
                 pizzaPrice.add(Double.parseDouble(temp[1]));
                 pizzaDescription.add(temp[2]);
+                
             }
+            in.close();
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }
-        in.close();
+        
     }
 
     private  void readInToppings() {
@@ -107,10 +110,11 @@ class Menu {
                 listOfExtraTopping.add(new ExtraTopping(temp[0],Double.parseDouble(temp[1])));
                     
             }
+            in.close();
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }
-        in.close();
+        
     }
     public  String getPizzaName(int index){
         

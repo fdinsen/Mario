@@ -54,11 +54,11 @@ public class Statistics {
     }
 
     public static Statistics getInstance() {
-        if (statistics_instance == null) {
-            statistics_instance = new Statistics();
-        }
-
-        return statistics_instance;
+        return StatisticsHolder.INSTANCE;
+    }
+    
+    private static class StatisticsHolder {
+        private static final Statistics INSTANCE = new Statistics();
     }
 
     //---------//

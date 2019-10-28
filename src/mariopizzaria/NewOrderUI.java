@@ -15,11 +15,11 @@ public class NewOrderUI {
 
         
     public static NewOrderUI getInstance() {
-        if (newOrderUI_instance == null) {
-            newOrderUI_instance = new NewOrderUI();
-        }
-
-        return newOrderUI_instance;
+        return NewOrderUIHolder.INSTANCE;
+    }
+    
+    private static class NewOrderUIHolder {
+        private static final NewOrderUI INSTANCE = new NewOrderUI();
     }
     
     public void makeNewOrderDialog() {
@@ -122,7 +122,7 @@ public class NewOrderUI {
             pizzaNumber = inputVal.getUserInput();
 
             //Tjekker at det indtastet pizzanummer er større end 0 samt at det ikke er højere end antal pizzaer
-            if (pizzaNumber > 0 && pizzaNumber < menu.getAmountOfPizzas()) {
+            if (pizzaNumber > 0 && pizzaNumber < menu.getAmountOfPizzas() + 1) {
 
                 //Loop til at vælge pizza størrelse
                 do {

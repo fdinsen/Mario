@@ -13,11 +13,13 @@ public class StatisticsUI {
     
     public static StatisticsUI getInstance() 
     { 
-        if (staticstics_UI_instance == null) 
-            staticstics_UI_instance = new StatisticsUI(); 
-  
-        return staticstics_UI_instance; 
+        return StatisticsUIHolder.INSTANCE;
     } 
+    
+    private static class StatisticsUIHolder {
+        private static final StatisticsUI INSTANCE = new StatisticsUI();
+    }
+    
     public void statisticsDialog() {
         boolean exit = false;
         int selection;

@@ -12,11 +12,13 @@ public class MenuUI {
     
     public static MenuUI getInstance() 
     { 
-        if (menu_Ui_Instance == null) 
-            menu_Ui_Instance = new MenuUI(); 
-  
-        return menu_Ui_Instance; 
+        return MenuUIHolder.INSTANCE;
     } 
+    
+    private static class MenuUIHolder {
+        private static final MenuUI INSTANCE = new MenuUI();
+    }
+    
     public void showPizzaMenuDialog() {
         boolean exit = false;
         String pizzaer = "";

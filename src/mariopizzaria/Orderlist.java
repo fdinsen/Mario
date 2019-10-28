@@ -17,11 +17,13 @@ public class Orderlist {
     
     public static Orderlist getInstance() 
     { 
-        if (Order_List_Instance == null) 
-            Order_List_Instance = new Orderlist(); 
-  
-        return Order_List_Instance; 
+        return OrderlistHolder.INSTANCE;
     } 
+    
+    private static class OrderlistHolder {
+        private static final Orderlist INSTANCE = new Orderlist();
+    }
+    
     
     int createOrder(boolean orderByPhone) {
         //Laver ny order og tilføjer til orders array

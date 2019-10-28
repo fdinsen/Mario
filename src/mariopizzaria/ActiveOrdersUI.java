@@ -14,11 +14,12 @@ public class ActiveOrdersUI {
     
     public static ActiveOrdersUI getInstance() 
     { 
-        if (Order_Ui_Instance == null) 
-            Order_Ui_Instance = new ActiveOrdersUI(); 
-  
-        return Order_Ui_Instance; 
+        return ActiveOrdersUIHolder.INSTANCE;
     } 
+    
+    private static class ActiveOrdersUIHolder {
+        private static final ActiveOrdersUI INSTANCE = new ActiveOrdersUI();
+    }
     
      public void showActiveOrdersDialog() {
         boolean exit = false;
