@@ -135,21 +135,23 @@ public class OrderTest {
         int actuallyCreatedAtDate;
         
         //Act
-        LocalDateTime orderCreatedAtTime = order.getOrderTime();
+        //LocalDateTime orderCreatedAtTime = order.getOrderTime();
+        actuallyCreatedAtHour = Integer.parseInt(order.getOrderTimeHour());
+        actuallyCreatedAtMinute = Integer.parseInt(order.getOrderTimeMinute());
         
         expectedHour = LocalDateTime.now().getHour();
-        actuallyCreatedAtHour = orderCreatedAtTime.getHour();
+        //actuallyCreatedAtHour = orderCreatedAtTime.getHour();
         
         expectedMinute = LocalDateTime.now().getMinute();
-        actuallyCreatedAtMinute = orderCreatedAtTime.getMinute();
+        //actuallyCreatedAtMinute = orderCreatedAtTime.getMinute();
         
-        expectedDate = LocalDateTime.now().getDayOfMonth();
-        actuallyCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
+        //expectedDate = LocalDateTime.now().getDayOfMonth();
+        //actuallyCreatedAtDate = orderCreatedAtTime.getDayOfMonth();
         
         //Assert
         assertEquals(expectedHour, actuallyCreatedAtHour);
         assertEquals(expectedMinute, actuallyCreatedAtMinute);
-        assertEquals(expectedDate, actuallyCreatedAtDate);
+        //assertEquals(expectedDate, actuallyCreatedAtDate);
     }
     
     @Test
@@ -162,13 +164,12 @@ public class OrderTest {
         int actualPickupMinute;
         
         //Act
-        LocalDateTime orderPickupAtTime = order.getPickupTime();
         
         expectedPickupHour = LocalDateTime.now().plusMinutes(waitTime).getHour();
-        actualPickupHour = orderPickupAtTime.getHour();
+        actualPickupHour = Integer.parseInt(order.getPickupTimeHour());
         
         expectedPickupMinute = LocalDateTime.now().plusMinutes(waitTime).getMinute();
-        actualPickupMinute = orderPickupAtTime.getMinute();
+        actualPickupMinute = Integer.parseInt(order.getPickupTimeMinute());
         
         //Assert
         assertEquals(expectedPickupHour, actualPickupHour);

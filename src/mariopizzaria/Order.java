@@ -200,11 +200,11 @@ public class Order {
         return "" + pickupTime.getMinute();
     }
 
-    private String getOrderTimeHour() {
+    public String getOrderTimeHour() {
         return "" + orderTime.getHour();
     }
 
-    private String getOrderTimeMinute() {
+    public String getOrderTimeMinute() {
         return "" + orderTime.getMinute();
     }
 

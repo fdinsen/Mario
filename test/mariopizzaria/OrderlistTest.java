@@ -14,6 +14,7 @@ import org.junit.Test;
  */
 public class OrderlistTest {
 
+    Orderlist orderlist = Orderlist.getInstance();
     /**
      * Test of createOrder method, of class Orderlist.
      */
@@ -22,11 +23,11 @@ public class OrderlistTest {
         int expectedSize = 1;
 
         //Laver en orderlist og kalder createOrder med orderByPhone sat til true
-        Orderlist actual = new Orderlist();
-        actual.createOrder(true);
+        
+        orderlist.createOrder(true);
 
         //Assert
-        assertEquals(expectedSize, actual.getOrdersListSize());
+        assertEquals(expectedSize, orderlist.getOrdersListSize());
 
     }
 
@@ -38,7 +39,6 @@ public class OrderlistTest {
         //TODO add test af statistic
         int exspectedLength = 1;
         
-        Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
         orderlist.createOrder(true);
 
@@ -60,7 +60,6 @@ public class OrderlistTest {
         //TODO add test af statistic
         int exspectedLength = 1;
         
-        Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
         orderlist.createOrder(true);
 
@@ -80,7 +79,7 @@ public class OrderlistTest {
         //TODO add test af statistic
         int exspectedLength = 1;
         
-        Orderlist orderlist = new Orderlist();
+        
         orderlist.createOrder(true);
         orderlist.createOrder(true);
 

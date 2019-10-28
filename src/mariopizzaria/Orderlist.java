@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Orderlist {
     private static Orderlist Order_List_Instance = null; 
     private ArrayList<Order> ListOfOrders;
-
+    private Statistics statistics = Statistics.getInstance();
+    
     private Orderlist() {
         ListOfOrders = new ArrayList<>();
     }
@@ -31,7 +32,7 @@ public class Orderlist {
 
     void completeOrder(int index) {
         //Kalder Statistics
-        Statistics.updateStats(ListOfOrders.get(index));
+        statistics.updateStats(ListOfOrders.get(index));
         //Fjerner orderen fra listen
         this.ListOfOrders.remove(index);
     }
@@ -40,7 +41,7 @@ public class Orderlist {
     public void completeOrder(int index, boolean lostOrder) {
         //Kalder Statistics - Statistics tager lige nu ikke lostOrder med
         //Statistics.updateStats(orders.get(index),lostOrder);
-        Statistics.updateStats(ListOfOrders.get(index));
+        statistics.updateStats(ListOfOrders.get(index));
         
         //Fjerner orderen fra listen
         this.ListOfOrders.remove(index);

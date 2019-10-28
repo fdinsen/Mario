@@ -22,7 +22,8 @@ public class StatisticTest {
 
     String testFileName = "testStats.txt";
     File testFile = new File(testFileName);
-
+    Menu menu = Menu.getInstance();
+    
     public StatisticTest() {
 
     }
@@ -31,7 +32,7 @@ public class StatisticTest {
     public void testCreateFileExists() {
         //Arrange
         Statistics statistics = Statistics.getInstance();
-        int arraySize = Menu.getListOfPizzaName().size();
+        int arraySize = menu.getListOfPizzaName().size();
         String[][] pizzaStatsTest = new String[2][arraySize];
         ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
 
@@ -66,7 +67,7 @@ public class StatisticTest {
     public void testUpdateArray() {
         //Arrange
         Statistics statistics = Statistics.getInstance();
-        int arraySize = Menu.getListOfPizzaName().size();
+        int arraySize = menu.getListOfPizzaName().size();
         //String[][] pizzaStatsTest = new String[2][arraySize];
         ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
         int expectedAmountOfSales;
