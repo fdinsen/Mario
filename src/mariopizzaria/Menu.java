@@ -1,18 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mariopizzaria;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author <Simon Kjems Jørgensen>
+ * @author simon
  */
-
-public final class Menu {
+class Menu {
+    
+    private static Menu menu_instance = null; 
+    
     //Setup for toppings file
     private static File toppingFile;
     private static final String TOPPING_FILE_NAME = "Toppings.txt";
@@ -32,7 +37,8 @@ public final class Menu {
 
     private static ArrayList<ExtraTopping> listOfExtraTopping;
     
-    static{
+    private Menu() {
+        
         pizzaFile = new File(PIZZA_FILE_NAME);
         toppingFile = new File(TOPPING_FILE_NAME);
         
@@ -44,11 +50,17 @@ public final class Menu {
         
         readInPizzas();
         readInToppings();
+        
     }
     
-    public Menu() {
-    }
-
+    public static Menu getInstance() 
+    { 
+        if (menu_instance == null) 
+            menu_instance = new Menu(); 
+  
+        return menu_instance; 
+    } 
+    
     public static String printMenu() {
         String returnString = "";
         
