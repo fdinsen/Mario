@@ -114,8 +114,7 @@ public class Order {
     public void addPizza(int menuIndex) {
         menuIndex = Math.abs(menuIndex);
         //Informationen om pizzaen hentes fra menu-kortet
-        String pizzaName = Menu.getPizzaName(menuIndex);
-        Double pizzaPrice = Menu.getPizzaPrice(menuIndex);
+        menuIndex -=1;
         int pizzaSize = 0; //Default værdi
 
         pizzas.add(new Pizza(menuIndex, pizzaSize));
@@ -126,6 +125,7 @@ public class Order {
     public void addPizza(int menuIndex, int pizzaSize) {
         menuIndex = Math.abs(menuIndex);
         pizzaSize = Math.abs(pizzaSize);
+        menuIndex -= 1;
 
         pizzas.add(new Pizza(menuIndex, pizzaSize));
 
