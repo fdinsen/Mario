@@ -7,57 +7,14 @@ import java.util.Scanner;
  */
 class UserDialog {
 
-    private Orderlist orderlist = new Orderlist();
+    private Orderlist activeOrderlist = new Orderlist();
 
     UserDialog() {
         MainMenuDialog();
 
     }
 
-    private void MainMenuDialog() {
-        boolean exit = false;
-        int selection;
-
-        do {
-            System.out.println("Mario's Pizzaria");
-            System.out.println("-------------------------");
-            System.out.println("1 - Menu");
-            System.out.println("2 - Aktive Ordre");
-            System.out.println("3 - Ny ordre");
-            System.out.println("4 - Statistik");
-            System.out.println("55 - Afslut program");
-
-            selection = getUserInput();
-            if (selection != -1) {
-                switch (selection) {
-                    case 1:
-                        //Vis menuen
-                        showPizzaMenuDialog();
-
-                        break;
-                    case 2:
-                        //Viser aktive ordre
-                        showActiveOrdersDialog();
-                        break;
-                    case 3:
-                        //Lav ny ordre
-                        makeNewOrderDialog();
-                        break;
-                    case 4:
-                        //Viser staistik
-                        statisticsDialog();
-                        break;
-                    case 55:
-                        //Slutter program
-                        exit = true;
-                        break;
-                    default:
-                        System.err.println(selection + " Er ikke en mulighed i menuen 'Hoved Menu', prøv igen");
-                }
-            }
-        } while (!exit);
-
-    }
+    
 
     private void showPizzaMenuDialog() {
         boolean exit = false;
@@ -71,8 +28,8 @@ class UserDialog {
                 pizzaer += i + 1 + ". " + Menu.getPizzaName(i) + "\t " + Menu.getPizzaPrice(i) + " Kr.\n\t"
                         + Menu.getPizzaDescription(i) + "\n";
             }
-            System.out.println("-------------------------");
             System.out.println(pizzaer);
+            System.out.println("-------------------------");
             System.out.println("1. - Tilbage til hovedmenu");
             System.out.println("2. - Lav ny order");
 
@@ -103,17 +60,17 @@ class UserDialog {
         do {
             System.out.println("Mario's Pizzaria - Aktive Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            System.out.println(activeOrderlist.ShowAllCurrentOrders());
             System.out.println("-------------------------");
             System.out.println("1. - Tilbage til hovedmenu");
             System.out.println("2. - Lav ny order");
-            if (orderlist.getOrdersListSize() > 0) {
+            if (activeOrderlist.getOrdersListSize() > 0) {
                 System.out.println("3. - Fjern en ordre");
             }
-            if (orderlist.getOrdersListSize() > 0) {
+            if (activeOrderlist.getOrdersListSize() > 0) {
                 System.out.println("4. - Se en ordre");
             }
-            if (orderlist.getOrdersListSize() > 0) {
+            if (activeOrderlist.getOrdersListSize() > 0) {
                 System.out.println("5. - Færdiggør en ordre");
             }
             selection = getUserInput();
@@ -131,7 +88,7 @@ class UserDialog {
                     case 3:
                         //Fjern en ordre
                         //Se en ordre
-                        if (orderlist.getOrdersListSize() > 0) {
+                        if (activeOrderlist.getOrdersListSize() > 0) {
                             deleteOrderDialog();
                         } else {
                             System.err.println(selection + " Er ikke en mulighed i menuen 'Aktive Ordre', prøv igen");
@@ -139,7 +96,7 @@ class UserDialog {
                         break;
                     case 4:
                         //Se en ordre
-                        if (orderlist.getOrdersListSize() > 0) {
+                        if (activeOrderlist.getOrdersListSize() > 0) {
                             seeOrderDialog();
                         } else {
                             System.err.println(selection + " Er ikke en mulighed i menuen 'Aktive Ordre', prøv igen");
@@ -147,7 +104,7 @@ class UserDialog {
                         break;
                     case 5:
                         //Se en ordre
-                        if (orderlist.getOrdersListSize() > 0) {
+                        if (activeOrderlist.getOrdersListSize() > 0) {
                             completeOrderDialog();
                         } else {
                             System.err.println(selection + " Er ikke en mulighed i menuen 'Aktive Ordre', prøv igen");
@@ -170,7 +127,7 @@ class UserDialog {
         do {
             System.out.println("Mario's Pizzaria - Order");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            System.out.println(activeOrderlist.ShowAllCurrentOrders());
             System.out.println("-------------------------");
             System.out.println("Indtast ordre nummeret på ordren du vil se");
             orderNumber = getOrderNumber();
@@ -178,14 +135,14 @@ class UserDialog {
             //Udskriver orderen
             System.out.println("Mario's Pizzaria - Order " + orderNumber);
             System.out.println("-------------------------");
-            System.out.println(orderlist.showOrder(orderNumber));
+            System.out.println(activeOrderlist.showOrder(orderNumber));
             System.out.println("-------------------------");
             do {
                 System.out.println("1 - For at gå tilbage");
                 System.out.println("2 - Se anden ordre");
                 System.out.println("3 - Tilføj pizza til ordre");
                 System.out.println("4 - Færdigør ordre");
-                if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                if (activeOrderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
                     System.out.println("5 - Fjern pizza fra ordre");
                 }
 
@@ -213,7 +170,7 @@ class UserDialog {
                         exit = true;
                         break;
                     case 5:
-                        if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                        if (activeOrderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
                             //Fjern pizza til ordre
                             deletePizzaDialog(orderNumber - 1);
                             seeOtherOrder = false;
@@ -237,25 +194,25 @@ class UserDialog {
         do {
             System.out.println("Mario's Pizzaria - Fjern Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            System.out.println(activeOrderlist.ShowAllCurrentOrders());
             System.out.println("-------------------------");
             System.out.println("Indtast ordre nummeret på ordren du vil fjerne");
 
             orderNumber = getUserInput();
-            if (orderNumber > 0 && orderNumber < orderlist.getOrdersListSize() + 1) {
+            if (orderNumber > 0 && orderNumber < activeOrderlist.getOrdersListSize() + 1) {
                 //Er et korrekt ordre nr
                 correctNumber = true;
             } else {
                 //Er ikke et korrekt ordre nr
                 correctNumber = false;
-                System.out.println(orderNumber + " er ikke mellem 1 og antallet af ordre (" + orderlist.getOrdersListSize() + ")");
+                System.out.println(orderNumber + " er ikke mellem 1 og antallet af ordre (" + activeOrderlist.getOrdersListSize() + ")");
             }
 
             //Bliver ved indtil korrekt svar
         } while (!correctNumber);
 
         //Fjerne ordren fra ordre arrayet og går tilbage igen
-        orderlist.deleteOrder(orderNumber - 1);
+        activeOrderlist.deleteOrder(orderNumber - 1);
     }
 
     private void deletePizzaDialog(int orderNumber) {
@@ -265,37 +222,37 @@ class UserDialog {
         do {
             System.out.println("Mario's Pizzaria - Fjern Pizza fra Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.showAllPizzasInOrder(orderNumber));
+            System.out.println(activeOrderlist.showAllPizzasInOrder(orderNumber));
             System.out.println("-------------------------");
             System.out.println("Indtast nummeret ud for pizzaen du vil fjerne fra orderen");
 
             pizzaNumber = getUserInput();
-            if (pizzaNumber > 0 && pizzaNumber < orderlist.getPizzaCountInOrder(orderNumber) + 1) {
+            if (pizzaNumber > 0 && pizzaNumber < activeOrderlist.getPizzaCountInOrder(orderNumber) + 1) {
                 //Er et korrekt ordre nr
                 correctNumber = true;
             } else {
                 //Er ikke et korrekt ordre nr
                 correctNumber = false;
-                System.out.println(pizzaNumber + " er ikke mellem 1 og antallet af ordre (" + orderlist.getOrdersListSize() + ")");
+                System.out.println(pizzaNumber + " er ikke mellem 1 og antallet af ordre (" + activeOrderlist.getOrdersListSize() + ")");
             }
 
             //Bliver ved indtil korrekt svar
         } while (!correctNumber);
 
         //Fjerne pizza fra orderen og går tilbage
-        orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber - 1);
+        activeOrderlist.deletePizzaFromOrder(orderNumber, pizzaNumber - 1);
     }
 
     private void completeOrderDialog() {
         System.out.println("Mario's Pizzaria - Færdiggør en ordre");
         System.out.println("-------------------------");
-        System.out.println(orderlist.ShowAllCurrentOrders());
+        System.out.println(activeOrderlist.ShowAllCurrentOrders());
         System.out.println("-------------------------");
         System.out.println("Indtast ordre nummeret på ordren du vil færdiggøre");
 
         //Fjerne ordren fra ordre arrayet og går tilbage igen
         //Minus en for at få det til at passe til listen
-        orderlist.completeOrder(getOrderNumber() - 1);
+        activeOrderlist.completeOrder(getOrderNumber() - 1);
     }
 
     private int getOrderNumber() {
@@ -304,13 +261,13 @@ class UserDialog {
         do {
             //
             orderNumber = getUserInput();
-            if (orderNumber > 0 && orderNumber < orderlist.getOrdersListSize() + 1) {
+            if (orderNumber > 0 && orderNumber < activeOrderlist.getOrdersListSize() + 1) {
                 //Er et korrekt ordre nr
                 correctNumber = true;
             } else {
                 //Er ikke et korrekt ordre nr
                 correctNumber = false;
-                System.out.println(orderNumber + " er ikke mellem 1 og antallet af ordre (" + orderlist.getOrdersListSize() + ")");
+                System.out.println(orderNumber + " er ikke mellem 1 og antallet af ordre (" + activeOrderlist.getOrdersListSize() + ")");
             }
 
             //Bliver ved indtil korrekt svar
@@ -336,7 +293,7 @@ class UserDialog {
                 switch (selection) {
                     case 1:
                         //Er bestilt på telefon
-                        orderArrayPosition = orderlist.createOrder(true);
+                        orderArrayPosition = activeOrderlist.createOrder(true);
                         makeNewOrderByTelehoneDialog(orderArrayPosition);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
@@ -344,7 +301,7 @@ class UserDialog {
                         break;
                     case 2:
                         //Er ikke bestilt på telefon
-                        orderArrayPosition = orderlist.createOrder(false);
+                        orderArrayPosition = activeOrderlist.createOrder(false);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
@@ -373,7 +330,7 @@ class UserDialog {
         } while (!isValidPhoneNumber(input));
 
         //Tilføjer telefon nummer
-        orderlist.getOrder(orderArrayPosition).setCostumerPhoneNumber(input);
+        activeOrderlist.getOrder(orderArrayPosition).setCostumerPhoneNumber(input);
 
     }
 
@@ -390,7 +347,7 @@ class UserDialog {
             switch (selection) {
                 case 1:
                     //Tilføj navn
-                    orderlist.getOrder(orderArrayPosition).setCostumerName(getValidName());
+                    activeOrderlist.getOrder(orderArrayPosition).setCostumerName(getValidName());
                     exit = true;
                     break;
                 case 2:
@@ -432,12 +389,12 @@ class UserDialog {
                         case 1:
                             //Vælg størrelse
                             pizzaSize = chooseSizeDialog();
-                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber, pizzaSize);
+                            activeOrderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber, pizzaSize);
                             addNewSize = false;
                             break;
                         case 2:
                             //Lav Pizza
-                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber);
+                            activeOrderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber);
                             addNewSize = false;
                             break;
                         default:
@@ -588,7 +545,7 @@ class UserDialog {
 
                 //For fat i pizza positionen i order arrayet
                 //Pizzaen er lige blevet tilføjet, dermed ved vi det er den sidste plads
-                pizzaPos = orderlist.getOrder(orderArrayPosition).getOrderSize() - 1;
+                pizzaPos = activeOrderlist.getOrder(orderArrayPosition).getOrderSize() - 1;
                 do {
                     System.out.println("Indtast hvor meget tilbehør af " + Menu.getToppingList().get(extraSelection - 1).getExtraToppingName() + " der skal tilføjes");
                     extraQuantitySelection = getUserInput();
@@ -597,7 +554,7 @@ class UserDialog {
                     if (extraQuantitySelection > 0 && extraQuantitySelection < 6) {
                         //er mellem 1 og 5
                         //Tilføjer topping til orderen på den korrekte pizza(pizzaPos)
-                        orderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, extraSelection - 1, extraQuantitySelection);
+                        activeOrderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, extraSelection - 1, extraQuantitySelection);
                         extraQuantityCorrect = true;
                     } else {
                         System.err.println("Du kan kun tilføje mellem 1x-5x af den samme slags tilbehør");
@@ -640,54 +597,10 @@ class UserDialog {
         } while (!exit);
     }
 
-    private int getUserInput() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        int userSelection = -1;
-        try {
-            userSelection = Integer.parseInt(input);
-        } catch (NumberFormatException ne) {
-            System.err.println("Ugyldigt input!");
-            System.out.println("Prøv igen");
-        }
-        return userSelection;
-    }
-
-    private boolean isValidPhoneNumber(int phoneNumber) {
-        int length = String.valueOf(phoneNumber).length();
-        if (length == 8) {
-            return true;
-        } else {
-            System.err.println("Telefon nummeret har ikke 8 tal");
-            System.out.println("Prøv igen");
-            return false;
-        }
-    }
-
-    private String getValidName() {
-
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            System.out.println("Indtast navnet: ");
-            String name = sc.nextLine();
-            if (name.length() > 1) {
-                if (!name.matches("[a-zA-Z]+")) {
-                    System.err.println("Du må kun bruge bokstaver!");
-                    System.out.println("Prøv igen!");
-                } else {
-                    return name;
-
-                }
-            } else {
-                System.err.println("Navnet skal være på mere end et bokstav");
-                System.out.println("Prøv igen!");
-            }
-
-        }
-    }
+   
 
     private void completeOrder(int orderNumber) {
-        orderlist.completeOrder(orderNumber - 1);
+        activeOrderlist.completeOrder(orderNumber - 1);
     }
 
 }
