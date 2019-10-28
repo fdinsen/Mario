@@ -20,14 +20,15 @@ import java.util.logging.Logger;
  * @author <Frederik Keis Dinsen>
  */
 public class Statistics {
-    private static File statsFile;
-    private static final String STATISTICS_FILE_NAME = "statistics.txt";
-    private static StringBuilder strBuilder;
-    private static BufferedWriter bw;
-    public static int arrayListSize;
-    private static ArrayList<IndividualStatistics> statisticsList;
-    private static String seperatorCharacter;
+    private File statsFile;
+    private final String STATISTICS_FILE_NAME = "statistics.txt";
+    private StringBuilder strBuilder;
+    private BufferedWriter bw;
+    public  int arrayListSize;
+    private ArrayList<IndividualStatistics> statisticsList;
+    private String seperatorCharacter;
     private static Statistics statistics_instance = null;
+    private Menu menu = Menu.getInstance();
     
     //-------------//
     // CONSTRUCTOR //
@@ -37,7 +38,7 @@ public class Statistics {
         strBuilder = new StringBuilder();
         statisticsList = new ArrayList<>();
         seperatorCharacter = ":";
-        arrayListSize = Menu.getListOfPizzaName().size();
+        arrayListSize = menu.getListOfPizzaName().size();
 
         if (statsFile.exists()) {
             readFile(statisticsList, statsFile);
@@ -56,15 +57,15 @@ public class Statistics {
     // GETTERS //
     //---------//
 
-    public static int getPizzaSalesOfPizzaAt(int index) {
+    public int getPizzaSalesOfPizzaAt(int index) {
         return statisticsList.get(index).getAmountOfSales();
     }
 
-    public static String getPizzaNameOfPizzaAt(int index) {
+    public String getPizzaNameOfPizzaAt(int index) {
         return statisticsList.get(index).getPizzaName();
     }
 
-    public static String getStatistics() {
+    public String getStatistics() {
         String returnString = "";
         //Makes a copied ArrayList which is sorted and sent along
         //This is to avoid affecting the ArrayList which is written to the file
@@ -88,12 +89,12 @@ public class Statistics {
     //---------//
     // METHODS //
     //---------//
-    public static void updateStats(Order order) {
+    public void updateStats(Order order) {
         updateArray(order, statsFile, statisticsList);
     }
 
     //This one should only be called directly in tests, use updateStats() instead
-    public static void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
+    public void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
         int pizzaNumber;
         int previousPizzaSales;
         int updatedPizzaSales;
@@ -121,7 +122,7 @@ public class Statistics {
         }
     }
 
-    public static void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
+    public void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
 
@@ -146,9 +147,9 @@ public class Statistics {
 
     }
 
-    private static void updateFile(File file, ArrayList<IndividualStatistics> arrayList) {
+    private void updateFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //loops through every entry in the array, and creates a 
-        arrayListSize = Menu.getListOfPizzaName().size();
+        arrayListSize = menu.getListOfPizzaName().size();
         strBuilder.delete(0, strBuilder.length());
         for (int i = 0; i < arrayListSize; i++) {
             try {
@@ -168,22 +169,22 @@ public class Statistics {
         }
     }
 
-    public static void createArray(ArrayList<IndividualStatistics> arrayList) {
+    public void createArray(ArrayList<IndividualStatistics> arrayList) {
         //Creates array with all pizza names, and zero in every sale
         arrayList.clear();
         for (int i = 0; i < arrayListSize; i++) {
-            arrayList.add(new IndividualStatistics(Menu.getListOfPizzaName().get(i), 0));
+            arrayList.add(new IndividualStatistics(menu.getListOfPizzaName().get(i), 0));
         }
     }
 
     //This method should only run once EVER. Otherwise it clears the statistics
-    public static void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
+    public void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //If the given array is empty, fill it
         if (arrayList.size() == 0) {
             createArray(arrayList);
         }
 
-        arrayListSize = Menu.getListOfPizzaName().size();
+        arrayListSize = menu.getListOfPizzaName().size();
         String currentPizzaName;
         int currentPizzaSales;
 
