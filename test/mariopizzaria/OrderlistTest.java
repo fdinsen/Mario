@@ -26,7 +26,7 @@ public class OrderlistTest {
         actual.createOrder(true);
 
         //Assert
-        assertEquals(expectedSize, actual.getOrdersList().size());
+        assertEquals(expectedSize, actual.getOrdersListSize());
 
     }
 
@@ -36,21 +36,19 @@ public class OrderlistTest {
     @Test
     public void testCompleteOrder_int() {
         //TODO add test af statistic
-
+        int exspectedLength = 1;
+        
         Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
         orderlist.createOrder(true);
 
-        //Gemmer orderen, det skal fjernes
-        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
-
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.completeOrder(1);
-
+        orderlist.completeOrder(0);
+        int actualLength = orderlist.getOrdersListSize();
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet
-        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
+        assertEquals(exspectedLength, actualLength);
 
     }
 
@@ -60,91 +58,38 @@ public class OrderlistTest {
     @Test
     public void testCompleteOrder_int_boolean() {
         //TODO add test af statistic
-
+        int exspectedLength = 1;
+        
         Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
         orderlist.createOrder(true);
-
-        //Gemmer orderen, det skal fjernes
-        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
 
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.completeOrder(1, true);
-
+        orderlist.completeOrder(0,true);
+        int actualLength = orderlist.getOrdersListSize();
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet
-        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
+        assertEquals(exspectedLength, actualLength);
     }
-
-    /**
-     * Test of ShowAllCurrentOrders method, of class Orderlist.
-     */
-    @Test
-    public void testShowAllCurrentOrders() {
-        //TODO Find ud af hvordan denne skal testes
-        Orderlist orderlist = new Orderlist();
-        orderlist.createOrder(true);
-        orderlist.createOrder(true);
-        orderlist.createOrder(true);
-        //Pizza pizza = new Pizza("Torino", 200);
-        //orderlist.getOrder(0).addPizza(0);
-        // orderlist.getOrder(0).addPizza(0);
-
-        orderlist.ShowAllCurrentOrders();
-    }
-
-    /**
-     * Test of showOrder method, of class Orderlist.
-     */
-    @Test
-    public void testShowOrder() {
-        //TODO find ud af hvordan det skal testes
-        String expected = "Ordre 1. Bestilingstidspunkt: 8:39\n" +
-                  "Marinara\n"
-                + "Quattro Formaggi\n"
-                + "Afhentnings tidspunkt: 8:54 \n"
-                + "Total Pris: 0.0";
-        //TODO Færigør test når Order klasse er færdig
-        Orderlist orderlist = new Orderlist();
-        orderlist.createOrder(true);
-        orderlist.createOrder(true);
-        orderlist.createOrder(true);
-        orderlist.getOrder(0).addPizza(1);
-        orderlist.getOrder(0).addPizza(5);
-
-        String actual = orderlist.showOrder(1);
-        
-        //assertEquals(expected, actual);
-    }
-
     /**
      * Test of deleteOrder method, of class Orderlist.
      */
     @Test
     public void testDeleteOrder() {
+        //TODO add test af statistic
+        int exspectedLength = 1;
+        
         Orderlist orderlist = new Orderlist();
         orderlist.createOrder(true);
         orderlist.createOrder(true);
 
-        //Gemmer orderen, det skal fjernes
-        Order orderToBeRemoved = orderlist.getOrdersList().get(1);
-
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.deleteOrder(1);
-
+        orderlist.deleteOrder(0);
+        int actualLength = orderlist.getOrdersListSize();
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet
-        assertFalse(orderlist.getOrdersList().contains(orderToBeRemoved));
+        assertEquals(exspectedLength, actualLength);
     }
-
-    /**
-     * Test of getOrder method, of class Orderlist.
-     */
-    @Test
-    public void testGetOrder() {
-        //Skal denne testes?
-    }
-
 }
