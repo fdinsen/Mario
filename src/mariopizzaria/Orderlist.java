@@ -42,7 +42,12 @@ public class Orderlist {
     
     public void completeOrder(int index, boolean lostOrder) {
         //Kalder Statistics
-        statistics.updateStats(listOfOrders.get(index-1), lostOrder);
+        if(lostOrder){
+            statistics.lostOrder(listOfOrders.get(index-1));
+        }else{
+            statistics.updateStats(listOfOrders.get(index-1));
+        }
+        
         
         //Fjerner orderen fra listen
         this.listOfOrders.remove(index-1);

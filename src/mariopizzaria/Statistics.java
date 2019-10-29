@@ -32,7 +32,8 @@ public class Statistics {
     private Menu menu = Menu.getInstance();
     
     private final String LOST_ORDERS_FILE_NAME = "lost_orders.txt";
-    private File lostOrdersFile = new File(LOST_ORDERS_FILE_NAME);
+    private File lostOrdersFile;
+    
     private int amountOfLostOrders;
     private double valueOfLostOrders;
 
@@ -40,6 +41,7 @@ public class Statistics {
     // CONSTRUCTOR //
     //-------------//
     private Statistics() {
+        lostOrdersFile = new File(LOST_ORDERS_FILE_NAME);
         statsFile = new File(STATISTICS_FILE_NAME);
         strBuilder = new StringBuilder();
         statisticsList = new ArrayList<>();
@@ -53,12 +55,15 @@ public class Statistics {
         }else {
             readFile(statisticsList, statsFile);
         }
+        
+        if(!lostOrdersFile.exists()){
+            createLostOrdersFile(lostOrdersFile);
+        }
     }
 
     public static Statistics getInstance() {
         return StatisticsHolder.INSTANCE;
     }
-    
     private static class StatisticsHolder {
         private static final Statistics INSTANCE = new Statistics();
     }
@@ -239,12 +244,50 @@ public class Statistics {
         
         return isEmpty;
     }
-
     public void createLostOrdersFile(File file) {
         
-        
-        
-        
+        FileWriter fw;
+        try {
+            fw = new FileWriter(lostOrdersFile,false);
+            
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write("Antal tabte Ordrer \t total værdi\n");
+            bw.write("0\t\t\t   0.0");
+            
+            bw.close();
+        } catch (IOException ex) {
+            //TODO Emil us!
+        }   
     }
-    
+    void lostOrder(Order get) {
+        
+        int amountLostOrders = 0;
+        double totalValueOfLostOrders = 0;
+        
+        try (Scanner in = new Scanner(lostOrdersFile)) {
+            while(in.hasNextLine()){
+                
+                amountLostOrders = in.nextInt();
+                totalValueOfLostOrders = in.nextDouble();
+                
+            }
+        } catch (FileNotFoundException ex) {
+            //TODO Email us
+        }
+                
+        FileWriter fw;
+        try {
+            fw = new FileWriter(lostOrdersFile,false);
+            
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write("Antal tabte Ordrer \t total værdi\n");
+            bw.write(amountLostOrders+"\t" +totalValueOfLostOrders);
+            
+            bw.close();
+        } catch (IOException ex) {
+            //TODO Emil us!
+        } 
+    }
 }
