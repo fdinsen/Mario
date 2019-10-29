@@ -1,4 +1,3 @@
-
 package marioui;
 
 import mariopizzaria.ExtraTopping;
@@ -9,25 +8,25 @@ import mariopizzaria.inputValidation;
 
 public class ActiveOrdersUI {
 
-    private static ActiveOrdersUI Order_Ui_Instance = null; 
+    private static ActiveOrdersUI Order_Ui_Instance = null;
     private inputValidation inputVal = inputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
-    
-    private ActiveOrdersUI(){
-        
+
+    private ActiveOrdersUI() {
+
     }
-    
-    public static ActiveOrdersUI getInstance() 
-    { 
+
+    public static ActiveOrdersUI getInstance() {
         return ActiveOrdersUIHolder.INSTANCE;
-    } 
-    
+    }
+
     private static class ActiveOrdersUIHolder {
+
         private static final ActiveOrdersUI INSTANCE = new ActiveOrdersUI();
     }
-    
-     void showActiveOrdersDialog() {
+
+    void showActiveOrdersDialog() {
         boolean exit = false;
         int selection;
 
@@ -91,8 +90,8 @@ public class ActiveOrdersUI {
             }
         } while (!exit);
     }
-     
-     private void seeOrderDialog() {
+
+    private void seeOrderDialog() {
         boolean exit = false;
         boolean seeOtherOrder = false;
         int orderNumber;
@@ -117,8 +116,9 @@ public class ActiveOrdersUI {
                 System.out.println("2 - Se anden ordre");
                 System.out.println("3 - Tilføj pizza til ordre");
                 System.out.println("4 - Færdigør ordre");
+                System.out.println("5 - Marker ordre som gået tabt");
                 if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
-                    System.out.println("5 - Fjern pizza fra ordre");
+                    System.out.println("6 - Fjern pizza fra ordre");
                 }
 
                 selection = inputVal.getUserInput();
@@ -145,6 +145,11 @@ public class ActiveOrdersUI {
                         exit = true;
                         break;
                     case 5:
+                        completeOrder(orderNumber,true);
+                        seeOtherOrder = false;
+                        exit = true;
+                        break;
+                    case 6:
                         if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
                             //Fjern pizza til ordre
                             deletePizzaFromOrderDialog(orderNumber);
@@ -162,8 +167,8 @@ public class ActiveOrdersUI {
 
         } while (!exit);
     }
-     
-     private void deleteOrderDialog() {
+
+    private void deleteOrderDialog() {
         boolean correctNumber;
         int orderNumber;
         do {
@@ -218,12 +223,13 @@ public class ActiveOrdersUI {
         orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber);
     }
 
-
-
     private void completeOrder(int orderNumber) {
-        orderlist.completeOrder(orderNumber - 1);
+        orderlist.completeOrder(orderNumber);
     }
-    
+    private void completeOrder(int orderNumber, boolean lostOrder) {
+        orderlist.completeOrder(orderNumber, lostOrder);
+    }
+
     private void completeOrderDialog() {
         System.out.println("Mario's Pizzaria - Færdiggør en ordre");
         System.out.println("-------------------------");
@@ -235,7 +241,7 @@ public class ActiveOrdersUI {
         //Minus en for at få det til at passe til listen
         orderlist.completeOrder(getOrderNumber() - 1);
     }
-    
+
     private int getOrderNumber() {
         int orderNumber;
         boolean correctNumber;
@@ -267,7 +273,7 @@ public class ActiveOrdersUI {
                 ordersInString.append("Antal pizzaer: ").append(order.getOrderSize()).append("\n");
                 ordersInString.append("Afhentnings tidspunkt: ").append(order.getPickupTimeHour()).append(":").append(order.getPickupTimeMinute());
                 ordersInString.append(", Total Pris: ").append(order.getTotalPrice());
-                if(orderlist.getOrdersListSize() != counter) {
+                if (orderlist.getOrdersListSize() != counter) {
                     ordersInString.append("\n-----\n");
                 }
                 counter++;
@@ -291,7 +297,7 @@ public class ActiveOrdersUI {
         System.out.println(orderInString);
     }
 
-    private void printOrder(int index){
+    private void printOrder(int index) {
         int counter = 1;
         StringBuilder stringOrder = new StringBuilder();
         stringOrder.append("Bestilingstidspunkt: ").append(orderlist.getOrderTimeHour(index)).append(":").append(orderlist.getOrderTimeMinutes(index)).append("\n");
@@ -360,7 +366,7 @@ public class ActiveOrdersUI {
                 }
 
             }
-            if(orderlist.getPizzaCountInOrder(index) >= counter) {
+            if (orderlist.getPizzaCountInOrder(index) >= counter) {
                 stringOrder.append("\n-----\n");
             }
         }

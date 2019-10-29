@@ -35,19 +35,17 @@ public class Orderlist {
 
     public void completeOrder(int index) {
         //Kalder Statistics
-        statistics.updateStats(listOfOrders.get(index));
+        statistics.updateStats(listOfOrders.get(index-1));
         //Fjerner orderen fra listen
-        this.listOfOrders.remove(index);
+        this.listOfOrders.remove(index-1);
     }
     
-    //Bruges ikke endnu
     public void completeOrder(int index, boolean lostOrder) {
-        //Kalder Statistics - Statistics tager lige nu ikke lostOrder med
-        //Statistics.updateStats(orders.get(index),lostOrder);
-        statistics.updateStats(listOfOrders.get(index));
+        //Kalder Statistics
+        statistics.updateStats(listOfOrders.get(index-1), lostOrder);
         
         //Fjerner orderen fra listen
-        this.listOfOrders.remove(index);
+        this.listOfOrders.remove(index-1);
     }
 
     public void deleteOrder(int index) {
