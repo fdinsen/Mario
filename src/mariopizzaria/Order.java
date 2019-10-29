@@ -146,52 +146,6 @@ public class Order {
         calculateTotalPrice();
     }
 
-    @Override
-    public String toString() {
-        int counter = 1;
-        String stringOrder = "";
-        stringOrder += "Bestilingstidspunkt: " + getOrderTimeHour() + ":" + getOrderTimeMinute()
-                + "\n";
-        //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
-        if (getCostumerName() != null) {
-            stringOrder += "Kunde Navn: " + getCostumerName() + "\n";
-        }
-        if (isOrderedByPhone()) {
-            stringOrder += "Kunde Tlf: " + getCostumerPhoneNumber() + "\n";
-        }
-            stringOrder += "-----\n";
-        for (Pizza pizza : pizzas) {
-            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
-            
-            counter++;
-
-            //Udskriver prisen for pizzaen
-            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
-
-            //Tjekker om der er toppings på pizzaewn
-            if (!pizza.getToppingsAdded().isEmpty()) {
-                //Udskriver prisen for pizzaen
-                stringOrder += "\nEkstra Toppings: ";
-                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
-                    //For hver topping indsæt antal og navn i stringen
-                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
-                    stringOrder += " " + extraTopping.getExtraToppingName();
-
-                    //Hvis der er mere end en topping, tilføj komma
-                    if (pizza.getToppingsAdded().size() > 1) {
-                        stringOrder += ", ";
-                    }
-                }
-
-            }
-            stringOrder += "\n-----\n";
-        }
-       stringOrder += "Afhentnings tidspunkt: " + getPickupTimeHour() + ":"
-                + getPickupTimeMinute() + " "
-                + "\nTotal Pris: " + getTotalPrice();
-        return stringOrder;
-    }
-
     public String getPickupTimeHour() {
         return "" + pickupTime.getHour();   
     }
@@ -208,4 +162,7 @@ public class Order {
         return "" + orderTime.getMinute();
     }
 
+    public ArrayList<Pizza> getAllPizzasInOrder() {
+        return pizzas;
+    }
 }

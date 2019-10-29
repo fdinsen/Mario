@@ -40,7 +40,7 @@ public class NewOrderUI {
                 switch (selection) {
                     case 1:
                         //Er bestilt på telefon
-                        orderArrayPosition = orderlist.createOrder(true);
+                        orderArrayPosition = orderlist.createOrder(true) + 1;
                         makeNewOrderByTelehoneDialog(orderArrayPosition);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
@@ -108,6 +108,8 @@ public class NewOrderUI {
     }
     
     public void addPizzaDialog(int orderArrayPosition) {
+        //Minus en så det passer med arrayet
+        orderArrayPosition--;
         boolean addNewSize = true;
         boolean addNewPizza = true;
         boolean addExtras = true;

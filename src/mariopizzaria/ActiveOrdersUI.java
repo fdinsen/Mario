@@ -28,7 +28,7 @@ public class ActiveOrdersUI {
         do {
             System.out.println("Mario's Pizzaria - Aktive Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            showAllCurrentOrders();
             System.out.println("-------------------------");
             System.out.println("1. - Tilbage til hovedmenu");
             System.out.println("2. - Lav ny order");
@@ -95,7 +95,7 @@ public class ActiveOrdersUI {
         do {
             System.out.println("Mario's Pizzaria - Order");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            showAllCurrentOrders();
             System.out.println("-------------------------");
             System.out.println("Indtast ordre nummeret på ordren du vil se");
 
@@ -105,14 +105,14 @@ public class ActiveOrdersUI {
             //Udskriver orderen
             System.out.println("Mario's Pizzaria - Order " + orderNumber);
             System.out.println("-------------------------");
-            System.out.println(orderlist.showOrder(orderNumber));
+            showOrder(orderNumber);
             System.out.println("-------------------------");
             do {
                 System.out.println("1 - For at gå tilbage");
                 System.out.println("2 - Se anden ordre");
                 System.out.println("3 - Tilføj pizza til ordre");
                 System.out.println("4 - Færdigør ordre");
-                if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
                     System.out.println("5 - Fjern pizza fra ordre");
                 }
 
@@ -130,17 +130,17 @@ public class ActiveOrdersUI {
                         break;
                     case 3:
                         //Tilføj pizza til ordre
-                        newOrderUI.addPizzaDialog(orderNumber - 1);
+                        newOrderUI.addPizzaDialog(orderNumber);
                         seeOtherOrder = false;
                         exit = true;
                         break;
                     case 4:
-                        completeOrder(orderNumber - 1);
+                        completeOrder(orderNumber);
                         seeOtherOrder = false;
                         exit = true;
                         break;
                     case 5:
-                        if (orderlist.getPizzaCountInOrder(orderNumber - 1) > 1) {
+                        if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
                             //Fjern pizza til ordre
                             deletePizzaFromOrderDialog(orderNumber - 1);
                             seeOtherOrder = false;
@@ -164,7 +164,7 @@ public class ActiveOrdersUI {
         do {
             System.out.println("Mario's Pizzaria - Fjern Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.ShowAllCurrentOrders());
+            showAllCurrentOrders();
             System.out.println("-------------------------");
             System.out.println("Indtast ordre nummeret på ordren du vil fjerne");
 
@@ -220,7 +220,7 @@ public class ActiveOrdersUI {
     private void completeOrderDialog() {
         System.out.println("Mario's Pizzaria - Færdiggør en ordre");
         System.out.println("-------------------------");
-        System.out.println(orderlist.ShowAllCurrentOrders());
+        showAllCurrentOrders();
         System.out.println("-------------------------");
         System.out.println("Indtast ordre nummeret på ordren du vil færdiggøre");
 
@@ -247,5 +247,85 @@ public class ActiveOrdersUI {
             //Bliver ved indtil korrekt svar
         } while (!correctNumber);
         return orderNumber;
+    }
+
+    public void showAllCurrentOrders() {
+        int counter = 1;
+        String ordersInString = "";
+
+        //Bygger en tekst String med alle ordrene, hvis der er 1 eller flere ordre i arrayet
+        if (orderlist.getOrdersListSize() > 0) {
+            for (Order order : orderlist.getActiveOrders()) {
+                ordersInString
+                        += "Order Nr. " + counter + ". "
+                        + "Antal pizzaer: " + order.getOrderSize() + "\n"
+                        + "Afhentnings tidspunkt: " + order.getPickupTimeHour() + ":" + order.getPickupTimeMinute()
+                        + ", Total Pris: " + order.getTotalPrice() + "\n";
+
+                counter++;
+            }
+        } else {
+            ordersInString = "Der er ikke oprettet en ordre endnu";
+        }
+        System.out.println(ordersInString);
+    }
+
+    public void showOrder(int index) {
+        //Trækker en da Orderlisten for brugeren starter på 1
+        index--;
+        String orderInString = "";
+
+        //Bygger en tekst String for ordreren, hvis der valgt en ordre
+        if (orderlist.getOrdersListSize() > 0) {
+            printOrder(index);
+        } else {
+            orderInString = "Der er ikke oprettet en ordre endnu";
+        }
+        System.out.println(orderInString);
+    }
+
+    public void printOrder(int index){
+        int counter = 1;
+        String stringOrder = "";
+        stringOrder += "Bestilingstidspunkt: " + orderlist.getOrderTimeHour(index) + ":" + orderlist.getOrderTimeMinutes(index)
+                + "\n";
+        //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
+        if (orderlist.getCustomerName(index) != null) {
+            stringOrder += "Kunde Navn: " + orderlist.getCustomerName(index) + "\n";
+        }
+        if (orderlist.isOrderedByPhone(index)) {
+            stringOrder += "Kunde Tlf: " + orderlist.getCustomerPhone(index) + "\n";
+        }
+        stringOrder += "-----\n";
+        for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
+            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
+
+            counter++;
+
+            //Udskriver prisen for pizzaen
+            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
+
+            //Tjekker om der er toppings på pizzaewn
+            if (!pizza.getToppingsAdded().isEmpty()) {
+                //Udskriver prisen for pizzaen
+                stringOrder += "\nEkstra Toppings: ";
+                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
+                    //For hver topping indsæt antal og navn i stringen
+                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
+                    stringOrder += " " + extraTopping.getExtraToppingName();
+
+                    //Hvis der er mere end en topping, tilføj komma
+                    if (pizza.getToppingsAdded().size() > 1) {
+                        stringOrder += ", ";
+                    }
+                }
+
+            }
+            stringOrder += "\n-----\n";
+        }
+        stringOrder += "Afhentnings tidspunkt: " + orderlist.getPickUpTimeHour(index) + ":"
+                + orderlist.getPickUpTimeMinutes(index) + " "
+                + "\nTotal Pris: " + orderlist.getTotalPrice(index);
+        System.out.println(stringOrder);
     }
 }
