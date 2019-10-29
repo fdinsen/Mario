@@ -21,7 +21,7 @@ public class ActiveOrdersUI {
         private static final ActiveOrdersUI INSTANCE = new ActiveOrdersUI();
     }
     
-     public void showActiveOrdersDialog() {
+     void showActiveOrdersDialog() {
         boolean exit = false;
         int selection;
 
@@ -86,10 +86,9 @@ public class ActiveOrdersUI {
         } while (!exit);
     }
      
-     public void seeOrderDialog() {
+     private void seeOrderDialog() {
         boolean exit = false;
         boolean seeOtherOrder = false;
-        boolean correctNumber;
         int orderNumber;
         int selection;
         do {
@@ -251,28 +250,29 @@ public class ActiveOrdersUI {
         return orderNumber;
     }
 
-    public void showAllCurrentOrders() {
+    private void showAllCurrentOrders() {
         int counter = 1;
-        String ordersInString = "";
+        StringBuilder ordersInString = new StringBuilder();
 
         //Bygger en tekst String med alle ordrene, hvis der er 1 eller flere ordre i arrayet
         if (orderlist.getOrdersListSize() > 0) {
             for (Order order : orderlist.getActiveOrders()) {
-                ordersInString
-                        += "Order Nr. " + counter + ". "
-                        + "Antal pizzaer: " + order.getOrderSize() + "\n"
-                        + "Afhentnings tidspunkt: " + order.getPickupTimeHour() + ":" + order.getPickupTimeMinute()
-                        + ", Total Pris: " + order.getTotalPrice() + "\n";
-
+                ordersInString.append("Order Nr. ").append(counter).append(". ");
+                ordersInString.append("Antal pizzaer: ").append(order.getOrderSize()).append("\n");
+                ordersInString.append("Afhentnings tidspunkt: ").append(order.getPickupTimeHour()).append(":").append(order.getPickupTimeMinute());
+                ordersInString.append(", Total Pris: ").append(order.getTotalPrice());
+                if(orderlist.getOrdersListSize() != counter) {
+                    ordersInString.append("\n-----\n");
+                }
                 counter++;
             }
         } else {
-            ordersInString = "Der er ikke oprettet en ordre endnu";
+            ordersInString = new StringBuilder("Der er ikke oprettet en ordre endnu");
         }
         System.out.println(ordersInString);
     }
 
-    public void showOrder(int index) {
+    private void showOrder(int index) {
         //Trækker en da Orderlisten for brugeren starter på 1
         String orderInString = "";
 
@@ -285,80 +285,77 @@ public class ActiveOrdersUI {
         System.out.println(orderInString);
     }
 
-    public void printOrder(int index){
+    private void printOrder(int index){
         int counter = 1;
-        String stringOrder = "";
-        stringOrder += "Bestilingstidspunkt: " + orderlist.getOrderTimeHour(index) + ":" + orderlist.getOrderTimeMinutes(index)
-                + "\n";
+        StringBuilder stringOrder = new StringBuilder();
+        stringOrder.append("Bestilingstidspunkt: ").append(orderlist.getOrderTimeHour(index)).append(":").append(orderlist.getOrderTimeMinutes(index)).append("\n");
         //Tjek om navn og telefon nr er tilstede og tilføj det til stringen hvis det er
         if (orderlist.getCustomerName(index) != null) {
-            stringOrder += "Kunde Navn: " + orderlist.getCustomerName(index) + "\n";
+            stringOrder.append("Kunde Navn: ").append(orderlist.getCustomerName(index)).append("\n");
         }
         if (orderlist.isOrderedByPhone(index)) {
-            stringOrder += "Kunde Tlf: " + orderlist.getCustomerPhone(index) + "\n";
+            stringOrder.append("Kunde Tlf: ").append(orderlist.getCustomerPhone(index)).append("\n");
         }
-        stringOrder += "-----\n";
+        stringOrder.append("-----\n");
         for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
-            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
+            stringOrder.append(counter).append(". ").append(pizza.getPizzaName()).append(" -- ").append(pizza.getPizzaSizeString());
 
             counter++;
 
             //Udskriver prisen for pizzaen
-            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
+            stringOrder.append("\t").append(pizza.getPizzaPrice()).append(" kr.");
 
             //Tjekker om der er toppings på pizzaewn
             if (!pizza.getToppingsAdded().isEmpty()) {
                 //Udskriver prisen for pizzaen
-                stringOrder += "\nEkstra Toppings: ";
+                stringOrder.append("\nEkstra Toppings: ");
                 for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
                     //For hver topping indsæt antal og navn i stringen
-                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
-                    stringOrder += " " + extraTopping.getExtraToppingName();
+                    stringOrder.append("x").append(extraTopping.getExtraToppingQuantity());
+                    stringOrder.append(" ").append(extraTopping.getExtraToppingName());
 
                     //Hvis der er mere end en topping, tilføj komma
                     if (pizza.getToppingsAdded().size() > 1) {
-                        stringOrder += ", ";
+                        stringOrder.append(", ");
                     }
                 }
 
             }
-            stringOrder += "\n-----\n";
+            stringOrder.append("\n-----\n");
         }
-        stringOrder += "Afhentnings tidspunkt: " + orderlist.getPickUpTimeHour(index) + ":"
-                + orderlist.getPickUpTimeMinutes(index) + " "
-                + "\nTotal Pris: " + orderlist.getTotalPrice(index);
+        stringOrder.append("Afhentnings tidspunkt: ").append(orderlist.getPickUpTimeHour(index)).append(":").append(orderlist.getPickUpTimeMinutes(index)).append(" ").append("\nTotal Pris: ").append(orderlist.getTotalPrice(index));
         System.out.println(stringOrder);
     }
 
     private void showAllPizzasInOrder(int index) {
-        String stringOrder = "";
+        StringBuilder stringOrder = new StringBuilder();
         int counter = 1;
         for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
-            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
+            stringOrder.append(counter).append(". ").append(pizza.getPizzaName()).append(" -- ").append(pizza.getPizzaSizeString());
 
             counter++;
 
             //Udskriver prisen for pizzaen
-            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
+            stringOrder.append("\t").append(pizza.getPizzaPrice()).append(" kr.");
 
             //Tjekker om der er toppings på pizzaewn
             if (!pizza.getToppingsAdded().isEmpty()) {
                 //Udskriver prisen for pizzaen
-                stringOrder += "\nEkstra Toppings: ";
+                stringOrder.append("\nEkstra Toppings: ");
                 for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
                     //For hver topping indsæt antal og navn i stringen
-                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
-                    stringOrder += " " + extraTopping.getExtraToppingName();
+                    stringOrder.append("x").append(extraTopping.getExtraToppingQuantity());
+                    stringOrder.append(" ").append(extraTopping.getExtraToppingName());
 
                     //Hvis der er mere end en topping, tilføj komma
                     if (pizza.getToppingsAdded().size() > 1) {
-                        stringOrder += ", ";
+                        stringOrder.append(", ");
                     }
                 }
 
             }
             if(orderlist.getPizzaCountInOrder(index) >= counter) {
-                stringOrder += "\n-----\n";
+                stringOrder.append("\n-----\n");
             }
         }
         System.out.println(stringOrder);
