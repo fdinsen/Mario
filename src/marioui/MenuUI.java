@@ -1,4 +1,7 @@
-package mariopizzaria;
+package marioui;
+
+import mariopizzaria.Menu;
+import mariopizzaria.inputValidation;
 
 public class MenuUI {
 

@@ -2,7 +2,7 @@ package mariopizzaria;
 
 import java.util.Scanner;
 
-class inputValidation {
+public class inputValidation {
 
     private static inputValidation inputValidation_instance = null;
 

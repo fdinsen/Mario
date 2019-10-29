@@ -1,5 +1,7 @@
 
-package mariopizzaria;
+package marioui;
+
+import mariopizzaria.inputValidation;
 
 public class MainUI {
     

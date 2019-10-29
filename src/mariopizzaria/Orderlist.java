@@ -26,14 +26,14 @@ public class Orderlist {
     }
     
     
-    int createOrder(boolean orderByPhone) {
+    public int createOrder(boolean orderByPhone) {
         //Laver ny order og tilføjer til orders array
         listOfOrders.add(new Order(orderByPhone));
         return listOfOrders.size();
 
     }
 
-    void completeOrder(int index) {
+    public void completeOrder(int index) {
         //Kalder Statistics
         statistics.updateStats(listOfOrders.get(index));
         //Fjerner orderen fra listen
@@ -50,60 +50,60 @@ public class Orderlist {
         this.listOfOrders.remove(index);
     }
 
-    void deleteOrder(int index) {
+    public void deleteOrder(int index) {
         this.listOfOrders.remove(index);
     }
 
-    Order getOrder(int index) {
+    public Order getOrder(int index) {
         return listOfOrders.get(index-1);
     }
 
     
-    int getPizzaCountInOrder(int orderNumberInArray){
+    public int getPizzaCountInOrder(int orderNumberInArray){
         return listOfOrders.get(orderNumberInArray-1).getNumberOfPizzas();
     }
     
-    void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
+    public void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
         listOfOrders.get(orderNumberInArray-1).removePizzaFromOrder(pizzaNumberInOrder-1);
     }
 
-    int getOrdersListSize() {
+    public int getOrdersListSize() {
         return listOfOrders.size();
     }
 
-    ArrayList<Order> getActiveOrders(){
+    public ArrayList<Order> getActiveOrders(){
         return listOfOrders;
     }
 
-    String getOrderTimeMinutes(int index){
+    public String getOrderTimeMinutes(int index){
         return getOrder(index).getOrderTimeMinute();
     }
 
-    String getPickUpTimeHour(int index){
+    public String getPickUpTimeHour(int index){
         return getOrder(index).getPickupTimeHour();
     }
 
-    String getPickUpTimeMinutes(int index){
+    public String getPickUpTimeMinutes(int index){
         return getOrder(index).getPickupTimeMinute();
     }
 
-    String getOrderTimeHour(int index){
+    public String getOrderTimeHour(int index){
         return getOrder(index).getOrderTimeHour();
     }
 
-    String getCustomerName(int index){
+    public String getCustomerName(int index){
         return getOrder(index).getCostumerName();
     }
 
-    String getCustomerPhone(int index){
+    public String getCustomerPhone(int index){
         return getOrder(index).getCostumerName();
     }
 
-    Boolean isOrderedByPhone(int index){
+    public Boolean isOrderedByPhone(int index){
         return getOrder(index).isOrderedByPhone();
     }
 
-    ArrayList<Pizza> getAllPizzasInOrder(int index){
+    public ArrayList<Pizza> getAllPizzasInOrder(int index){
         return getOrder(index).getAllPizzasInOrder();
     }
 

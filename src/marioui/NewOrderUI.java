@@ -1,6 +1,11 @@
 
 
-package mariopizzaria;
+package marioui;
+
+import mariopizzaria.ExtraTopping;
+import mariopizzaria.Menu;
+import mariopizzaria.Orderlist;
+import mariopizzaria.inputValidation;
 
 public class NewOrderUI {
 
@@ -40,7 +45,7 @@ public class NewOrderUI {
                 switch (selection) {
                     case 1:
                         //Er bestilt på telefon
-                        orderArrayPosition = orderlist.createOrder(true) + 1;
+                        orderArrayPosition = orderlist.createOrder(true);
                         makeNewOrderByTelehoneDialog(orderArrayPosition);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);

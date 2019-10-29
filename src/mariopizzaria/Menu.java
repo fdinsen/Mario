@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author simon
  */
-class Menu {
+public class Menu {
     
     private static Menu menu_instance = null; 
     
