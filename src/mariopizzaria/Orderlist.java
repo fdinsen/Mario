@@ -35,9 +35,9 @@ public class Orderlist {
 
     public void completeOrder(int index) {
         //Kalder Statistics
-        statistics.updateStats(listOfOrders.get(index-1));
+        statistics.updateStats(listOfOrders.get(index));
         //Fjerner orderen fra listen
-        this.listOfOrders.remove(index-1);
+        this.listOfOrders.remove(index);
     }
     
     public void completeOrder(int index, boolean lostOrder) {
