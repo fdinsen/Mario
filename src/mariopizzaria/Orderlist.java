@@ -55,19 +55,16 @@ public class Orderlist {
     }
 
     Order getOrder(int index) {
-        return listOfOrders.get(index);
+        return listOfOrders.get(index-1);
     }
-    
-    String showAllPizzasInOrder(int orderNumberInArray){
-        return "" + listOfOrders.get(orderNumberInArray);
-    }
+
     
     int getPizzaCountInOrder(int orderNumberInArray){
         return listOfOrders.get(orderNumberInArray-1).getNumberOfPizzas();
     }
     
     void deletePizzaFromOrder(int orderNumberInArray, int pizzaNumberInOrder){
-        listOfOrders.get(orderNumberInArray).removePizzaFromOrder(pizzaNumberInOrder);
+        listOfOrders.get(orderNumberInArray-1).removePizzaFromOrder(pizzaNumberInOrder-1);
     }
 
     int getOrdersListSize() {

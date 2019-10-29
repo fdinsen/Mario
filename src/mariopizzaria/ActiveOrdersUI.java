@@ -142,7 +142,7 @@ public class ActiveOrdersUI {
                     case 5:
                         if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
                             //Fjern pizza til ordre
-                            deletePizzaFromOrderDialog(orderNumber - 1);
+                            deletePizzaFromOrderDialog(orderNumber);
                             seeOtherOrder = false;
                             exit = true;
                         } else {
@@ -192,7 +192,7 @@ public class ActiveOrdersUI {
         do {
             System.out.println("Mario's Pizzaria - Fjern Pizza fra Ordre");
             System.out.println("-------------------------");
-            System.out.println(orderlist.showAllPizzasInOrder(orderNumber));
+            showAllPizzasInOrder(orderNumber);
             System.out.println("-------------------------");
             System.out.println("Indtast nummeret ud for pizzaen du vil fjerne fra orderen");
 
@@ -210,9 +210,11 @@ public class ActiveOrdersUI {
         } while (!correctNumber);
 
         //Fjerne pizza fra orderen og går tilbage
-        orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber - 1);
+        orderlist.deletePizzaFromOrder(orderNumber, pizzaNumber);
     }
-    
+
+
+
     private void completeOrder(int orderNumber) {
         orderlist.completeOrder(orderNumber - 1);
     }
@@ -272,7 +274,6 @@ public class ActiveOrdersUI {
 
     public void showOrder(int index) {
         //Trækker en da Orderlisten for brugeren starter på 1
-        index--;
         String orderInString = "";
 
         //Bygger en tekst String for ordreren, hvis der valgt en ordre
@@ -326,6 +327,40 @@ public class ActiveOrdersUI {
         stringOrder += "Afhentnings tidspunkt: " + orderlist.getPickUpTimeHour(index) + ":"
                 + orderlist.getPickUpTimeMinutes(index) + " "
                 + "\nTotal Pris: " + orderlist.getTotalPrice(index);
+        System.out.println(stringOrder);
+    }
+
+    private void showAllPizzasInOrder(int index) {
+        String stringOrder = "";
+        int counter = 1;
+        for (Pizza pizza : orderlist.getAllPizzasInOrder(index)) {
+            stringOrder += counter + ". " + pizza.getPizzaName() + " -- " + pizza.getPizzaSizeString();
+
+            counter++;
+
+            //Udskriver prisen for pizzaen
+            stringOrder += "\t" + pizza.getPizzaPrice() + " kr.";
+
+            //Tjekker om der er toppings på pizzaewn
+            if (!pizza.getToppingsAdded().isEmpty()) {
+                //Udskriver prisen for pizzaen
+                stringOrder += "\nEkstra Toppings: ";
+                for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
+                    //For hver topping indsæt antal og navn i stringen
+                    stringOrder += "x" + extraTopping.getExtraToppingQuantity();
+                    stringOrder += " " + extraTopping.getExtraToppingName();
+
+                    //Hvis der er mere end en topping, tilføj komma
+                    if (pizza.getToppingsAdded().size() > 1) {
+                        stringOrder += ", ";
+                    }
+                }
+
+            }
+            if(orderlist.getPizzaCountInOrder(index) >= counter) {
+                stringOrder += "\n-----\n";
+            }
+        }
         System.out.println(stringOrder);
     }
 }
