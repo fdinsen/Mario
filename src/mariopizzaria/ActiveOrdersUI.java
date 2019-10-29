@@ -98,6 +98,8 @@ public class ActiveOrdersUI {
             System.out.println(orderlist.ShowAllCurrentOrders());
             System.out.println("-------------------------");
             System.out.println("Indtast ordre nummeret på ordren du vil se");
+
+            //Får ordrenummeret af brugeren
             orderNumber = getOrderNumber();
 
             //Udskriver orderen

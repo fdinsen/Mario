@@ -171,7 +171,7 @@ public class Order {
             //Tjekker om der er toppings på pizzaewn
             if (!pizza.getToppingsAdded().isEmpty()) {
                 //Udskriver prisen for pizzaen
-                stringOrder += "\nEkstra Toppings";
+                stringOrder += "\nEkstra Toppings: ";
                 for (ExtraTopping extraTopping : pizza.getToppingsAdded()) {
                     //For hver topping indsæt antal og navn i stringen
                     stringOrder += "x" + extraTopping.getExtraToppingQuantity();
