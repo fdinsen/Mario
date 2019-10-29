@@ -46,10 +46,12 @@ public class Statistics {
         seperatorCharacter = ":";
         arrayListSize = menu.getListOfPizzaName().size();
 
-        if (statsFile.exists()) {
-            readFile(statisticsList, statsFile);
-        } else {
+        if (!statsFile.exists()) {
             createFile(statsFile, statisticsList);
+        }else if(isStatsFileEmpty()) {
+            createFile(statsFile, statisticsList);
+        }else {
+            readFile(statisticsList, statsFile);
         }
     }
 
@@ -221,6 +223,21 @@ public class Statistics {
         } catch (IOException ex) {
             Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public boolean isStatsFileEmpty() {
+        boolean isEmpty = true;
+        try {
+            Scanner in = new Scanner(statsFile);
+            if(in.hasNextLine()) {
+                isEmpty = false;
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return isEmpty;
     }
 
     public void createLostOrdersFile(File file) {
