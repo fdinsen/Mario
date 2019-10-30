@@ -253,7 +253,7 @@ public class Statistics {
             BufferedWriter bw = new BufferedWriter(fw);
             
             bw.write("Antal tabte Ordrer \t total værdi\n");
-            bw.write("0\t\t\t   0.0");
+            bw.write("0 0.0");
             
             bw.close();
         } catch (IOException ex) {
@@ -265,17 +265,30 @@ public class Statistics {
         int amountLostOrders = 0;
         double totalValueOfLostOrders = 0;
         
+        int count = 0;
+        String next;
+        String[] temp = new  String[2];
+        
         try (Scanner in = new Scanner(lostOrdersFile)) {
             while(in.hasNextLine()){
-                amountLostOrders = in.nextInt();
-                totalValueOfLostOrders = in.nextDouble();
+                next = in.nextLine();
                 
+                temp = next.split(" ");
+                
+                if(count == 1){
+                    amountLostOrders = Integer.parseInt(temp[0]);
+                    totalValueOfLostOrders = Double.parseDouble(temp[1]);
+                }
+                
+                count++;
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
             //TODO Email us
         }
-                
+        amountLostOrders++;
+        totalValueOfLostOrders += get.getTotalPrice();
+        
         FileWriter fw;
         try {
             fw = new FileWriter(lostOrdersFile,false);
@@ -283,7 +296,7 @@ public class Statistics {
             BufferedWriter bw = new BufferedWriter(fw);
             
             bw.write("Antal tabte Ordrer \t total værdi\n");
-            bw.write(amountLostOrders+"\t" +totalValueOfLostOrders);
+            bw.write(amountLostOrders+ " " +totalValueOfLostOrders);
             
             bw.close();
         } catch (IOException ex) {
