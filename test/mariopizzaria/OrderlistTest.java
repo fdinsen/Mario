@@ -6,6 +6,7 @@
 package mariopizzaria;
 
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,8 +19,15 @@ public class OrderlistTest {
     /**
      * Test of createOrder method, of class Orderlist.
      */
+    
+    @Before
+    public void clearArraylistBeforeEachTest() {
+        orderlist.clearOrderlist();
+    }
+    
     @Test
     public void testCreateOrderArrayLength() {
+        
         int expectedSize = 1;
 
         //Laver en orderlist og kalder createOrder med orderByPhone sat til true

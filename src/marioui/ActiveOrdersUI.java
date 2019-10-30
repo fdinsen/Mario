@@ -227,7 +227,7 @@ public class ActiveOrdersUI {
         orderlist.completeOrder(orderNumber);
     }
     private void completeOrder(int orderNumber, boolean lostOrder) {
-        orderlist.completeOrder(orderNumber, lostOrder);
+        orderlist.completeOrder(orderNumber -1, lostOrder);
     }
 
     private void completeOrderDialog() {

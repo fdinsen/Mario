@@ -34,7 +34,7 @@ public class StatisticTest {
         Statistics statistics = Statistics.getInstance();
         int arraySize = menu.getListOfPizzaName().size();
         String[][] pizzaStatsTest = new String[2][arraySize];
-        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<IndividualStatistics>();
 
         //Act
         statistics.createFile(testFile, arrayList);
@@ -47,7 +47,7 @@ public class StatisticTest {
     public void testCreateFileByContent() {
         //Arrange
         Statistics statistics = Statistics.getInstance();
-        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<IndividualStatistics>();
         String actualFirstLine = "";
         String expectedFirstLine = "Margherita";
         //Act
@@ -69,7 +69,7 @@ public class StatisticTest {
         Statistics statistics = Statistics.getInstance();
         int arraySize = menu.getListOfPizzaName().size();
         //String[][] pizzaStatsTest = new String[2][arraySize];
-        ArrayList<IndividualStatistics> arrayList = new ArrayList<>();
+        ArrayList<IndividualStatistics> arrayList = new ArrayList<IndividualStatistics>();
         int expectedAmountOfSales;
         int actualAmountOfSales;
 
@@ -117,7 +117,7 @@ public class StatisticTest {
         int expectedLength = 30;
         int actualLength;
         ArrayList<IndividualStatistics> arrayList
-                = new ArrayList<>();
+                = new ArrayList<IndividualStatistics>();
 
         //Act
         statistics.createArray(arrayList);
@@ -136,7 +136,7 @@ public class StatisticTest {
         int expectedPizzaSales = 0;
         int actualPizzaSales;
         ArrayList<IndividualStatistics> arrayList
-                = new ArrayList<>();
+                = new ArrayList<IndividualStatistics>();
 
         //Act
         statistics.createArray(arrayList);
@@ -156,7 +156,7 @@ public class StatisticTest {
         int actualLength;
         boolean isLongerThan;
         ArrayList<IndividualStatistics> arrayList
-                = new ArrayList<>();
+                = new ArrayList<IndividualStatistics>();
         
         //Act
         statistics.createArray(arrayList);

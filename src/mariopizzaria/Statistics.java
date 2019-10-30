@@ -44,7 +44,7 @@ public class Statistics {
         lostOrdersFile = new File(LOST_ORDERS_FILE_NAME);
         statsFile = new File(STATISTICS_FILE_NAME);
         strBuilder = new StringBuilder();
-        statisticsList = new ArrayList<>();
+        statisticsList = new ArrayList<IndividualStatistics>();
         seperatorCharacter = ":";
         arrayListSize = menu.getListOfPizzaName().size();
 
@@ -267,12 +267,12 @@ public class Statistics {
         
         try (Scanner in = new Scanner(lostOrdersFile)) {
             while(in.hasNextLine()){
-                
                 amountLostOrders = in.nextInt();
                 totalValueOfLostOrders = in.nextDouble();
                 
             }
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
             //TODO Email us
         }
                 
