@@ -141,12 +141,12 @@ public class NewOrderUI {
                         case 1:
                             //Vælg størrelse
                             pizzaSize = chooseSizeDialog();
-                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber, pizzaSize);
+                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber - 1, pizzaSize);
                             addNewSize = false;
                             break;
                         case 2:
                             //Lav Pizza
-                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber);
+                            orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber - 1);
                             addNewSize = false;
                             break;
                         default:
