@@ -35,18 +35,18 @@ public class Orderlist {
 
     public void completeOrder(int index) {
         //Kalder Statistics
-        statistics.updateStats(listOfOrders.get(index));
+        statistics.updateStats(listOfOrders.get(index-1));
         //Fjerner orderen fra listen
-        this.listOfOrders.remove(index);
+        this.listOfOrders.remove(index-1);
     }
     
     public void completeOrder(int index, boolean lostOrder) {
         //Kalder Statistics
         if(lostOrder){
             System.out.println(listOfOrders.get(index));
-            statistics.lostOrder(listOfOrders.get(index));
+            statistics.lostOrder(listOfOrders.get(index-1));
         }else{
-            statistics.updateStats(listOfOrders.get(index));
+            statistics.updateStats(listOfOrders.get(index-1));
         }
         
         
@@ -61,7 +61,7 @@ public class Orderlist {
     }
 
     public void deleteOrder(int index) {
-        this.listOfOrders.remove(index);
+        this.listOfOrders.remove(index-1);
     }
 
     public Order getOrder(int index) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mariopizzaria;
 
 import static org.junit.Assert.*;
@@ -52,7 +47,8 @@ public class OrderlistTest {
 
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.completeOrder(0);
+        //Skal kaldes med 1, da der trækkes en fra i Orderlist
+        orderlist.completeOrder(1);
         int actualLength = orderlist.getOrdersListSize();
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet
@@ -73,12 +69,15 @@ public class OrderlistTest {
 
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.completeOrder(0,true);
+        //Skal kaldes med 1, da der trækkes 1 fra i Orderlist
+        orderlist.completeOrder(1,true);
         int actualLength = orderlist.getOrdersListSize();
+        
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet
         assertEquals(exspectedLength, actualLength);
     }
+    
     /**
      * Test of deleteOrder method, of class Orderlist.
      */
@@ -93,7 +92,8 @@ public class OrderlistTest {
 
         //Act
         //Fjerner orderen fra arrayet
-        orderlist.deleteOrder(0);
+        //Skal kaldes med 1, da der trækkes 1 fra i Orderlist
+        orderlist.deleteOrder(1);
         int actualLength = orderlist.getOrdersListSize();
         //Assert
         //Tjekker om listen indenholder orderen der er blevet fjernet

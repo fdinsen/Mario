@@ -262,32 +262,32 @@ public class Statistics {
     }
     void lostOrder(Order get) {
         
-        int amountLostOrders = 0;
-        double totalValueOfLostOrders = 0;
-        
-        try (Scanner in = new Scanner(lostOrdersFile)) {
-            while(in.hasNextLine()){
-                amountLostOrders = in.nextInt();
-                totalValueOfLostOrders = in.nextDouble();
-                
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
-            //TODO Email us
-        }
-                
-        FileWriter fw;
-        try {
-            fw = new FileWriter(lostOrdersFile,false);
-            
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            bw.write("Antal tabte Ordrer \t total værdi\n");
-            bw.write(amountLostOrders+"\t" +totalValueOfLostOrders);
-            
-            bw.close();
-        } catch (IOException ex) {
-            //TODO Emil us!
-        } 
+//        int amountLostOrders = 0;
+//        double totalValueOfLostOrders = 0;
+//        
+//        try (Scanner in = new Scanner(lostOrdersFile)) {
+//            while(in.hasNextLine()){
+//                amountLostOrders = in.nextInt();
+//                totalValueOfLostOrders = in.nextDouble();
+//                
+//            }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(Statistics.class.getName()).log(Level.SEVERE, null, ex);
+//            //TODO Email us
+//        }
+//                
+//        FileWriter fw;
+//        try {
+//            fw = new FileWriter(lostOrdersFile,false);
+//            
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            
+//            bw.write("Antal tabte Ordrer \t total værdi\n");
+//            bw.write(amountLostOrders+"\t" +totalValueOfLostOrders);
+//            
+//            bw.close();
+//        } catch (IOException ex) {
+//            //TODO Emil us!
+//        } 
     }
 }

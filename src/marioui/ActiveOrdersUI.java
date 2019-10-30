@@ -76,7 +76,7 @@ public class ActiveOrdersUI {
                         }
                         break;
                     case 5:
-                        //Se en ordre
+                        //Færdigør en ordre
                         if (orderlist.getOrdersListSize() > 0) {
                             completeOrderDialog();
                         } else {
@@ -192,7 +192,7 @@ public class ActiveOrdersUI {
         } while (!correctNumber);
 
         //Fjerne ordren fra ordre arrayet og går tilbage igen
-        orderlist.deleteOrder(orderNumber - 1);
+        orderlist.deleteOrder(orderNumber);
     }
 
     private void deletePizzaFromOrderDialog(int orderNumber) {
@@ -239,7 +239,7 @@ public class ActiveOrdersUI {
 
         //Fjerne ordren fra ordre arrayet og går tilbage igen
         //Minus en for at få det til at passe til listen
-        orderlist.completeOrder(getOrderNumber() - 1);
+        orderlist.completeOrder(getOrderNumber());
     }
 
     private int getOrderNumber() {
