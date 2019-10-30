@@ -44,9 +44,9 @@ public class Orderlist {
         //Kalder Statistics
         if(lostOrder){
             System.out.println(listOfOrders.get(index));
-            statistics.lostOrder(listOfOrders.get(index-1));
+            statistics.lostOrder(listOfOrders.get(index));
         }else{
-            statistics.updateStats(listOfOrders.get(index-1));
+            statistics.updateStats(listOfOrders.get(index));
         }
         
         

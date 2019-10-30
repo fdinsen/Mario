@@ -1,2 +1,2 @@
-﻿Antal tabte Ordrer 	 total værdi
-0 0.0
+Antal tabte Ordrer 	 total værdi
+1 63.0
