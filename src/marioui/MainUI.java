@@ -1,13 +1,13 @@
 
 package marioui;
 
-import mariopizzaria.inputValidation;
+import mariopizzaria.InputValidation;
 
 public class MainUI {
     
 public void MainMenuDialog() {
         boolean exit = false;
-        inputValidation inputVal = inputValidation.getInstance();
+        InputValidation inputVal = InputValidation.getInstance();
         MenuUI menuUI = MenuUI.getInstance();
         ActiveOrdersUI activeOrdersUI = ActiveOrdersUI.getInstance();
         NewOrderUI newOrderUI_Instance= NewOrderUI.getInstance();

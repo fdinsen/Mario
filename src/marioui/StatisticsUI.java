@@ -2,12 +2,12 @@
 package marioui;
 
 import mariopizzaria.Statistics;
-import mariopizzaria.inputValidation;
+import mariopizzaria.InputValidation;
 
 public class StatisticsUI {
 
     public static StatisticsUI staticstics_UI_instance = null; 
-    private inputValidation inputVal = inputValidation.getInstance();
+    private InputValidation inputVal = InputValidation.getInstance();
     private Statistics statistic = Statistics.getInstance();
     
     private StatisticsUI(){

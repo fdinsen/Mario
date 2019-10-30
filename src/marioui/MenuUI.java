@@ -1,12 +1,12 @@
 package marioui;
 
 import mariopizzaria.Menu;
-import mariopizzaria.inputValidation;
+import mariopizzaria.InputValidation;
 
 public class MenuUI {
 
     private static MenuUI menu_Ui_Instance = null; 
-    private inputValidation inputVal = inputValidation.getInstance();
+    private InputValidation inputVal = InputValidation.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
     private Menu menu = Menu.getInstance();
     

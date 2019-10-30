@@ -4,12 +4,12 @@ import mariopizzaria.ExtraTopping;
 import mariopizzaria.Order;
 import mariopizzaria.Orderlist;
 import mariopizzaria.Pizza;
-import mariopizzaria.inputValidation;
+import mariopizzaria.InputValidation;
 
 public class ActiveOrdersUI {
 
     private static ActiveOrdersUI Order_Ui_Instance = null;
-    private inputValidation inputVal = inputValidation.getInstance();
+    private InputValidation inputVal = InputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
 

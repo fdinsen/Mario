@@ -5,12 +5,12 @@ package marioui;
 import mariopizzaria.ExtraTopping;
 import mariopizzaria.Menu;
 import mariopizzaria.Orderlist;
-import mariopizzaria.inputValidation;
+import mariopizzaria.InputValidation;
 
 public class NewOrderUI {
 
     private static NewOrderUI newOrderUI_instance = null;
-    private inputValidation inputVal = inputValidation.getInstance();
+    private InputValidation inputVal = InputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private Menu menu = Menu.getInstance();
     
