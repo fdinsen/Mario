@@ -51,7 +51,7 @@ public class inputValidation {
             System.out.println("Indtast navnet: ");
             String name = sc.nextLine();
             if (name.length() > 1) {
-                if (!name.matches("[a-zA-Z]+")) {
+                if (!name.matches("[a-zA-Z ]+")) {
                     System.err.println("Du må kun bruge bokstaver!");
                     System.out.println("Prøv igen!");
                 } else {

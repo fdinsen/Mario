@@ -105,8 +105,8 @@ public class Orderlist {
         return getOrder(index).getCostumerName();
     }
 
-    public String getCustomerPhone(int index){
-        return getOrder(index).getCostumerName();
+    public int getCustomerPhone(int index){
+        return getOrder(index).getCostumerPhoneNumber();
     }
 
     public Boolean isOrderedByPhone(int index){
