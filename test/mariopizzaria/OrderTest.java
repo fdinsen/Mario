@@ -51,7 +51,7 @@ public class OrderTest {
         order.addExtraTopping(0, 1, 10);
         order.addPizza(1);
         order.addPizza(1);
-        expectedTotalPrice = 281.0;
+        expectedTotalPrice = 269.0;
         actualTotalPrice = order.getTotalPrice();
         
         
@@ -116,7 +116,7 @@ public class OrderTest {
                 order.getPizzaAt(1).getPizzaPrice() + order.getPizzaAt(2).getPizzaPrice();
         order.discount(10);
         actualDiscountedPrice = order.getTotalPrice();
-        expectedDiscountedPrice = 193.5;
+        expectedDiscountedPrice = 189.0;
         
         //Assert
         assertEquals(expectedDiscountedPrice, actualDiscountedPrice, 0.001);

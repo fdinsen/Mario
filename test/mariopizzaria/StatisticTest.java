@@ -81,7 +81,7 @@ public class StatisticTest {
         order.addPizza(1);
 
         statistics.updateArray(order, testFile, arrayList);
-        actualAmountOfSales = arrayList.get(0).getAmountOfSales();
+        actualAmountOfSales = arrayList.get(1).getAmountOfSales();
 
         //Assert
         assertEquals(expectedAmountOfSales, actualAmountOfSales);
