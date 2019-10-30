@@ -83,8 +83,11 @@ public class Statistics {
         String returnString = "";
         //Makes a copied ArrayList which is sorted and sent along
         //This is to avoid affecting the ArrayList which is written to the file
-        ArrayList<IndividualStatistics> arrayListToSort
-                = (ArrayList<IndividualStatistics>) statisticsList.clone();
+        
+//        ArrayList<IndividualStatistics> arrayListToSort
+//                = (ArrayList<IndividualStatistics>) statisticsList.clone();
+        ArrayList<IndividualStatistics> arrayListToSort 
+                = new ArrayList<IndividualStatistics>(statisticsList);
 
         //Sorts the arrayList
         arrayListToSort.sort(new AmountSorter());
