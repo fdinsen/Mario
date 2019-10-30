@@ -51,7 +51,7 @@ public class Orderlist {
         
         
         //Fjerner orderen fra listen
-        this.listOfOrders.remove(index-1);
+        this.listOfOrders.remove(index);
     }
     
     public void clearOrderlist() {
