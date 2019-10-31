@@ -3,20 +3,15 @@ package mariopizzaria;
 import java.util.Scanner;
 
 public class InputValidation {
-
-    private static InputValidation inputValidation_instance = null;
-
-    public InputValidation() {
+    
+    private InputValidation() {
     }
     
-    
-    
     public static InputValidation getInstance() {
-        if (inputValidation_instance == null) {
-            inputValidation_instance = new InputValidation();
-        }
-
-        return inputValidation_instance;
+        return InputValidationHolder.INSTANCE;
+    }
+    private static class InputValidationHolder {
+        private static final InputValidation INSTANCE = new InputValidation();
     }
 
 
