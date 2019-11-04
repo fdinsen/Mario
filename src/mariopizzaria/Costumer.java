@@ -1,11 +1,15 @@
 package mariopizzaria;
 
 public class Costumer {
-
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private String costumerName;
-
     private int costumerPhoneNumber;
     
+    //---------//
+    // GETTERS //
+    //---------//
     public String getCostumerName() {
         return costumerName;
     }
@@ -14,6 +18,9 @@ public class Costumer {
         return costumerPhoneNumber;
     }
     
+    //---------//
+    // SETTERS //
+    //---------//
     public void setCostumerName(String name) {
         costumerName = name;
     }

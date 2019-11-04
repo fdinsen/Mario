@@ -3,20 +3,33 @@ package mariopizzaria;
 import java.util.Scanner;
 
 public class InputValidation {
-    
+
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private static InputValidation Input_Validation_Instance = null;
-    
+
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     private InputValidation() {
     }
-    
+
+    //------------//
+    // SINGLETON  //
+    //------------//
     public static InputValidation getInstance() {
         return InputValidationHolder.INSTANCE;
     }
+
     private static class InputValidationHolder {
+
         private static final InputValidation INSTANCE = new InputValidation();
     }
 
-
+    //---------//
+    // GETTERS //
+    //---------//
     public int getUserInput() {
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -28,17 +41,6 @@ public class InputValidation {
             System.out.println("Prøv igen");
         }
         return userSelection;
-    }
-
-    public boolean isValidPhoneNumber(int phoneNumber) {
-        int length = String.valueOf(phoneNumber).length();
-        if (length == 8) {
-            return true;
-        } else {
-            System.err.println("Telefon nummeret har ikke 8 tal");
-            System.out.println("Prøv igen");
-            return false;
-        }
     }
 
     public String getValidName() {
@@ -62,4 +64,19 @@ public class InputValidation {
 
         }
     }
+
+    //---------//
+    // METHODS //
+    //---------//
+    public boolean isValidPhoneNumber(int phoneNumber) {
+        int length = String.valueOf(phoneNumber).length();
+        if (length == 8) {
+            return true;
+        } else {
+            System.err.println("Telefon nummeret har ikke 8 tal");
+            System.out.println("Prøv igen");
+            return false;
+        }
+    }
+
 }

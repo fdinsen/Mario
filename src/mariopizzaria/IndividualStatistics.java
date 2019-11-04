@@ -6,9 +6,15 @@ package mariopizzaria;
  * @author <Frederik Keis Dinsen>
  */
 public class IndividualStatistics {
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private String pizzaName;
     private int amountOfSales;
     
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     public IndividualStatistics(String pizzaName, int amountOfSales) {
         this.pizzaName = pizzaName;
         this.amountOfSales = amountOfSales;
@@ -29,6 +35,7 @@ public class IndividualStatistics {
     public int getAmountOfSales() {
         return amountOfSales;
     }
+    
     @Override
     public String toString(){
         return pizzaName + " : "+ amountOfSales;
@@ -37,7 +44,6 @@ public class IndividualStatistics {
     //---------//
     // METHODS //
     //---------//
- 
     public void updatePizzaSales() {
         amountOfSales++;
     }

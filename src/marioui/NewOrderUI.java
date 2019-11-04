@@ -1,5 +1,3 @@
-
-
 package marioui;
 
 import mariopizzaria.ExtraTopping;
@@ -9,24 +7,35 @@ import mariopizzaria.InputValidation;
 
 public class NewOrderUI {
 
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private static NewOrderUI newOrderUI_instance = null;
     private InputValidation inputVal = InputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private Menu menu = Menu.getInstance();
-    
 
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     public NewOrderUI() {
     }
 
-        
+    //------------//
+    // SINGLETON  //
+    //------------//
     public static NewOrderUI getInstance() {
         return NewOrderUIHolder.INSTANCE;
     }
-    
+
     private static class NewOrderUIHolder {
+
         private static final NewOrderUI INSTANCE = new NewOrderUI();
     }
-    
+
+    //------------------//
+    // METHODS - DIALOGS//
+    //------------------//
     public void makeNewOrderDialog() {
         boolean exit = false;
         int selection;
@@ -44,7 +53,7 @@ public class NewOrderUI {
             if (selection != -1) {
                 switch (selection) {
                     case 1:
-                        //Er bestilt på telefon
+                        //Ordered bu phone
                         orderArrayPosition = orderlist.createOrder(true);
                         makeNewOrderByTelehoneDialog(orderArrayPosition);
                         addNameDialog(orderArrayPosition);
@@ -52,14 +61,14 @@ public class NewOrderUI {
                         exit = true;
                         break;
                     case 2:
-                        //Er ikke bestilt på telefon
+                        //Not ordered by phone
                         orderArrayPosition = orderlist.createOrder(false);
                         addNameDialog(orderArrayPosition);
                         addPizzaDialog(orderArrayPosition);
                         exit = true;
                         break;
                     case 3:
-                        //Annuller ordre
+                        //Cancel order making
                         exit = true;
                         break;
                     default:
@@ -68,7 +77,7 @@ public class NewOrderUI {
             }
         } while (!exit);
     }
-    
+
     private void makeNewOrderByTelehoneDialog(int orderArrayPosition) {
         int input;
 
@@ -76,16 +85,16 @@ public class NewOrderUI {
         System.out.println("-------------------------");
         System.out.println("Indtast telefon nr.");
 
-        //Bliver ved indtil et korrekt telefon nummer er indtastet
+        //Keeps going until correct phone number
         do {
             input = inputVal.getUserInput();
         } while (!inputVal.isValidPhoneNumber(input));
 
-        //Tilføjer telefon nummer
+        //Adds the phone number to the order
         orderlist.getOrder(orderArrayPosition).setCostumerPhoneNumber(input);
 
     }
-    
+
     private void addNameDialog(int orderArrayPosition) {
         boolean exit = false;
         int selection;
@@ -98,12 +107,12 @@ public class NewOrderUI {
 
             switch (selection) {
                 case 1:
-                    //Tilføj navn
+                    //Add name
                     orderlist.getOrder(orderArrayPosition).setCostumerName(inputVal.getValidName());
                     exit = true;
                     break;
                 case 2:
-                    //Intet navn
+                    //No name
                     exit = true;
                     break;
                 default:
@@ -111,7 +120,7 @@ public class NewOrderUI {
             }
         } while (!exit);
     }
-    
+
     public void addPizzaDialog(int orderArrayPosition) {
         boolean addNewSize = true;
         boolean addNewPizza = true;
@@ -121,15 +130,15 @@ public class NewOrderUI {
         int pizzaSize;
         int selection;
 
-        //Ydderste loop, som er pizza loopet
+        //Outher loop, which is the pizza loop
         do {
             System.out.println("Indtast nummeret på pizzaen der skal tilføjes");
             pizzaNumber = inputVal.getUserInput();
 
-            //Tjekker at det indtastet pizzanummer er større end 0 samt at det ikke er højere end antal pizzaer
+            //Checks the entered pizza number are greater than 0 as well as at no higher than the number of pizzas
             if (pizzaNumber > 0 && pizzaNumber < menu.getAmountOfPizzas() + 1) {
 
-                //Loop til at vælge pizza størrelse
+                //Loop for picking pizza size
                 do {
                     System.out.println("Vil du vælge størrelse?");
                     System.out.println("1. - Ja");
@@ -139,13 +148,13 @@ public class NewOrderUI {
 
                     switch (selection) {
                         case 1:
-                            //Vælg størrelse
+                            //Choose size
                             pizzaSize = chooseSizeDialog();
                             orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber - 1, pizzaSize);
                             addNewSize = false;
                             break;
                         case 2:
-                            //Lav Pizza
+                            //Add pizza to order
                             orderlist.getOrder(orderArrayPosition).addPizza(pizzaNumber - 1);
                             addNewSize = false;
                             break;
@@ -156,7 +165,7 @@ public class NewOrderUI {
 
                 } while (addNewSize);
 
-                //Loop til tilbehør
+                //Loop for toppings
                 do {
                     System.out.println("Skal der tilføjes ekstra tilbehør?");
                     System.out.println("1. - Ja");
@@ -166,12 +175,12 @@ public class NewOrderUI {
 
                     switch (selection) {
                         case 1:
-                            //Vælg ekstra tilbehør
+                            //Add topping
                             chooseExtrasDialog(orderArrayPosition);
                             addExtras = false;
                             break;
                         case 2:
-                            //Ingen ekstra tilbehør
+                            //No topping
                             addExtras = false;
                             break;
                         default:
@@ -181,7 +190,7 @@ public class NewOrderUI {
 
                 } while (addExtras);
 
-                //Spørg om der skal laves en pizza mere
+                //Loop for adding a new pizza
                 do {
                     System.out.println("Tilføj en ekstra Pizza til orderen?");
                     System.out.println("1. - Ja");
@@ -191,11 +200,11 @@ public class NewOrderUI {
 
                     switch (selection) {
                         case 1:
-                            //Tilføj en ekstra pizza
+                            //Add extra pizza
                             addExtraPizzaDialog = false;
                             break;
                         case 2:
-                            //Afslut
+                            //No extra pizza, Finish the loops
                             addExtraPizzaDialog = false;
                             addNewPizza = false;
 
@@ -205,21 +214,21 @@ public class NewOrderUI {
                             System.out.println("Prøv igen");
                             break;
                     }
-                    //Bliver ved indtil brugeren har valgt om der skal tilføjes ny pizza eller ej)
+                    //Keeps going until user chooses to make new pizza or not
                 } while (addExtraPizzaDialog);
 
             } else {
-                //Brugeren har indtastet et tal der ikke er mellem 1 og antal pizzaer i menuen
+                //The user has entered a number that is not between 1 and the number of pizzas in the menu
                 System.err.println(pizzaNumber + " Er ikke mellem 1 og antallet af pizzaer i menuen (" + menu.getListOfPizzaName().size() + ")");
                 System.out.println("Prøv igen");
             }
 
-            //Hvis den er true Kan man tilføje ny pizza (TRUE)
-            //Ellers afslutter den og går tilbage til menuen (FALSE)
+            //If true, add new pizza (TRUE)
+            //Otherwise, exit and return to menu (FALSE)
         } while (addNewPizza);
     }
-    
-    //Retunere størrelsen så den kan gammes med ordren
+
+    // Return the size so it can be saved with the order
     private int chooseSizeDialog() {
         boolean exit = false;
         int selection;
@@ -253,15 +262,16 @@ public class NewOrderUI {
         } while (!exit);
         return selection;
     }
-    
+
     private void chooseExtrasDialog(int orderArrayPosition) {
         boolean exit = false;
         boolean extraQuantityCorrect;
-        int extraSelection; // nummeret på tilbehøret
-        int extraQuantitySelection; // Antallet af tilbehøret der er valgt
-        int moreExtraQuantitySelection; // Bruges når brugeren skal vælge om der skal tilføjes mere
+        int extraSelection;
+        int extraQuantitySelection;
+        int moreExtraQuantitySelection;
         int counter;
         int pizzaPos;
+
         do {
             counter = 1;
             System.out.println("Tilængeligt tilbehør: ");
@@ -274,19 +284,18 @@ public class NewOrderUI {
             extraSelection = inputVal.getUserInput();
 
             if (extraSelection > 0 && extraSelection <= menu.getToppingList().size()) {
-                //Tallet er korrekt
+                // The number is correct
 
-                //For fat i pizza positionen i order arrayet
-                //Pizzaen er lige blevet tilføjet, dermed ved vi det er den sidste plads
+                // Grab the pizza position in the order array
+                // The pizza has just been added, so we know it's the last place
                 pizzaPos = orderlist.getOrder(orderArrayPosition).getOrderSize() - 1;
                 do {
                     System.out.println("Indtast hvor meget tilbehør af " + menu.getToppingList().get(extraSelection - 1).getExtraToppingName() + " der skal tilføjes");
                     extraQuantitySelection = inputVal.getUserInput();
 
-                    //Hvis svaret er mellem 1 og 5
+                    // If the answer is between 1 and 5
                     if (extraQuantitySelection > 0 && extraQuantitySelection < 6) {
-                        //er mellem 1 og 5
-                        //Tilføjer topping til orderen på den korrekte pizza(pizzaPos)
+                        // Adds topping to the correct pizza (pizza Pos)
                         orderlist.getOrder(orderArrayPosition).addExtraTopping(pizzaPos, extraSelection - 1, extraQuantitySelection);
                         extraQuantityCorrect = true;
                     } else {
@@ -294,7 +303,7 @@ public class NewOrderUI {
                         System.out.println("Prøv igen");
                         extraQuantityCorrect = false;
                     }
-                    //Bliver ved indtil antallet af extra er korrekt
+                    // Continues until the number of toppings count is correct
                 } while (!extraQuantityCorrect);
 
                 do {
@@ -305,26 +314,27 @@ public class NewOrderUI {
 
                     switch (moreExtraQuantitySelection) {
                         case 1:
-                            //Ja
-                            //Hopper ud af switch men ikke hele loopet
+                            //Yes
+                            //// Jumps out of switch but not the entire loop
                             exit = false;
                             extraQuantityCorrect = true;
                             break;
                         case 2:
-                            //Nej
-                            //Hopper ud af switch og loopet udenom
+                            //No
+                            //// Jumps out of switch and the loop
                             exit = true;
                             extraQuantityCorrect = true;
                             break;
                         default:
                             System.err.println(moreExtraQuantitySelection + " Er ikke en mulighed prøv igen");
-                            //Bliver ved indtil antallet af extra er korrekt
+                        
                     }
 
+                    // Continues until user input is correct
                 } while (!extraQuantityCorrect);
 
             } else {
-                //Tallet er ikke mellem 1 og antallet af toppinngs
+                // The number is not between 1 and the number of toppings
                 System.out.println(extraSelection + "Tallet er ikke mellem 1 og antallet af toppings(" + menu.getToppingList().size() + ")");
             }
         } while (!exit);

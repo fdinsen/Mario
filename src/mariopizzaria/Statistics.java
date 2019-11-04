@@ -20,7 +20,9 @@ import java.util.logging.Logger;
  * @author <Frederik Keis Dinsen>
  */
 public class Statistics {
-
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private File statsFile;
     private final String STATISTICS_FILE_NAME = "statistics.txt";
     private StringBuilder strBuilder;
@@ -34,9 +36,6 @@ public class Statistics {
     private final String LOST_ORDERS_FILE_NAME = "lost_orders.txt";
     private File lostOrdersFile;
     
-    private int amountOfLostOrders;
-    private double valueOfLostOrders;
-
     //-------------//
     // CONSTRUCTOR //
     //-------------//
@@ -60,7 +59,10 @@ public class Statistics {
             createLostOrdersFile(lostOrdersFile);
         }
     }
-
+    
+    //------------//
+    // SINGLETON  //
+    //------------//
     public static Statistics getInstance() {
         return StatisticsHolder.INSTANCE;
     }

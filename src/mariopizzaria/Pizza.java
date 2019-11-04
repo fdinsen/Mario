@@ -3,13 +3,16 @@ package mariopizzaria;
 /*
 
     @Author Simon Kjems Jørgensen
-*/
+ */
 import java.util.ArrayList;
 
 public class Pizza {
-    
+
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     Menu menu = Menu.getInstance();
-    
+
     private String pizzaName;
 
     private double pizzaPrice;
@@ -21,44 +24,38 @@ public class Pizza {
     private ArrayList<ExtraTopping> listOfToppingsAdded;
 
     private int pizzaNumber;
-    
+
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     public Pizza(int menuIndex, int pizzaSize) {
         //Informationen om pizzaen hentes fra menu-kortet
         pizzaName = menu.getPizzaName(menuIndex);
         pizzaPrice = menu.getPizzaPrice(menuIndex);
         this.pizzaNumber = menuIndex;
-        
-        if(pizzaSize>=3 || pizzaSize < 0){
+
+        if (pizzaSize >= 3 || pizzaSize < 0) {
             this.pizzaSize = 0;
-        }else{
+        } else {
             this.pizzaSize = pizzaSize;
         }
-        switch (pizzaSize){
+        switch (pizzaSize) {
             case 1:
                 this.pizzaPrice *= 1.85;
                 break;
-            case 2: 
+            case 2:
                 this.pizzaPrice *= 1.15;
                 break;
             default:
                 break;
         }
         this.totalPizzaPrice = pizzaPrice;
-        listOfToppingsAdded = new ArrayList<>();  
+        listOfToppingsAdded = new ArrayList<>();
     }
-    public void addExtraTopping(ExtraTopping topping){
-        
-            for(ExtraTopping toppingAdded : listOfToppingsAdded){
-                if(toppingAdded.getExtraToppingName().equals(topping.getExtraToppingName())){
-                    toppingAdded.addExtraTopping(topping.getExtraToppingQuantity());
-                    return;
-                }
-            }
-            listOfToppingsAdded.add(topping);
-        
-            totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
-        
-    }
+
+    //---------//
+    // GETTERS //
+    //---------//
     public String getPizzaName() {
         return pizzaName;
     }
@@ -70,13 +67,13 @@ public class Pizza {
     public int getPizzaSize() {
         return pizzaSize;
     }
-    
+
     public String getPizzaSizeString() {
-        if(pizzaSize == 0){
+        if (pizzaSize == 0) {
             return "Almindelig";
-        }else if(pizzaSize  == 1){
+        } else if (pizzaSize == 1) {
             return "Familie";
-        }else{
+        } else {
             return "Deep pan";
         }
     }
@@ -88,6 +85,7 @@ public class Pizza {
     public ArrayList<ExtraTopping> getToppingsAdded() {
         return listOfToppingsAdded;
     }
+
     public double getToppingsAddedTotalPrice() {
         double sum = 0;
         for (ExtraTopping extraTopping : listOfToppingsAdded) {
@@ -99,5 +97,22 @@ public class Pizza {
     public int getPizzaNumber() {
         return pizzaNumber;
     }
-    
+
+    //---------//
+    // METHODS //
+    //---------//
+    public void addExtraTopping(ExtraTopping topping) {
+
+        for (ExtraTopping toppingAdded : listOfToppingsAdded) {
+            if (toppingAdded.getExtraToppingName().equals(topping.getExtraToppingName())) {
+                toppingAdded.addExtraTopping(topping.getExtraToppingQuantity());
+                return;
+            }
+        }
+        listOfToppingsAdded.add(topping);
+
+        totalPizzaPrice += topping.getExtraToppingPrice() * topping.getExtraToppingQuantity();
+
+    }
+
 }

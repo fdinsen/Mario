@@ -5,7 +5,9 @@ package mariopizzaria;
 */
 
 public class ExtraTopping {
-    
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     Menu menu = Menu.getInstance();
     
     private String name;
@@ -14,6 +16,9 @@ public class ExtraTopping {
 
     private int quantity;
     
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     public ExtraTopping(String name, double price){
         
         this.name = name;
@@ -28,6 +33,10 @@ public class ExtraTopping {
         this.price = menu.getExtratoppingPrice(itemNumber);
         
     }
+    
+    //---------//
+    // GETTERS //
+    //---------//
     public String getExtraToppingName() {
         return name;
     }
@@ -40,10 +49,17 @@ public class ExtraTopping {
         return quantity;
     }
     
+    //---------//
+    // SETTERS //
+    //---------//
     public void setExtraToppingQuntity(int qtr){
         
         quantity = Math.abs(qtr);
     }
+    
+    //---------//
+    // METHODS //
+    //---------//
     public void addExtraTopping(int qtr){
         quantity += Math.abs(qtr);
     }

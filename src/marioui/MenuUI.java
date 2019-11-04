@@ -4,15 +4,23 @@ import mariopizzaria.Menu;
 import mariopizzaria.InputValidation;
 
 public class MenuUI {
-
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private static MenuUI menu_Ui_Instance = null; 
     private InputValidation inputVal = InputValidation.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
     private Menu menu = Menu.getInstance();
-    
+        
+    //--------------//
+    // CONSTRUCTERS //
+    //--------------//
     private MenuUI(){
     }
     
+    //------------//
+    // SINGLETON  //
+    //------------//
     public static MenuUI getInstance() 
     { 
         return MenuUIHolder.INSTANCE;
@@ -22,6 +30,9 @@ public class MenuUI {
         private static final MenuUI INSTANCE = new MenuUI();
     }
     
+    //----------------//
+    // METHODS - SHOW //
+    //----------------//
     public void showPizzaMenuDialog() {
         boolean exit = false;
         String pizzaer = "";

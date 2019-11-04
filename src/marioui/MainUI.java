@@ -1,18 +1,20 @@
-
 package marioui;
 
 import mariopizzaria.InputValidation;
 
 public class MainUI {
-    
-public void MainMenuDialog() {
+
+    //---------//
+    // METHODS //
+    //---------//
+    public void MainMenuDialog() {
         boolean exit = false;
         InputValidation inputVal = InputValidation.getInstance();
         MenuUI menuUI = MenuUI.getInstance();
         ActiveOrdersUI activeOrdersUI = ActiveOrdersUI.getInstance();
-        NewOrderUI newOrderUI_Instance= NewOrderUI.getInstance();
+        NewOrderUI newOrderUI_Instance = NewOrderUI.getInstance();
         StatisticsUI statisticsUI = StatisticsUI.getInstance();
-        
+
         int selection;
 
         do {

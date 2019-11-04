@@ -10,6 +10,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Order {
 
+    //--------------------//
+    // INSTANCE VARIABLES //
+    //--------------------//
     private ArrayList<Pizza> pizzas;
     private Costumer costumer;
     private LocalDateTime pickupTime;
@@ -50,7 +53,6 @@ public class Order {
     //---------//
     // GETTERS //
     //---------//
-
     public boolean isOrderedByPhone() {
         return orderByPhone;
     }
@@ -78,6 +80,26 @@ public class Order {
 
     public int getNumberOfPizzas() {
         return pizzas.size();
+    }
+
+    public String getPickupTimeHour() {
+        return "" + pickupTime.getHour();
+    }
+
+    public String getPickupTimeMinute() {
+        return "" + pickupTime.getMinute();
+    }
+
+    public String getOrderTimeHour() {
+        return "" + orderTime.getHour();
+    }
+
+    public String getOrderTimeMinute() {
+        return "" + orderTime.getMinute();
+    }
+
+    public ArrayList<Pizza> getAllPizzasInOrder() {
+        return pizzas;
     }
 
     //---------//
@@ -144,25 +166,5 @@ public class Order {
 
         pizzas.remove(index);
         calculateTotalPrice();
-    }
-
-    public String getPickupTimeHour() {
-        return "" + pickupTime.getHour();   
-    }
-
-    public String getPickupTimeMinute() {
-        return "" + pickupTime.getMinute();
-    }
-
-    public String getOrderTimeHour() {
-        return "" + orderTime.getHour();
-    }
-
-    public String getOrderTimeMinute() {
-        return "" + orderTime.getMinute();
-    }
-
-    public ArrayList<Pizza> getAllPizzasInOrder() {
-        return pizzas;
     }
 }
