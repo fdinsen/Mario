@@ -7,11 +7,9 @@ import java.util.ArrayList;
  * @author <Oliver Vang>
  */
 public class Orderlist {
-
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private static Orderlist Order_List_Instance = null;
     private ArrayList<Order> listOfOrders = new ArrayList<>();
     private Statistics statistics = Statistics.getInstance();
 
@@ -85,7 +83,7 @@ public class Orderlist {
     }
 
     public int createOrder(boolean orderByPhone) {
-        //Laver ny order og tilføjer til orders array
+        //Creates new order and returns the pos
         listOfOrders.add(new Order(orderByPhone));
         return listOfOrders.size();
 
@@ -102,7 +100,7 @@ public class Orderlist {
     }
 
     public void completeOrder(int index, boolean lostOrder) {
-        //Updates statistics with Lostorder
+        //Updates statistics with lostOrder
         if (lostOrder) {
             System.out.println(listOfOrders.get(index));
             statistics.lostOrder(listOfOrders.get(index));
@@ -112,12 +110,6 @@ public class Orderlist {
 
         //Removes the order from the list
         this.listOfOrders.remove(index);
-    }
-
-    public void clearOrderlist() {
-        for (int i = 0; i < listOfOrders.size(); i++) {
-            listOfOrders.remove(i);
-        }
     }
 
     public void deleteOrder(int index) {

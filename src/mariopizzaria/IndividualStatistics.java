@@ -15,12 +15,12 @@ public class IndividualStatistics {
     //--------------//
     // CONSTRUCTERS //
     //--------------//
-    public IndividualStatistics(String pizzaName, int amountOfSales) {
+    IndividualStatistics(String pizzaName, int amountOfSales) {
         this.pizzaName = pizzaName;
         this.amountOfSales = amountOfSales;
     }
     
-    public IndividualStatistics(String pizzaName, String amountOfSales) {
+    IndividualStatistics(String pizzaName, String amountOfSales) {
         this.pizzaName = pizzaName;
         this.amountOfSales = Integer.parseInt(amountOfSales);
     }
@@ -28,11 +28,11 @@ public class IndividualStatistics {
     //---------//
     // GETTERS //
     //---------//
-    public String getPizzaName() {
+    String getPizzaName() {
         return pizzaName;
     }
     
-    public int getAmountOfSales() {
+    int getAmountOfSales() {
         return amountOfSales;
     }
     
@@ -44,7 +44,7 @@ public class IndividualStatistics {
     //---------//
     // METHODS //
     //---------//
-    public void updatePizzaSales() {
+    void updatePizzaSales() {
         amountOfSales++;
     }
 }

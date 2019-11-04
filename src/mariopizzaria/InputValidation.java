@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class InputValidation {
 
-    //--------------------//
-    // INSTANCE VARIABLES //
-    //--------------------//
-    private static InputValidation Input_Validation_Instance = null;
-
     //--------------//
     // CONSTRUCTERS //
     //--------------//

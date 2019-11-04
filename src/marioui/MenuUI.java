@@ -7,7 +7,6 @@ public class MenuUI {
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private static MenuUI menu_Ui_Instance = null; 
     private InputValidation inputVal = InputValidation.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
     private Menu menu = Menu.getInstance();
@@ -33,7 +32,7 @@ public class MenuUI {
     //----------------//
     // METHODS - SHOW //
     //----------------//
-    public void showPizzaMenuDialog() {
+    void showPizzaMenuDialog() {
         boolean exit = false;
         String pizzaer = "";
         int selection;

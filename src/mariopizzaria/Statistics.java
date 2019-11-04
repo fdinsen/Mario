@@ -27,7 +27,7 @@ public class Statistics {
     private final String STATISTICS_FILE_NAME = "statistics.txt";
     private StringBuilder strBuilder;
     private BufferedWriter bw;
-    public int arrayListSize;
+    private int arrayListSize;
     private ArrayList<IndividualStatistics> statisticsList;
     private String seperatorCharacter;
     private static Statistics statistics_instance = null;
@@ -56,7 +56,7 @@ public class Statistics {
         }
         
         if(!lostOrdersFile.exists()){
-            createLostOrdersFile(lostOrdersFile);
+            createLostOrdersFile();
         }
     }
     
@@ -82,7 +82,7 @@ public class Statistics {
     }
 
     public String getStatistics() {
-        String returnString = "";
+        StringBuilder returnString = new StringBuilder();
         //Makes a copied ArrayList which is sorted and sent along
         //This is to avoid affecting the ArrayList which is written to the file
         
@@ -96,27 +96,25 @@ public class Statistics {
 
         //Loop through and concatenate to a String which is sent along
         for (IndividualStatistics stats : arrayListToSort) {
-            returnString += stats;
+            returnString.append(stats);
             //If this is not the last line, add newline
             if (arrayListToSort.indexOf(stats) < arrayListToSort.size() - 1) {
-                returnString += "\n";
+                returnString.append("\n");
             }
         }
-        return returnString;
+        return returnString.toString();
     }
 
     //---------//
     // METHODS //
     //---------//
-    public void updateStats(Order order) {
+    void updateStats(Order order) {
         updateArray(order, statsFile, statisticsList);
     }
 
     //This one should only be called directly in tests, use updateStats() instead
-    public void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
+    private void updateArray(Order order, File file, ArrayList<IndividualStatistics> arrayList) {
         int pizzaNumber;
-        int previousPizzaSales;
-        int updatedPizzaSales;
 
         //Checks if file with the given name exists
         if (!file.exists()) {
@@ -141,13 +139,12 @@ public class Statistics {
         }
     }
 
-    public void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
+    private void readFile(ArrayList<IndividualStatistics> arrayList, File file) {
         //TODO: read through file, line by line, and add each piece
         //of information to the Array
 
-        String[] temp = new String[2];
+        String[] temp;
         String nextLine;
-        int count = 0;
         try (Scanner in = new Scanner(file)) {
             arrayList.clear();
             while (in.hasNextLine()) {
@@ -161,7 +158,7 @@ public class Statistics {
             }
 
         } catch (FileNotFoundException ex) {
-
+                //File not found
         }
 
     }
@@ -174,8 +171,7 @@ public class Statistics {
             try {
                 bw = new BufferedWriter(new FileWriter(file));
                 //Appends the pizza name and the sales to the string
-                strBuilder.append(arrayList.get(i).getPizzaName()
-                        + seperatorCharacter + arrayList.get(i).getAmountOfSales());
+                strBuilder.append(arrayList.get(i).getPizzaName()).append(seperatorCharacter).append(arrayList.get(i).getAmountOfSales());
                 //If this is not the last row
                 if (i < arrayListSize - 1) {
                     strBuilder.append("\n");
@@ -188,7 +184,7 @@ public class Statistics {
         }
     }
 
-    public void createArray(ArrayList<IndividualStatistics> arrayList) {
+    private void createArray(ArrayList<IndividualStatistics> arrayList) {
         //Creates array with all pizza names, and zero in every sale
         arrayList.clear();
         for (int i = 0; i < arrayListSize; i++) {
@@ -197,7 +193,7 @@ public class Statistics {
     }
 
     //This method should only run once EVER. Otherwise it clears the statistics
-    public void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
+    private void createFile(File file, ArrayList<IndividualStatistics> arrayList) {
         //If the given array is empty, fill it
         if (arrayList.size() == 0) {
             createArray(arrayList);
@@ -219,8 +215,7 @@ public class Statistics {
                     currentPizzaName = arrayList.get(i).getPizzaName();
                     currentPizzaSales = arrayList.get(i).getAmountOfSales();
                     //Appends the pizza name and the sales to each line in the string
-                    strBuilder.append(currentPizzaName + seperatorCharacter
-                            + currentPizzaSales);
+                    strBuilder.append(currentPizzaName).append(seperatorCharacter).append(currentPizzaSales);
                     //As long as this is not the last row
                     if (i < arrayListSize - 1) {
                         //then add a newline
@@ -235,7 +230,7 @@ public class Statistics {
         }
     }
     
-    public boolean isStatsFileEmpty() {
+    private boolean isStatsFileEmpty() {
         boolean isEmpty = true;
         try {
             Scanner in = new Scanner(statsFile);
@@ -249,7 +244,7 @@ public class Statistics {
         
         return isEmpty;
     }
-    public void createLostOrdersFile(File file) {
+    private void createLostOrdersFile() {
         
         FileWriter fw;
         try {
@@ -272,7 +267,7 @@ public class Statistics {
         
         int count = 0;
         String next;
-        String[] temp = new  String[2];
+        String[] temp;
         
         try (Scanner in = new Scanner(lostOrdersFile)) {
             while(in.hasNextLine()){

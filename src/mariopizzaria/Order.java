@@ -2,7 +2,6 @@ package mariopizzaria;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -37,7 +36,7 @@ public class Order {
         //menu = new Menu();
     }
 
-    public Order(boolean orderByPhone) {
+    Order(boolean orderByPhone) {
         this.orderByPhone = orderByPhone;
         pizzas = new ArrayList<Pizza>();
         costumer = new Costumer();
@@ -53,7 +52,7 @@ public class Order {
     //---------//
     // GETTERS //
     //---------//
-    public boolean isOrderedByPhone() {
+    boolean isOrderedByPhone() {
         return orderByPhone;
     }
 
@@ -61,7 +60,7 @@ public class Order {
         return totalPrice;
     }
 
-    public Pizza getPizzaAt(int index) {
+    Pizza getPizzaAt(int index) {
         index = Math.abs(index);
         return pizzas.get(index);
     }
@@ -70,15 +69,15 @@ public class Order {
         return pizzas.size();
     }
 
-    public String getCostumerName() {
+    String getCostumerName() {
         return costumer.getCostumerName();
     }
 
-    public int getCostumerPhoneNumber() {
+    int getCostumerPhoneNumber() {
         return costumer.getCostumerPhoneNumber();
     }
 
-    public int getNumberOfPizzas() {
+    int getNumberOfPizzas() {
         return pizzas.size();
     }
 
@@ -90,15 +89,15 @@ public class Order {
         return "" + pickupTime.getMinute();
     }
 
-    public String getOrderTimeHour() {
+    String getOrderTimeHour() {
         return "" + orderTime.getHour();
     }
 
-    public String getOrderTimeMinute() {
+    String getOrderTimeMinute() {
         return "" + orderTime.getMinute();
     }
 
-    public ArrayList<Pizza> getAllPizzasInOrder() {
+    ArrayList<Pizza> getAllPizzasInOrder() {
         return pizzas;
     }
 
@@ -161,7 +160,7 @@ public class Order {
         }
     }
 
-    public void removePizzaFromOrder(int index) {
+    void removePizzaFromOrder(int index) {
         index = Math.abs(index);
 
         pizzas.remove(index);

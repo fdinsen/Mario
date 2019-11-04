@@ -11,8 +11,6 @@ public class Pizza {
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    Menu menu = Menu.getInstance();
-
     private String pizzaName;
 
     private double pizzaPrice;
@@ -30,6 +28,10 @@ public class Pizza {
     //--------------//
     public Pizza(int menuIndex, int pizzaSize) {
         //Informationen om pizzaen hentes fra menu-kortet
+        //--------------------//
+        // INSTANCE VARIABLES //
+        //--------------------//
+        Menu menu = Menu.getInstance();
         pizzaName = menu.getPizzaName(menuIndex);
         pizzaPrice = menu.getPizzaPrice(menuIndex);
         this.pizzaNumber = menuIndex;
@@ -64,10 +66,6 @@ public class Pizza {
         return pizzaPrice;
     }
 
-    public int getPizzaSize() {
-        return pizzaSize;
-    }
-
     public String getPizzaSizeString() {
         if (pizzaSize == 0) {
             return "Almindelig";
@@ -78,7 +76,7 @@ public class Pizza {
         }
     }
 
-    public double getTotalPizzaPrice() {
+    double getTotalPizzaPrice() {
         return totalPizzaPrice;
     }
 
@@ -86,22 +84,14 @@ public class Pizza {
         return listOfToppingsAdded;
     }
 
-    public double getToppingsAddedTotalPrice() {
-        double sum = 0;
-        for (ExtraTopping extraTopping : listOfToppingsAdded) {
-            sum += extraTopping.getExtraToppingPrice() * extraTopping.getExtraToppingQuantity();
-        }
-        return sum;
-    }
-
-    public int getPizzaNumber() {
+    int getPizzaNumber() {
         return pizzaNumber;
     }
 
     //---------//
     // METHODS //
     //---------//
-    public void addExtraTopping(ExtraTopping topping) {
+    void addExtraTopping(ExtraTopping topping) {
 
         for (ExtraTopping toppingAdded : listOfToppingsAdded) {
             if (toppingAdded.getExtraToppingName().equals(topping.getExtraToppingName())) {

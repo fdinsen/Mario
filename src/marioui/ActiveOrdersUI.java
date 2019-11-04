@@ -11,7 +11,6 @@ public class ActiveOrdersUI {
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private static ActiveOrdersUI Order_Ui_Instance = null;
     private InputValidation inputVal = InputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private NewOrderUI newOrderUI = NewOrderUI.getInstance();
@@ -127,7 +126,6 @@ public class ActiveOrdersUI {
 
     private void showOrderDialog() {
         boolean exit = false;
-        boolean seeOtherOrder = false;
         int orderNumber;
         int selection;
         do {
@@ -144,61 +142,53 @@ public class ActiveOrdersUI {
             System.out.println("-------------------------");
             showOrder(orderNumber);
             System.out.println("-------------------------");
-            do {
-                System.out.println("1 - For at gå tilbage");
-                System.out.println("2 - Se anden ordre");
-                System.out.println("3 - Tilføj pizza til ordre");
-                System.out.println("4 - Færdigør ordre");
-                System.out.println("5 - Marker ordre som gået tabt");
-                if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
-                    System.out.println("6 - Fjern pizza fra ordre");
-                }
+            System.out.println("1 - For at gå tilbage");
+            System.out.println("2 - Se anden ordre");
+            System.out.println("3 - Tilføj pizza til ordre");
+            System.out.println("4 - Færdigør ordre");
+            System.out.println("5 - Marker ordre som gået tabt");
+            if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
+                System.out.println("6 - Fjern pizza fra ordre");
+            }
 
-                selection = inputVal.getUserInput();
+            selection = inputVal.getUserInput();
 
-                switch (selection) {
-                    case 1:
-                        //Go back
-                        seeOtherOrder = false;
+            switch (selection) {
+                case 1:
+                    //Go back
+                    exit = true;
+                    break;
+                case 2:
+                    //See other order
+                    break;
+                case 3:
+                    //Add pizza to order
+                    newOrderUI.addPizzaDialog(orderNumber);
+                    exit = true;
+                    break;
+                case 4:
+                    //Complete Order
+                    completeOrder(orderNumber);
+                    exit = true;
+                    break;
+                case 5:
+                    //Mark order as lost
+                    completeOrder(orderNumber, true);
+                    exit = true;
+                    break;
+                case 6:
+                    //Remove pizza from order
+                    if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
+                        deletePizzaFromOrderDialog(orderNumber);
                         exit = true;
-                        break;
-                    case 2:
-                        //See other order
-                        seeOtherOrder = false;
-                        break;
-                    case 3:
-                        //Add pizza to order
-                        newOrderUI.addPizzaDialog(orderNumber);
-                        seeOtherOrder = false;
-                        exit = true;
-                        break;
-                    case 4:
-                        //Complete Order
-                        completeOrder(orderNumber);
-                        seeOtherOrder = false;
-                        exit = true;
-                        break;
-                    case 5:
-                        //Mark order as lost
-                        completeOrder(orderNumber, true);
-                        seeOtherOrder = false;
-                        exit = true;
-                        break;
-                    case 6:
-                        //Remove pizza from order
-                        if (orderlist.getPizzaCountInOrder(orderNumber) > 1) {
-                            deletePizzaFromOrderDialog(orderNumber);
-                            seeOtherOrder = false;
-                            exit = true;
-                        } else {
-                            System.err.println(selection + " Er ikke en mulighed, prøv igen");
-                        }
-                        break;
-
-                    default:
+                    } else {
                         System.err.println(selection + " Er ikke en mulighed, prøv igen");
-                }
-            } while (seeOtherOrder);
+                    }
+                    break;
+
+                default:
+                    System.err.println(selection + " Er ikke en mulighed, prøv igen");
+            }
 
         } while (!exit);
     }

@@ -6,6 +6,6 @@ public class AmountSorter implements Comparator<IndividualStatistics>{
     
     @Override
     public int compare(IndividualStatistics stat1, IndividualStatistics stat2) {
-        return ((Integer)stat1.getAmountOfSales()).compareTo((Integer)stat2.getAmountOfSales());
+        return Integer.compare(stat1.getAmountOfSales(), stat2.getAmountOfSales());
     }
 }

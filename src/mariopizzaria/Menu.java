@@ -15,21 +15,15 @@ import java.util.Scanner;
  * @author simon
  */
 public class Menu {
-
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private static Menu menu_instance = null;
-
     //Setup for toppings file
     private File toppingFile;
-    private final String TOPPING_FILE_NAME = "Toppings.txt";
 
     //Setup for pizza file
     private File pizzaFile;
     private final String PIZZA_FILE_NAME = "Pizzas.txt";
-
-    private Scanner in;
 
     //Future proof. If the amount of pizzas changes in file
     private ArrayList<String> pizzaName;
@@ -41,11 +35,12 @@ public class Menu {
     private ArrayList<ExtraTopping> listOfExtraTopping;
 
     //--------------//
-    // CONSTRUCTERS //
+    // CONSTRUCTORS //
     //--------------//
     private Menu() {
 
         pizzaFile = new File(PIZZA_FILE_NAME);
+        String TOPPING_FILE_NAME = "Toppings.txt";
         toppingFile = new File(TOPPING_FILE_NAME);
 
         pizzaName = new ArrayList<>();
@@ -88,24 +83,12 @@ public class Menu {
         return pizzaName;
     }
 
-    public ArrayList<Double> getListOfPizzaPrice() {
-        return pizzaPrice;
-    }
-
-    public ArrayList<String> getPizzaDescription() {
-        return pizzaDescription;
-    }
-
-    public String getExtratoppingName(int index) {
+    String getExtratoppingName(int index) {
         return listOfExtraTopping.get(index).getExtraToppingName();
     }
 
-    public double getExtratoppingPrice(int index) {
+    double getExtratoppingPrice(int index) {
         return listOfExtraTopping.get(index).getExtraToppingPrice();
-    }
-
-    public ExtraTopping getTopping(int index) {
-        return listOfExtraTopping.get(index);
     }
 
     public ArrayList<ExtraTopping> getToppingList() {
@@ -120,24 +103,8 @@ public class Menu {
         return pizzaName.size();
     }
 
-    //---------//
-    // METHODS //
-    //---------//
-    public String printMenu() {
-        String returnString = "";
-
-        for (int i = 0; i < pizzaName.size(); i++) {
-            returnString += i + 1 + " " + pizzaName.get(i) + " " + pizzaPrice.get(i) + " " + pizzaDescription.get(i) + "\n";
-        }
-        for (ExtraTopping topping : listOfExtraTopping) {
-            returnString += topping.getExtraToppingName() + " " + topping.getExtraToppingPrice() + "\n";
-        }
-
-        return returnString;
-    }
-
     private void readInPizzas() {
-        String[] temp = new String[3];
+        String[] temp;
         String nextLine;
 
         try (Scanner in = new Scanner(pizzaFile)) {
@@ -151,7 +118,6 @@ public class Menu {
                 pizzaDescription.add(temp[2]);
 
             }
-            in.close();
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }
@@ -159,7 +125,7 @@ public class Menu {
     }
 
     private void readInToppings() {
-        String[] temp = new String[2];
+        String[] temp;
         String nextLine;
 
         try (Scanner in = new Scanner(toppingFile)) {
@@ -171,7 +137,6 @@ public class Menu {
                 listOfExtraTopping.add(new ExtraTopping(temp[0], Double.parseDouble(temp[1])));
 
             }
-            in.close();
         } catch (FileNotFoundException ex) {
             //TODO email the developers(us)
         }

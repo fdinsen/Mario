@@ -5,16 +5,15 @@ import mariopizzaria.Statistics;
 import mariopizzaria.InputValidation;
 
 public class StatisticsUI {
-    
+
     //--------------------//
-    // INSTANCE VARIABLES //    
+    // INSTANCE VARIABLES //
     //--------------------//
-    public static StatisticsUI staticstics_UI_instance = null; 
     private InputValidation inputVal = InputValidation.getInstance();
     private Statistics statistic = Statistics.getInstance();
     
     //--------------//
-    // CONSTRUCTERS //
+    // CONSTRUCTORS //
     //--------------//
     private StatisticsUI(){
         
@@ -35,7 +34,7 @@ public class StatisticsUI {
     //------------------//
     // METHODS - DIALOGS//
     //------------------//
-    public void statisticsDialog() {
+    void statisticsDialog() {
         boolean exit = false;
         int selection;
         do {

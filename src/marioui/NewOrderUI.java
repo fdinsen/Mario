@@ -10,15 +10,14 @@ public class NewOrderUI {
     //--------------------//
     // INSTANCE VARIABLES //
     //--------------------//
-    private static NewOrderUI newOrderUI_instance = null;
     private InputValidation inputVal = InputValidation.getInstance();
     private Orderlist orderlist = Orderlist.getInstance();
     private Menu menu = Menu.getInstance();
 
     //--------------//
-    // CONSTRUCTERS //
+    // CONSTRUCTORS //
     //--------------//
-    public NewOrderUI() {
+    private NewOrderUI() {
     }
 
     //------------//
@@ -36,7 +35,7 @@ public class NewOrderUI {
     //------------------//
     // METHODS - DIALOGS//
     //------------------//
-    public void makeNewOrderDialog() {
+    void makeNewOrderDialog() {
         boolean exit = false;
         int selection;
         int orderArrayPosition;
@@ -121,16 +120,16 @@ public class NewOrderUI {
         } while (!exit);
     }
 
-    public void addPizzaDialog(int orderArrayPosition) {
+    void addPizzaDialog(int orderArrayPosition) {
         boolean addNewSize = true;
         boolean addNewPizza = true;
         boolean addExtras = true;
-        boolean addExtraPizzaDialog = false;
+        boolean addExtraPizzaDialog;
         int pizzaNumber;
         int pizzaSize;
         int selection;
 
-        //Outher loop, which is the pizza loop
+        //Outer loop, which is the pizza loop
         do {
             System.out.println("Indtast nummeret på pizzaen der skal tilføjes");
             pizzaNumber = inputVal.getUserInput();
@@ -212,6 +211,7 @@ public class NewOrderUI {
                         default:
                             System.err.println(selection + " Er ikke en mulighed for om det skal tilføjes en ny pizza");
                             System.out.println("Prøv igen");
+                            addExtraPizzaDialog = true;
                             break;
                     }
                     //Keeps going until user chooses to make new pizza or not
@@ -327,7 +327,8 @@ public class NewOrderUI {
                             break;
                         default:
                             System.err.println(moreExtraQuantitySelection + " Er ikke en mulighed prøv igen");
-                        
+                            extraQuantityCorrect = false;
+
                     }
 
                     // Continues until user input is correct
