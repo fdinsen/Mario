@@ -1,4 +1,4 @@
-package mariopizzaria;
+package main;
 
 import marioui.MainUI;
 
